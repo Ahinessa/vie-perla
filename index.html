@@ -1,0 +1,1922 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VIE PERLA — Эксклюзивные кастомные подвесы и украшения</title>
+  
+  <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#FAF8F5',
+            lavender: '#E6DEFC',
+            'lavender-soft': '#F3EFFF',
+            sorbet: '#FFE3D1',
+            buttercup: '#FFF1B8',
+            graphite: '#272322',
+            'graphite-muted': '#625B59',
+            pearl: '#F8F6F0',
+            'gold-accent': '#D4AF37'
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          boxShadow: {
+            'pearl': '0 20px 45px -15px rgba(230, 222, 252, 0.65), 0 0 25px 2px rgba(255, 227, 209, 0.4)',
+            'subtle': '0 10px 30px -10px rgba(39, 35, 34, 0.06)',
+            'glass': '0 8px 32px 0 rgba(199, 187, 237, 0.2)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #FAF8F5;
+      color: #272322;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .font-cormorant {
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    /* Soft organic ambient glows */
+    .orb-glow {
+      position: absolute;
+      border-radius: 9999px;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.68);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+    }
+
+    .glass-card-lavender {
+      background: rgba(230, 222, 252, 0.45);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+    }
+
+    .glass-card-sorbet {
+      background: rgba(255, 227, 209, 0.45);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+    }
+
+    /* Animated shimmering beads */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(2deg); }
+    }
+
+    .animate-float {
+      animation: floatSlow 5s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.55; transform: scale(1); }
+      50% { opacity: 0.85; transform: scale(1.05); }
+    }
+
+    .animate-glow {
+      animation: pulseGlow 6s ease-in-out infinite alternate;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #FAF8F5;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #E6DEFC;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #d3c4fc;
+    }
+
+    /* Custom bead hover scale in constructor */
+    .bead-item-node {
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.2s ease;
+      cursor: pointer;
+    }
+    .bead-item-node:hover {
+      transform: scale(1.18);
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.18));
+    }
+  </style>
+</head>
+<body class="relative min-h-screen text-graphite selection:bg-lavender selection:text-graphite">
+
+  <!-- Ambient Decorative Glowing Orbs -->
+  <div class="fixed top-[-10%] left-[-8%] w-[500px] h-[500px] bg-lavender orb-glow animate-glow"></div>
+  <div class="fixed top-[30%] right-[-10%] w-[550px] h-[550px] bg-sorbet orb-glow animate-glow" style="animation-delay: -3s;"></div>
+  <div class="fixed bottom-[-5%] left-[20%] w-[600px] h-[600px] bg-buttercup orb-glow animate-glow" style="animation-delay: -1.5s; opacity: 0.35;"></div>
+
+  <!-- 1. STICKY HEADER -->
+  <header class="sticky top-0 z-40 w-full glass-card border-b border-white/60 transition-all duration-300 py-3.5 px-4 md:px-8">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-2.5 group">
+        <span class="relative flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-tr from-lavender via-white to-sorbet shadow-md group-hover:scale-105 transition-transform duration-300">
+          <span class="h-3.5 w-3.5 rounded-full bg-gradient-to-b from-white to-[#eae4f9] shadow-inner border border-white"></span>
+          <span class="absolute top-1 right-1.5 w-1.5 h-1.5 rounded-full bg-white opacity-90 blur-[0.3px]"></span>
+        </span>
+        <div class="flex flex-col">
+          <span class="font-serif text-2xl tracking-[0.22em] font-bold text-graphite uppercase">Vie Perla</span>
+          <span class="text-[9px] uppercase tracking-[0.25em] text-graphite-muted -mt-1">Atelier d'émotions</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Anchors -->
+      <nav class="hidden md:flex items-center gap-8 text-[13px] tracking-wider uppercase font-medium text-graphite/80">
+        <a href="#studio" class="hover:text-graphite transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-graphite hover:after:w-full after:transition-all">Конструктор</a>
+        <a href="#bestsellers" class="hover:text-graphite transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-graphite hover:after:w-full after:transition-all">Коллекция</a>
+        <a href="#occasions" class="hover:text-graphite transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-graphite hover:after:w-full after:transition-all">Поводы</a>
+        <a href="#materials" class="hover:text-graphite transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-graphite hover:after:w-full after:transition-all">Материалы</a>
+        <button onclick="openModal('shipping-modal')" class="hover:text-graphite transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-graphite hover:after:w-full after:transition-all">Доставка</button>
+      </nav>
+
+      <!-- Cart Button & Mobile Menu Toggle -->
+      <div class="flex items-center gap-3">
+        <button onclick="toggleCartDrawer(true)" class="relative p-2.5 rounded-full bg-white/80 hover:bg-white shadow-sm border border-black/5 transition-all duration-300 flex items-center justify-center hover:shadow-md hover:scale-105 active:scale-95" aria-label="Открыть корзину">
+          <svg class="w-5 h-5 text-graphite" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+          </svg>
+          <span id="cart-counter" class="absolute -top-1 -right-1 flex items-center justify-center h-5 min-w-[20px] px-1 text-[11px] font-bold text-graphite bg-buttercup border border-white rounded-full shadow-sm">0</span>
+        </button>
+
+        <a href="#studio" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold uppercase tracking-wider bg-graphite text-white rounded-full hover:bg-graphite/85 transition-all shadow-sm">
+          <span>Собрать</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="relative z-10">
+    <!-- 2. HERO SECTION -->
+    <section class="relative pt-12 pb-20 md:pt-20 md:pb-32 px-4 md:px-8 overflow-hidden">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Left copy -->
+        <div class="lg:col-span-7 flex flex-col items-start">
+          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/70 border border-lavender shadow-sm mb-6">
+            <span class="w-2 h-2 rounded-full bg-gold-accent animate-ping"></span>
+            <span class="text-xs uppercase font-medium tracking-[0.2em] text-graphite-muted">Dopamine Elegance &bull; Ручная сборка</span>
+          </div>
+
+          <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[1.05] font-normal tracking-tight text-graphite mb-6">
+            Собери свой мир <br>
+            <span class="italic font-light bg-gradient-to-r from-graphite via-[#63557e] to-graphite bg-clip-text text-transparent">в одной нити</span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-graphite-muted max-w-xl font-normal leading-relaxed mb-8">
+            Авторские подвесы-талисманы, отражающие твое настроение, дорогие воспоминания и личные знаки. Каждое изделие плетется вручную из пресноводного жемчуга, дутого стекла и символичных шармов.
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
+            <a href="#studio" class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-graphite text-white font-medium text-sm uppercase tracking-wider hover:bg-graphite/90 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-graphite/10">
+              <span>Создать свой подвес</span>
+              <svg class="w-4 h-4 text-buttercup" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+            
+            <button onclick="openModal('catalog-modal')" class="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full glass-card text-graphite font-medium text-sm uppercase tracking-wider hover:bg-white transition-all shadow-sm">
+              <span>Смотреть каталог</span>
+            </button>
+          </div>
+
+          <!-- Feature Tagline Badge -->
+          <div class="mt-12 flex items-center gap-4 p-3.5 pr-6 rounded-2xl glass-card-lavender border border-white/80">
+            <div class="w-12 h-12 rounded-xl bg-white/90 flex items-center justify-center text-xl shadow-inner">
+              ✨
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-graphite">«Каждая бусина уникальна — как и ты»</p>
+              <p class="text-xs text-graphite-muted">Неповторимый барочный жемчуг и стекло ручного выдува лэмпворк</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Hero Visual Collage -->
+        <div class="lg:col-span-5 relative flex justify-center items-center">
+          <div class="relative w-full max-w-md aspect-[4/5] rounded-[36px] p-6 glass-card shadow-pearl flex flex-col justify-between overflow-hidden">
+            <!-- Pearlescent background element inside card -->
+            <div class="absolute -top-16 -right-16 w-52 h-52 rounded-full bg-gradient-to-br from-lavender/60 to-sorbet/40 blur-2xl pointer-events-none"></div>
+            
+            <!-- Top tag -->
+            <div class="flex items-center justify-between z-10">
+              <span class="text-xs font-semibold tracking-wider uppercase px-3 py-1 bg-white/90 rounded-full border border-black/5 shadow-xs">Vie Perla Studio</span>
+              <span class="text-xs text-graphite-muted">№ 2026/EDITION</span>
+            </div>
+
+            <!-- Stylized Floating Strand Presentation -->
+            <div class="relative py-8 flex flex-col items-center justify-center z-10 animate-float">
+              <!-- Clasp Visual -->
+              <div class="w-12 h-6 rounded-full border-2 border-amber-300 bg-gradient-to-r from-amber-100 to-amber-300 shadow-md flex items-center justify-center mb-2">
+                <div class="w-3 h-3 rounded-full border border-amber-400 bg-white"></div>
+              </div>
+              
+              <!-- Decorative Beaded String -->
+              <div class="flex flex-col items-center gap-2 relative">
+                <div class="w-0.5 h-6 bg-slate-300"></div>
+                
+                <div class="flex items-center gap-2">
+                  <div class="w-6 h-6 rounded-full bg-gradient-to-tr from-white to-pink-100 border border-white shadow-md"></div>
+                  <div class="w-7 h-7 rounded-full bg-gradient-to-tr from-purple-100 to-lavender border border-white shadow-md flex items-center justify-center text-xs font-bold text-graphite">L</div>
+                  <div class="w-6 h-6 rounded-full bg-gradient-to-tr from-white to-amber-100 border border-white shadow-md"></div>
+                </div>
+
+                <div class="w-0.5 h-4 bg-slate-300"></div>
+
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-full bg-gradient-to-tr from-white via-cream to-slate-100 border border-white shadow-md flex items-center justify-center text-xs font-bold text-graphite">U</div>
+                  <div class="w-9 h-9 rounded-2xl bg-gradient-to-br from-rose-200 to-pink-300 border border-white shadow-lg flex items-center justify-center text-base">🍒</div>
+                  <div class="w-7 h-7 rounded-full bg-gradient-to-tr from-white via-cream to-slate-100 border border-white shadow-md flex items-center justify-center text-xs font-bold text-graphite">X</div>
+                </div>
+
+                <div class="w-0.5 h-6 bg-slate-300"></div>
+
+                <!-- Big Charm Dangle -->
+                <div class="p-3 bg-gradient-to-tr from-amber-200 via-yellow-100 to-amber-300 rounded-2xl shadow-lg border border-amber-300/80 transform rotate-6 flex items-center justify-center">
+                  <span class="text-2xl drop-shadow">🎀</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating mini labels -->
+            <div class="z-10 bg-white/80 backdrop-blur-md p-3.5 rounded-2xl border border-white/70 shadow-sm flex items-center justify-between">
+              <div>
+                <p class="text-xs uppercase text-graphite-muted tracking-wider">Ваш уникальный талисман</p>
+                <p class="text-sm font-semibold text-graphite">«Sweet Serenade»</p>
+              </div>
+              <span class="text-xs font-bold px-2.5 py-1 bg-lavender rounded-lg text-graphite">от 3 400 ₽</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. OCCASIONS SECTION -->
+    <section id="occasions" class="py-20 px-4 md:px-8 relative">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <span class="text-xs uppercase tracking-[0.25em] font-semibold text-graphite-muted bg-white/80 px-3.5 py-1.5 rounded-full border border-lavender/50">Зачем тебе VIE PERLA</span>
+          <h2 class="font-serif text-4xl sm:text-5xl font-normal text-graphite mt-4 mb-4">Поводы, созданные с душой</h2>
+          <p class="text-graphite-muted text-sm sm:text-base">Каждый подвес — это осязаемая эмоция, которую можно носить каждый день.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          
+          <!-- Card 1 -->
+          <div class="glass-card p-8 rounded-3xl relative overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group border border-white/80">
+            <div class="w-14 h-14 rounded-2xl bg-lavender flex items-center justify-center text-3xl mb-6 shadow-inner group-hover:scale-110 transition-transform">
+              🎁
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-graphite mb-3">Подарок со смыслом</h3>
+            <p class="text-sm text-graphite-muted leading-relaxed mb-6">
+              Имя близкого человека, секретная дата первой встречи или персональный код, понятный только двоим. Идеально упаковано в брендовый футляр.
+            </p>
+            <div class="pt-4 border-t border-black/5 flex items-center justify-between text-xs font-semibold text-graphite">
+              <span>Персонализация букв</span>
+              <span class="text-lavender-700 font-bold">100% восторг</span>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="glass-card-sorbet p-8 rounded-3xl relative overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group border border-white/80">
+            <div class="w-14 h-14 rounded-2xl bg-white/90 flex items-center justify-center text-3xl mb-6 shadow-inner group-hover:scale-110 transition-transform">
+              👯‍♀️
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-graphite mb-3">Парные подвесы Besties</h3>
+            <p class="text-sm text-graphite-muted leading-relaxed mb-6">
+              Символы дружбы, которые соединяются в единую историю. Соберите два гармонирующих дизайна для себя и лучшей подруги.
+            </p>
+            <div class="pt-4 border-t border-black/5 flex items-center justify-between text-xs font-semibold text-graphite">
+              <span>Скидка 15% на дуэт</span>
+              <span class="font-bold">Всегда рядом</span>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="glass-card-lavender p-8 rounded-3xl relative overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group border border-white/80">
+            <div class="w-14 h-14 rounded-2xl bg-buttercup flex items-center justify-center text-3xl mb-6 shadow-inner group-hover:scale-110 transition-transform">
+              ✨
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-graphite mb-3">Личный обвес-талисман</h3>
+            <p class="text-sm text-graphite-muted leading-relaxed mb-6">
+              Главный акцент сезона на ручку сумочки, ключи автомобиля или чехол iPhone. Дофаминовый всплеск радости при каждом взгляде.
+            </p>
+            <div class="pt-4 border-t border-black/5 flex items-center justify-between text-xs font-semibold text-graphite">
+              <span>Стиль Dopamine Chic</span>
+              <span class="font-bold">Трендовый акцент</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. ГЛУБОКИЙ ИНТЕРАКТИВНЫЙ КОНСТРУКТОР (VIE STUDIO) -->
+    <section id="studio" class="py-20 px-4 md:px-8 relative bg-white/40">
+      <div class="max-w-7xl mx-auto">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] font-semibold text-graphite-muted bg-white px-3 py-1 rounded-full border border-black/5 mb-3">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              Онлайн Ателье
+            </div>
+            <h2 class="font-serif text-4xl sm:text-5xl font-normal text-graphite">VIE STUDIO: Создай свой талисман</h2>
+          </div>
+          <p class="text-sm text-graphite-muted max-w-md mt-4 md:mt-0">
+            Выбирайте фурнитуру, бусины ручной работы и нанизывайте собственное имя. Все изменения мгновенно отображаются на живой нити.
+          </p>
+        </div>
+
+        <!-- Two-column workspace -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <!-- LEFT COLUMN: Studio Controls Panel -->
+          <div class="lg:col-span-7 space-y-6">
+            
+            <!-- Step 1: Clasp / Mount -->
+            <div class="glass-card p-6 sm:p-7 rounded-3xl shadow-subtle">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-bold uppercase tracking-wider text-graphite/60 flex items-center gap-2">
+                  <span class="w-5 h-5 rounded-full bg-lavender flex items-center justify-center text-[10px] text-graphite">1</span>
+                  Тип крепления и фурнитура
+                </span>
+                <span id="label-selected-mount" class="text-xs font-medium text-graphite-muted">Карабин (Золото)</span>
+              </div>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="mount-selector">
+                <button type="button" onclick="setMount('carabiner-gold', 'Карабин (Золото)', 0)" class="mount-btn active p-3 rounded-2xl border text-center transition-all bg-white border-graphite shadow-sm" data-mount="carabiner-gold">
+                  <div class="w-7 h-7 mx-auto rounded-full border-2 border-amber-400 bg-amber-100 mb-1.5 flex items-center justify-center text-xs">🪙</div>
+                  <span class="text-xs font-semibold block text-graphite">Карабин Gold</span>
+                  <span class="text-[10px] text-graphite-muted">Для сумки</span>
+                </button>
+                <button type="button" onclick="setMount('carabiner-silver', 'Карабин (Серебро)', 0)" class="mount-btn p-3 rounded-2xl border border-black/10 text-center transition-all bg-white/60 hover:bg-white" data-mount="carabiner-silver">
+                  <div class="w-7 h-7 mx-auto rounded-full border-2 border-slate-300 bg-slate-100 mb-1.5 flex items-center justify-center text-xs">🔘</div>
+                  <span class="text-xs font-semibold block text-graphite">Карабин Silver</span>
+                  <span class="text-[10px] text-graphite-muted">Для сумки</span>
+                </button>
+                <button type="button" onclick="setMount('phone-loop', 'Петля для телефона', 0)" class="mount-btn p-3 rounded-2xl border border-black/10 text-center transition-all bg-white/60 hover:bg-white" data-mount="phone-loop">
+                  <div class="w-7 h-7 mx-auto rounded-full border-2 border-lavender bg-lavender-soft mb-1.5 flex items-center justify-center text-xs">🧵</div>
+                  <span class="text-xs font-semibold block text-graphite">Шнурок-петля</span>
+                  <span class="text-[10px] text-graphite-muted">На смартфон</span>
+                </button>
+                <button type="button" onclick="setMount('necklace-lock', 'Ювелирный замок (Шея)', 400)" class="mount-btn p-3 rounded-2xl border border-black/10 text-center transition-all bg-white/60 hover:bg-white" data-mount="necklace-lock">
+                  <div class="w-7 h-7 mx-auto rounded-full border-2 border-amber-300 bg-amber-50 mb-1.5 flex items-center justify-center text-xs">✨</div>
+                  <span class="text-xs font-semibold block text-graphite">Замок на шею</span>
+                  <span class="text-[10px] text-amber-700 font-medium">+400 ₽</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Step 2: Aesthetic Preset Style -->
+            <div class="glass-card p-6 sm:p-7 rounded-3xl shadow-subtle">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-bold uppercase tracking-wider text-graphite/60 flex items-center gap-2">
+                  <span class="w-5 h-5 rounded-full bg-lavender flex items-center justify-center text-[10px] text-graphite">2</span>
+                  Стиль сборки
+                </span>
+                <span id="label-selected-style" class="text-xs font-medium text-graphite-muted">Y2K Playful</span>
+              </div>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                <button type="button" onclick="setStylePreset('y2k', 'Y2K Playful')" class="style-btn active text-left p-3 rounded-2xl border bg-white border-graphite shadow-sm" data-style="y2k">
+                  <span class="text-xs font-bold block text-graphite">🍬 Y2K Playful</span>
+                  <span class="text-[11px] text-graphite-muted">Яркий, дерзкий</span>
+                </button>
+                <button type="button" onclick="setStylePreset('clean', 'Clean Minimal')" class="style-btn text-left p-3 rounded-2xl border border-black/10 bg-white/60 hover:bg-white" data-style="clean">
+                  <span class="text-xs font-bold block text-graphite">🍸 Old Money</span>
+                  <span class="text-[11px] text-graphite-muted">Жемчуг & хром</span>
+                </button>
+                <button type="button" onclick="setStylePreset('romantic', 'Romantique & Bows')" class="style-btn text-left p-3 rounded-2xl border border-black/10 bg-white/60 hover:bg-white" data-style="romantic">
+                  <span class="text-xs font-bold block text-graphite">🎀 Romantique</span>
+                  <span class="text-[11px] text-graphite-muted">Банты, нежность</span>
+                </button>
+                <button type="button" onclick="setStylePreset('boho', 'Boho Sunset')" class="style-btn text-left p-3 rounded-2xl border border-black/10 bg-white/60 hover:bg-white" data-style="boho">
+                  <span class="text-xs font-bold block text-graphite">🌅 Boho Sunset</span>
+                  <span class="text-[11px] text-graphite-muted">Теплый янтарь</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Step 3: Base Beads Color Palette -->
+            <div class="glass-card p-6 sm:p-7 rounded-3xl shadow-subtle">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-bold uppercase tracking-wider text-graphite/60 flex items-center gap-2">
+                  <span class="w-5 h-5 rounded-full bg-lavender flex items-center justify-center text-[10px] text-graphite">3</span>
+                  Цветовая гамма основы (фоновые бусины)
+                </span>
+                <span id="label-selected-palette" class="text-xs font-medium text-graphite-muted">Натуральный жемчуг</span>
+              </div>
+              <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
+                <button type="button" onclick="setPalette('pearl', 'Натуральный жемчуг')" class="palette-btn active p-2.5 rounded-2xl border bg-white border-graphite flex flex-col items-center gap-2" data-palette="pearl">
+                  <span class="w-8 h-8 rounded-full bg-gradient-to-tr from-[#FFFDF9] via-[#FAF4EB] to-[#E9E4D4] border border-black/10 shadow-inner"></span>
+                  <span class="text-[11px] font-semibold text-center leading-tight">Жемчуг</span>
+                </button>
+                <button type="button" onclick="setPalette('pastel', 'Пастельный микс')" class="palette-btn p-2.5 rounded-2xl border border-black/10 bg-white/60 hover:bg-white flex flex-col items-center gap-2" data-palette="pastel">
+                  <span class="w-8 h-8 rounded-full bg-gradient-to-tr from-lavender via-sorbet to-buttercup border border-black/10 shadow-inner"></span>
+                  <span class="text-[11px] font-semibold text-center leading-tight">Пастель</span>
+                </button>
+                <button type="button" onclick="setPalette('metallic', 'Металлик-хром')" class="palette-btn p-2.5 rounded-2xl border border-black/10 bg-white/60 hover:bg-white flex flex-col items-center gap-2" data-palette="metallic">
+                  <span class="w-8 h-8 rounded-full bg-gradient-to-tr from-slate-200 via-slate-400 to-slate-100 border border-black/10 shadow-inner"></span>
+                  <span class="text-[11px] font-semibold text-center leading-tight">Хром</span>
+                </button>
+                <button type="button" onclick="setPalette('dopamine', 'Дофаминовый коктейль')" class="palette-btn p-2.5 rounded-2xl border border-black/10 bg-white/60 hover:bg-white flex flex-col items-center gap-2" data-palette="dopamine">
+                  <span class="w-8 h-8 rounded-full bg-gradient-to-tr from-rose-300 via-yellow-200 to-teal-300 border border-black/10 shadow-inner"></span>
+                  <span class="text-[11px] font-semibold text-center leading-tight">Дофамин</span>
+                </button>
+                <button type="button" onclick="setPalette('noir', 'Черный монохром')" class="palette-btn p-2.5 rounded-2xl border border-black/10 bg-white/60 hover:bg-white flex flex-col items-center gap-2 col-span-2 sm:col-span-1" data-palette="noir">
+                  <span class="w-8 h-8 rounded-full bg-gradient-to-tr from-slate-900 via-neutral-800 to-neutral-700 border border-black/10 shadow-inner"></span>
+                  <span class="text-[11px] font-semibold text-center leading-tight">Noir</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Step 4: Personalization (Letters / Text) -->
+            <div class="glass-card p-6 sm:p-7 rounded-3xl shadow-subtle">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-bold uppercase tracking-wider text-graphite/60 flex items-center gap-2">
+                  <span class="w-5 h-5 rounded-full bg-lavender flex items-center justify-center text-[10px] text-graphite">4</span>
+                  Персонализация (Буквы / Слова)
+                </span>
+                <span class="text-xs text-graphite-muted">+40 ₽ за букву</span>
+              </div>
+              
+              <div class="flex flex-col sm:flex-row gap-3 items-center mb-3">
+                <div class="relative w-full">
+                  <input type="text" id="letter-input" maxlength="10" placeholder="Имя, фраза или дата (напр. AMOUR)" class="w-full uppercase px-4 py-3 rounded-2xl bg-white border border-black/10 focus:border-graphite focus:outline-none text-sm font-semibold tracking-widest placeholder:text-graphite/30 shadow-inner">
+                  <span class="absolute right-3.5 top-3.5 text-[10px] font-bold text-graphite/40 uppercase">max 10</span>
+                </div>
+                <button type="button" onclick="applyLetters()" class="w-full sm:w-auto shrink-0 px-6 py-3 rounded-2xl bg-graphite text-white font-medium text-xs uppercase tracking-wider hover:bg-graphite/85 transition-all shadow-sm">
+                  Нанизать буквы
+                </button>
+              </div>
+
+              <!-- Bead letter style toggle -->
+              <div class="flex items-center gap-2 pt-1 text-xs">
+                <span class="text-graphite-muted">Цвет кубиков:</span>
+                <div class="flex items-center gap-1.5" id="letter-color-swatches">
+                  <button type="button" onclick="setLetterStyle('gold')" class="letter-style-btn active px-3 py-1 rounded-xl border border-graphite bg-white text-[11px] font-semibold" data-letstyle="gold">Белый с золотом</button>
+                  <button type="button" onclick="setLetterStyle('clear')" class="letter-style-btn px-3 py-1 rounded-xl border border-black/10 bg-white/60 hover:bg-white text-[11px]" data-letstyle="clear">Прозрачный кристалл</button>
+                  <button type="button" onclick="setLetterStyle('color')" class="letter-style-btn px-3 py-1 rounded-xl border border-black/10 bg-white/60 hover:bg-white text-[11px]" data-letstyle="color">Разноцветный конфетти</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 5: Handmade Lampwork Beads -->
+            <div class="glass-card p-6 sm:p-7 rounded-3xl shadow-subtle">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-bold uppercase tracking-wider text-graphite/60 flex items-center gap-2">
+                  <span class="w-5 h-5 rounded-full bg-lavender flex items-center justify-center text-[10px] text-graphite">5</span>
+                  Уникальные лэмпворк-бусины (ручное стекло)
+                </span>
+                <span class="text-xs text-graphite-muted">+250 ₽ / шт</span>
+              </div>
+              <p class="text-xs text-graphite-muted mb-3">Нажмите, чтобы добавить или убрать из дизайна:</p>
+              
+              <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5" id="lampwork-grid">
+                <button type="button" onclick="toggleLampwork('cherry', 'Вишенка', '🍒', 250)" class="lampwork-btn p-3 rounded-2xl border border-black/10 bg-white/60 hover:bg-white text-center transition-all flex flex-col items-center" data-id="cherry">
+                  <span class="text-2xl mb-1">🍒</span>
+                  <span class="text-xs font-bold text-graphite">Вишенка</span>
+                  <span class="text-[10px] text-graphite-muted">+250 ₽</span>
+                </button>
+                <button type="button" onclick="toggleLampwork('mushroom', 'Грибочек', '🍄', 250)" class="lampwork-btn p-3 rounded-2xl border border-black/10 bg-white/60 hover:bg-white text-center transition-all flex flex-col items-center" data-id="mushroom">
+                  <span class="text-2xl mb-1">🍄</span>
+                  <span class="text-xs font-bold text-graphite">Грибочек</span>
+                  <span class="text-[10px] text-graphite-muted">+250 ₽</span>
+                </button>
+                <button type="button" onclick="toggleLampwork('cloud', 'Облачко', '☁️', 250)" class="lampwork-btn p-3 rounded-2xl border border-black/10 bg-white/60 hover:bg-white text-center transition-all flex flex-col items-center" data-id="cloud">
+                  <span class="text-2xl mb-1">☁️</span>
+                  <span class="text-xs font-bold text-graphite">Облачко</span>
+                  <span class="text-[10px] text-graphite-muted">+250 ₽</span>
+                </button>
+                <button type="button" onclick="toggleLampwork('smile', 'Смайл', '😊', 250)" class="lampwork-btn p-3 rounded-2xl border border-black/10 bg-white/60 hover:bg-white text-center transition-all flex flex-col items-center" data-id="smile">
+                  <span class="text-2xl mb-1">😊</span>
+                  <span class="text-xs font-bold text-graphite">Смайлик</span>
+                  <span class="text-[10px] text-graphite-muted">+250 ₽</span>
+                </button>
+                <button type="button" onclick="toggleLampwork('daisy', 'Ромашка', '🌼', 250)" class="lampwork-btn p-3 rounded-2xl border border-black/10 bg-white/60 hover:bg-white text-center transition-all flex flex-col items-center col-span-2 sm:col-span-1" data-id="daisy">
+                  <span class="text-2xl mb-1">🌼</span>
+                  <span class="text-xs font-bold text-graphite">Ромашка</span>
+                  <span class="text-[10px] text-graphite-muted">+250 ₽</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Step 6: Dangles & Heavy Charms -->
+            <div class="glass-card p-6 sm:p-7 rounded-3xl shadow-subtle">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-bold uppercase tracking-wider text-graphite/60 flex items-center gap-2">
+                  <span class="w-5 h-5 rounded-full bg-lavender flex items-center justify-center text-[10px] text-graphite">6</span>
+                  Крупные подвесы-шармы (Dangles)
+                </span>
+                <span class="text-xs text-graphite-muted">+350 ₽ / шт (до 3-х)</span>
+              </div>
+
+              <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5 mb-4" id="charms-grid">
+                <button type="button" onclick="toggleCharm('puffy-heart', 'Дутое сердце', '🤍', 350)" class="charm-btn p-3 rounded-2xl border border-black/10 bg-white/60 hover:bg-white text-center transition-all flex flex-col items-center" data-charm="puffy-heart">
+                  <span class="text-2xl mb-1">🤍</span>
+                  <span class="text-xs font-bold text-graphite">Сердце</span>
+                  <span class="text-[10px] text-graphite-muted">+350 ₽</span>
+                </button>
+                <button type="button" onclick="toggleCharm('metal-bow', 'Металл-бант', '🎀', 350)" class="charm-btn p-3 rounded-2xl border border-black/10 bg-white/60 hover:bg-white text-center transition-all flex flex-col items-center" data-charm="metal-bow">
+                  <span class="text-2xl mb-1">🎀</span>
+                  <span class="text-xs font-bold text-graphite">Бантик</span>
+                  <span class="text-[10px] text-graphite-muted">+350 ₽</span>
+                </button>
+                <button type="button" onclick="toggleCharm('crystal-star', 'Кристалл Звезда', '⭐', 350)" class="charm-btn p-3 rounded-2xl border border-black/10 bg-white/60 hover:bg-white text-center transition-all flex flex-col items-center" data-charm="crystal-star">
+                  <span class="text-2xl mb-1">⭐</span>
+                  <span class="text-xs font-bold text-graphite">Звезда</span>
+                  <span class="text-[10px] text-graphite-muted">+350 ₽</span>
+                </button>
+                <button type="button" onclick="toggleCharm('teddy-bear', 'Мишка Тедди', '🧸', 350)" class="charm-btn p-3 rounded-2xl border border-black/10 bg-white/60 hover:bg-white text-center transition-all flex flex-col items-center" data-charm="teddy-bear">
+                  <span class="text-2xl mb-1">🧸</span>
+                  <span class="text-xs font-bold text-graphite">Мишка</span>
+                  <span class="text-[10px] text-graphite-muted">+350 ₽</span>
+                </button>
+                <button type="button" onclick="toggleCharm('clover', 'Четырехлистник', '🍀', 350)" class="charm-btn p-3 rounded-2xl border border-black/10 bg-white/60 hover:bg-white text-center transition-all flex flex-col items-center col-span-2 sm:col-span-1" data-charm="clover">
+                  <span class="text-2xl mb-1">🍀</span>
+                  <span class="text-xs font-bold text-graphite">Клевер</span>
+                  <span class="text-[10px] text-graphite-muted">+350 ₽</span>
+                </button>
+              </div>
+
+              <!-- Reset / Clear action -->
+              <div class="flex items-center justify-between pt-3 border-t border-black/5">
+                <div class="flex items-center gap-2">
+                  <span class="text-xs text-graphite-muted">Расчетная длина изделия:</span>
+                  <span id="calculated-length" class="text-xs font-bold px-2 py-0.5 bg-lavender/60 rounded-md">~ 18 см</span>
+                </div>
+                <button type="button" onclick="resetBuilder()" class="text-xs font-medium text-rose-500 hover:text-rose-700 underline decoration-dotted transition-colors">
+                  Сбросить дизайн
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- RIGHT COLUMN: Interactive Live Visualizer & Price Card -->
+          <div class="lg:col-span-5 sticky top-24 space-y-5">
+            
+            <div class="glass-card p-6 sm:p-8 rounded-[32px] shadow-pearl border border-white relative overflow-hidden flex flex-col items-center">
+              
+              <!-- Subtle preview background effect -->
+              <div class="absolute inset-0 bg-gradient-to-b from-white/70 via-lavender/10 to-sorbet/20 pointer-events-none"></div>
+
+              <div class="w-full flex items-center justify-between mb-4 z-10">
+                <span class="text-xs font-bold uppercase tracking-widest text-graphite">Живая нить (Превью)</span>
+                <span class="text-[11px] bg-white/90 px-2.5 py-1 rounded-full border border-black/5 text-graphite-muted">Кликните на бусину для удаления</span>
+              </div>
+
+              <!-- Live Strand Interactive Visualizer Container -->
+              <div class="w-full min-h-[380px] bg-white/60 rounded-2xl border border-black/5 p-6 flex flex-col items-center justify-between relative shadow-inner z-10 overflow-hidden">
+                
+                <!-- Clasp / Mount Visual -->
+                <div id="visual-clasp" class="transition-all duration-300 transform">
+                  <!-- dynamically injected clasp -->
+                </div>
+
+                <!-- Central Visual Strand -->
+                <div class="relative w-full flex flex-col items-center my-auto py-2">
+                  <!-- Physical Wire Line Indicator -->
+                  <div class="absolute top-0 bottom-0 w-[2px] bg-gradient-to-b from-slate-400 via-slate-300 to-slate-400 opacity-60 pointer-events-none"></div>
+                  
+                  <!-- Bead Elements List on Wire -->
+                  <div id="strand-beads-container" class="relative z-10 flex flex-col items-center gap-2 transition-all duration-300 py-2">
+                    <!-- Populated via renderLiveStrand() -->
+                  </div>
+
+                  <!-- Dangling Charms Cluster -->
+                  <div id="strand-charms-container" class="relative z-20 flex items-center justify-center gap-3 pt-3">
+                    <!-- Populated via renderLiveStrand() -->
+                  </div>
+                </div>
+
+                <!-- Live stats footer in preview -->
+                <div class="w-full flex items-center justify-between text-[11px] text-graphite-muted pt-3 border-t border-black/5">
+                  <span id="preview-bead-count">Элементов: 0</span>
+                  <span class="flex items-center gap-1 text-emerald-700 font-medium">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    Готов к сборке
+                  </span>
+                </div>
+              </div>
+
+              <!-- Price breakdown & action -->
+              <div class="w-full mt-6 pt-5 border-t border-black/5 z-10">
+                <div class="flex items-baseline justify-between mb-2">
+                  <span class="text-sm font-semibold text-graphite-muted">Итоговая стоимость:</span>
+                  <div class="flex items-baseline gap-1">
+                    <span id="custom-total-price" class="font-serif text-3xl sm:text-4xl font-bold text-graphite">2 600</span>
+                    <span class="text-lg font-bold text-graphite">₽</span>
+                  </div>
+                </div>
+
+                <div class="text-[11px] text-graphite-muted mb-5 space-y-0.5" id="price-breakdown-details">
+                  <!-- Live calculation rows -->
+                </div>
+
+                <!-- Add to cart CTA -->
+                <button type="button" id="btn-add-custom-to-cart" onclick="addCustomToCart()" class="w-full py-4 rounded-2xl bg-graphite text-white font-semibold text-sm uppercase tracking-wider hover:bg-graphite/90 active:scale-[0.98] transition-all flex items-center justify-center gap-3 shadow-lg shadow-graphite/20">
+                  <svg class="w-5 h-5 text-buttercup" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                  </svg>
+                  <span>Добавить свой талисман</span>
+                </button>
+              </div>
+
+            </div>
+
+            <!-- Mini Assurance Pill -->
+            <div class="p-4 rounded-2xl bg-white/70 border border-white shadow-sm flex items-center gap-3 text-xs text-graphite-muted">
+              <span class="text-xl">✨</span>
+              <span>Мастер согласует фото готового изделия в Telegram перед финальной отправкой.</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 5. БЕСТСЕЛЛЕРЫ (МИНИ-КАТАЛОГ ГОТОВЫХ ДИЗАЙНОВ) -->
+    <section id="bestsellers" class="py-24 px-4 md:px-8 relative">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-14">
+          <div>
+            <span class="text-xs uppercase tracking-[0.25em] font-semibold text-graphite-muted bg-white/80 px-3.5 py-1.5 rounded-full border border-lavender/50">Готовые концепты</span>
+            <h2 class="font-serif text-4xl sm:text-5xl font-normal text-graphite mt-4">Бестселлеры Atelier</h2>
+          </div>
+          <p class="text-sm text-graphite-muted max-w-sm mt-3 md:mt-0">
+            Хиты наших мастеров, доступные к отправке уже сегодня в фирменной подарочной коробке.
+          </p>
+        </div>
+
+        <!-- 4 Bestseller Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12" id="bestsellers-grid">
+          <!-- Populated dynamically via JS renderBestsellers() -->
+        </div>
+
+        <!-- Full Catalog Trigger Button -->
+        <div class="text-center">
+          <button onclick="openModal('catalog-modal')" class="inline-flex items-center gap-3 px-8 py-4 rounded-full glass-card hover:bg-white border border-lavender text-graphite font-semibold text-xs uppercase tracking-widest hover:shadow-md transition-all">
+            <span>Открыть полный каталог дизайнов</span>
+            <svg class="w-4 h-4 text-graphite" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. БЛОК НАДЕЖНОСТИ И МАТЕРИАЛОВ -->
+    <section id="materials" class="py-20 px-4 md:px-8 bg-gradient-to-b from-transparent via-lavender/25 to-transparent relative">
+      <div class="max-w-7xl mx-auto">
+        <div class="glass-card p-8 md:p-14 rounded-[36px] border border-white shadow-subtle">
+          
+          <div class="max-w-2xl mb-12">
+            <span class="text-xs uppercase tracking-[0.25em] font-semibold text-graphite-muted">Стандарты качества Vie Perla</span>
+            <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-graphite mt-3">Не просто красиво. Сделано на года.</h2>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <div class="p-6 rounded-2xl bg-white/70 border border-white/80 shadow-xs">
+              <div class="w-12 h-12 rounded-xl bg-slate-900 text-white flex items-center justify-center text-xl mb-4 shadow-sm">
+                🛡️
+              </div>
+              <h3 class="font-serif text-xl font-bold text-graphite mb-2">7-жильный стальной трос</h3>
+              <p class="text-xs sm:text-sm text-graphite-muted leading-relaxed">
+                Ювелирный японский тросик в полимерной оплетке. Не рвется, не перетирается об острые края фурнитуры и выдерживает вес даже тяжелой сумки.
+              </p>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-white/70 border border-white/80 shadow-xs">
+              <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-900 flex items-center justify-center text-xl mb-4 shadow-sm">
+                🦪
+              </div>
+              <h3 class="font-serif text-xl font-bold text-graphite mb-2">Пресноводный жемчуг & лэмпворк</h3>
+              <p class="text-xs sm:text-sm text-graphite-muted leading-relaxed">
+                Отборный культивированный жемчуг с глубоким перламутром и уникальные стеклянные фигурки ручного выдува. Каждая деталь имеет собственный характер.
+              </p>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-white/70 border border-white/80 shadow-xs">
+              <div class="w-12 h-12 rounded-xl bg-buttercup text-graphite flex items-center justify-center text-xl mb-4 shadow-sm">
+                🎀
+              </div>
+              <h3 class="font-serif text-xl font-bold text-graphite mb-2">Фирменная коробочка в подарок</h3>
+              <p class="text-xs sm:text-sm text-graphite-muted leading-relaxed">
+                Каждый заказ упакован в бархатный мешочек, коробку с атласной лентой и карточку с пожеланием. Готовый подарок без лишних хлопот.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. UGC & СОЦИАЛЬНЫЕ СЕТИ -->
+    <section class="py-20 px-4 md:px-8 relative">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-12">
+          <div>
+            <span class="text-xs uppercase tracking-[0.25em] font-semibold text-graphite-muted">#ViePerlaVibe</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-normal text-graphite mt-2">В объективе наших гостей</h2>
+          </div>
+          <div class="flex items-center gap-3 mt-4 sm:mt-0">
+            <a href="https://t.me" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-full bg-white border border-black/10 text-xs font-semibold text-graphite hover:bg-lavender transition-all flex items-center gap-2">
+              <span>✈️ Telegram Канал</span>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-full bg-white border border-black/10 text-xs font-semibold text-graphite hover:bg-sorbet transition-all flex items-center gap-2">
+              <span>📸 Instagram</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- UGC Photo-style Cards -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+          
+          <div class="group relative rounded-3xl overflow-hidden glass-card p-3 aspect-[4/5] flex flex-col justify-end">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"></div>
+            <div class="absolute inset-0 bg-[#f4ebf8] flex items-center justify-center text-7xl select-none group-hover:scale-105 transition-transform duration-500">
+              👜
+            </div>
+            <div class="relative z-20 text-white p-2">
+              <p class="text-xs font-semibold">@alina_cher</p>
+              <p class="text-[10px] text-white/80">Карабин на кожаный шопер</p>
+            </div>
+          </div>
+
+          <div class="group relative rounded-3xl overflow-hidden glass-card p-3 aspect-[4/5] flex flex-col justify-end">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"></div>
+            <div class="absolute inset-0 bg-[#e7f0fa] flex items-center justify-center text-7xl select-none group-hover:scale-105 transition-transform duration-500">
+              📱
+            </div>
+            <div class="relative z-20 text-white p-2">
+              <p class="text-xs font-semibold">@daria.mood</p>
+              <p class="text-[10px] text-white/80">Шнурок на iPhone 15 Pro</p>
+            </div>
+          </div>
+
+          <div class="group relative rounded-3xl overflow-hidden glass-card p-3 aspect-[4/5] flex flex-col justify-end">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"></div>
+            <div class="absolute inset-0 bg-[#fff5ea] flex items-center justify-center text-7xl select-none group-hover:scale-105 transition-transform duration-500">
+              🗝️
+            </div>
+            <div class="relative z-20 text-white p-2">
+              <p class="text-xs font-semibold">@kate_velvet</p>
+              <p class="text-[10px] text-white/80">Оберег на ключи авто</p>
+            </div>
+          </div>
+
+          <div class="group relative rounded-3xl overflow-hidden glass-card p-3 aspect-[4/5] flex flex-col justify-end">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"></div>
+            <div class="absolute inset-0 bg-[#fdebf3] flex items-center justify-center text-7xl select-none group-hover:scale-105 transition-transform duration-500">
+              👖
+            </div>
+            <div class="relative z-20 text-white p-2">
+              <p class="text-xs font-semibold">@sonya_perla</p>
+              <p class="text-[10px] text-white/80">Обвес на шлевку джинс</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 8. FOOTER -->
+  <footer class="border-t border-black/5 bg-white/70 backdrop-blur-md pt-16 pb-12 px-4 md:px-8 relative z-20">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-black/5">
+        
+        <div class="md:col-span-4 flex flex-col items-start">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="w-6 h-6 rounded-full bg-gradient-to-tr from-lavender to-buttercup flex items-center justify-center shadow-xs">
+              <span class="w-2.5 h-2.5 rounded-full bg-white"></span>
+            </span>
+            <span class="font-serif text-2xl tracking-[0.2em] font-bold text-graphite uppercase">VIE PERLA</span>
+          </div>
+          <p class="text-xs text-graphite-muted leading-relaxed max-w-sm mb-6">
+            Камерная мастерская уникальных украшений и обвесов со смыслом. Ручная сборка с любовью к каждой детали.
+          </p>
+          <span class="text-xs font-semibold text-graphite">«Жизнь в каждой бусине»</span>
+        </div>
+
+        <div class="md:col-span-2 col-span-1">
+          <h4 class="text-xs uppercase font-bold tracking-wider text-graphite mb-4">Навигация</h4>
+          <ul class="space-y-2.5 text-xs text-graphite-muted">
+            <li><a href="#studio" class="hover:text-graphite transition-colors">Конструктор</a></li>
+            <li><a href="#bestsellers" class="hover:text-graphite transition-colors">Готовая коллекция</a></li>
+            <li><a href="#occasions" class="hover:text-graphite transition-colors">Поводы и идеи</a></li>
+            <li><a href="#materials" class="hover:text-graphite transition-colors">Материалы и тросик</a></li>
+          </ul>
+        </div>
+
+        <div class="md:col-span-3 col-span-1">
+          <h4 class="text-xs uppercase font-bold tracking-wider text-graphite mb-4">Клиентам</h4>
+          <ul class="space-y-2.5 text-xs text-graphite-muted">
+            <li><button onclick="openModal('shipping-modal')" class="hover:text-graphite transition-colors text-left">Доставка и оплата</button></li>
+            <li><button onclick="openModal('care-modal')" class="hover:text-graphite transition-colors text-left">Гарантия и уход за украшениями</button></li>
+            <li><button onclick="openModal('gift-modal')" class="hover:text-graphite transition-colors text-left">Подарочные сертификаты</button></li>
+            <li><button onclick="openModal('catalog-modal')" class="hover:text-graphite transition-colors text-left">Полный каталог (PDF/Сетка)</button></li>
+          </ul>
+        </div>
+
+        <div class="md:col-span-3 col-span-1">
+          <h4 class="text-xs uppercase font-bold tracking-wider text-graphite mb-4">Связь с ателье</h4>
+          <p class="text-xs text-graphite-muted mb-2">Ежедневно с 10:00 до 21:00</p>
+          <a href="https://t.me" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-graphite hover:underline block mb-1">@vieperla_atelier</a>
+          <p class="text-xs text-graphite-muted">Москва, шоурум по предварительной записи</p>
+        </div>
+
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-graphite-muted gap-4">
+        <p>&copy; 2026 «VIE PERLA». Все права защищены.</p>
+        <p class="flex items-center gap-4">
+          <span class="hover:underline cursor-pointer" onclick="openModal('care-modal')">Правила конфиденциальности</span>
+          <span>&bull;</span>
+          <span class="hover:underline cursor-pointer" onclick="openModal('shipping-modal')">Публичная оферта</span>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 9.1 MODAL: FULL CATALOG -->
+  <div id="catalog-modal" class="fixed inset-0 z-50 hidden transition-opacity duration-300">
+    <div class="absolute inset-0 bg-graphite/40 backdrop-blur-sm" onclick="closeModal('catalog-modal')"></div>
+    <div class="relative w-full h-full max-w-5xl mx-auto p-4 md:p-8 flex items-center justify-center pointer-events-none">
+      <div class="w-full max-h-[90vh] bg-cream rounded-3xl shadow-2xl border border-white flex flex-col pointer-events-auto overflow-hidden">
+        
+        <!-- Header -->
+        <div class="p-6 md:p-8 border-b border-black/5 flex items-center justify-between bg-white/70">
+          <div>
+            <span class="text-[11px] uppercase tracking-widest text-graphite-muted font-semibold">Вселенная подвесов</span>
+            <h3 class="font-serif text-3xl font-bold text-graphite">Полный каталог дизайнов</h3>
+          </div>
+          <button onclick="closeModal('catalog-modal')" class="p-2.5 rounded-full hover:bg-black/5 text-graphite transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <!-- Filter tabs -->
+        <div class="px-6 md:px-8 py-3 bg-white/40 border-b border-black/5 flex items-center gap-2 overflow-x-auto">
+          <button onclick="filterCatalog('all', this)" class="catalog-filter-btn active px-4 py-1.5 rounded-full bg-graphite text-white text-xs font-semibold transition-all">Все дизайны</button>
+          <button onclick="filterCatalog('bag', this)" class="catalog-filter-btn px-4 py-1.5 rounded-full bg-white/80 hover:bg-white text-graphite text-xs font-semibold transition-all">На сумку</button>
+          <button onclick="filterCatalog('phone', this)" class="catalog-filter-btn px-4 py-1.5 rounded-full bg-white/80 hover:bg-white text-graphite text-xs font-semibold transition-all">На телефон</button>
+          <button onclick="filterCatalog('pair', this)" class="catalog-filter-btn px-4 py-1.5 rounded-full bg-white/80 hover:bg-white text-graphite text-xs font-semibold transition-all">Парные Besties</button>
+        </div>
+
+        <!-- Catalog items grid (Scrollable) -->
+        <div class="p-6 md:p-8 overflow-y-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="catalog-full-grid">
+          <!-- Populated dynamically via JS renderFullCatalog() -->
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 9.2 MODAL: QUICK VIEW (Быстрый просмотр) -->
+  <div id="quickview-modal" class="fixed inset-0 z-50 hidden transition-opacity duration-300">
+    <div class="absolute inset-0 bg-graphite/40 backdrop-blur-sm" onclick="closeModal('quickview-modal')"></div>
+    <div class="relative w-full h-full max-w-3xl mx-auto p-4 flex items-center justify-center pointer-events-none">
+      <div class="w-full max-h-[90vh] bg-cream rounded-3xl shadow-2xl border border-white flex flex-col md:flex-row pointer-events-auto overflow-hidden">
+        
+        <!-- Visual left area -->
+        <div id="qv-image-box" class="md:w-1/2 p-8 bg-gradient-to-tr from-lavender/40 to-sorbet/30 flex flex-col items-center justify-center relative min-h-[260px]">
+          <span id="qv-emoji" class="text-8xl select-none filter drop-shadow-lg animate-float">🎀</span>
+          <span id="qv-badge" class="absolute top-4 left-4 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 bg-white/90 rounded-full shadow-xs">Хит продаж</span>
+        </div>
+
+        <!-- Info right area -->
+        <div class="md:w-1/2 p-6 md:p-8 flex flex-col justify-between overflow-y-auto">
+          <div>
+            <div class="flex justify-between items-start mb-2">
+              <span id="qv-category" class="text-[10px] uppercase tracking-wider text-graphite-muted font-bold">На сумку</span>
+              <button onclick="closeModal('quickview-modal')" class="p-1.5 text-graphite-muted hover:text-graphite">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              </button>
+            </div>
+            
+            <h3 id="qv-title" class="font-serif text-3xl font-bold text-graphite mb-2">Название товара</h3>
+            <p id="qv-price" class="text-2xl font-bold text-graphite mb-4">3 200 ₽</p>
+            <p id="qv-desc" class="text-xs text-graphite-muted leading-relaxed mb-6">Описание изделия и концепция сборки.</p>
+
+            <div class="p-3.5 rounded-2xl bg-white/70 border border-black/5 mb-6">
+              <span class="text-[11px] uppercase font-bold tracking-wider text-graphite block mb-1.5">Состав бусин:</span>
+              <ul id="qv-materials" class="text-xs text-graphite-muted space-y-1">
+                <!-- Injected via JS -->
+              </ul>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 pt-4 border-t border-black/5">
+            <button id="qv-add-btn" class="flex-1 py-3.5 rounded-2xl bg-graphite text-white font-semibold text-xs uppercase tracking-wider hover:bg-graphite/90 transition-all shadow-md">
+              Добавить в корзину
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 9.3 MODAL: SHIPPING & PAYMENT -->
+  <div id="shipping-modal" class="fixed inset-0 z-50 hidden transition-opacity duration-300">
+    <div class="absolute inset-0 bg-graphite/40 backdrop-blur-sm" onclick="closeModal('shipping-modal')"></div>
+    <div class="relative w-full h-full max-w-2xl mx-auto p-4 flex items-center justify-center pointer-events-none">
+      <div class="w-full max-h-[90vh] bg-cream rounded-3xl shadow-2xl border border-white p-6 md:p-8 pointer-events-auto overflow-y-auto">
+        
+        <div class="flex items-center justify-between pb-4 border-b border-black/5 mb-6">
+          <h3 class="font-serif text-3xl font-bold text-graphite">Условия доставки и оплаты</h3>
+          <button onclick="closeModal('shipping-modal')" class="p-2 text-graphite-muted hover:text-graphite">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <div class="space-y-6 text-sm text-graphite-muted leading-relaxed">
+          <div class="p-4 rounded-2xl bg-white/80 border border-lavender/60">
+            <h4 class="font-semibold text-graphite text-base mb-1">⏱ Сроки изготовления</h4>
+            <p>Каждое украшение собирается вручную мастером за <strong>1–2 рабочих дня</strong> с момента согласования эскиза.</p>
+          </div>
+
+          <div>
+            <h4 class="font-semibold text-graphite text-base mb-2">📦 Способы доставки:</h4>
+            <ul class="list-disc pl-5 space-y-1.5 text-xs sm:text-sm">
+              <li><strong>СДЭК до двери или ПВЗ</strong> — по всей России (2–4 дня, от 350 ₽). Бесплатно от 7 000 ₽.</li>
+              <li><strong>Курьер по Москве</strong> — доставка день-в-день после готовности (500 ₽).</li>
+              <li><strong>Почта России / EMS</strong> — отправка в любую точку мира.</li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="font-semibold text-graphite text-base mb-2">💳 Оплата:</h4>
+            <p class="text-xs sm:text-sm">
+              Для кастомных изделий предусмотрена предоплата 50% перед сборкой и 50% после фото-отчета готового изделия (СБП, Тинькофф, банковские карты РФ и зарубежные).
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-8 text-center">
+          <button onclick="closeModal('shipping-modal')" class="px-8 py-3 rounded-full bg-graphite text-white text-xs font-semibold uppercase tracking-wider">Понятно</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 9.4 MODAL: CARE & WARRANTY -->
+  <div id="care-modal" class="fixed inset-0 z-50 hidden transition-opacity duration-300">
+    <div class="absolute inset-0 bg-graphite/40 backdrop-blur-sm" onclick="closeModal('care-modal')"></div>
+    <div class="relative w-full h-full max-w-xl mx-auto p-4 flex items-center justify-center pointer-events-none">
+      <div class="w-full bg-cream rounded-3xl shadow-2xl border border-white p-6 md:p-8 pointer-events-auto">
+        <div class="flex items-center justify-between pb-4 border-b border-black/5 mb-4">
+          <h3 class="font-serif text-2xl font-bold text-graphite">Гарантия & Уход</h3>
+          <button onclick="closeModal('care-modal')" class="p-2 text-graphite-muted hover:text-graphite">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div class="space-y-4 text-xs sm:text-sm text-graphite-muted leading-relaxed">
+          <p>✨ <strong>Гарантия 1 год:</strong> Бесплатно пересоберем украшение, если повредится тросик или замок.</p>
+          <p>💧 <strong>Берегите от парфюма:</strong> Натуральный жемчуг любит дыхание кожи, но не переносит агрессивные спиртовые спреи.</p>
+          <p>🧼 <strong>Очищение:</strong> Протирайте мягкой замшевой или хлопковой салфеткой без абразивных средств.</p>
+        </div>
+        <div class="mt-6 text-center">
+          <button onclick="closeModal('care-modal')" class="px-6 py-2.5 rounded-full bg-graphite text-white text-xs font-semibold uppercase">Закрыть</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9.5 MODAL: GIFT CERTIFICATE -->
+  <div id="gift-modal" class="fixed inset-0 z-50 hidden transition-opacity duration-300">
+    <div class="absolute inset-0 bg-graphite/40 backdrop-blur-sm" onclick="closeModal('gift-modal')"></div>
+    <div class="relative w-full h-full max-w-md mx-auto p-4 flex items-center justify-center pointer-events-none">
+      <div class="w-full bg-cream rounded-3xl shadow-2xl border border-white p-6 md:p-8 pointer-events-auto text-center">
+        <div class="w-16 h-16 mx-auto rounded-2xl bg-lavender flex items-center justify-center text-3xl mb-4 shadow-sm">
+          💌
+        </div>
+        <h3 class="font-serif text-2xl font-bold text-graphite mb-2">Подарочный сертификат</h3>
+        <p class="text-xs text-graphite-muted leading-relaxed mb-6">
+          Подарите возможность собрать собственный обвес! Электронный сертификат с именным промокодом отправляется на почту за 5 минут.
+        </p>
+        <div class="flex gap-2 justify-center mb-6">
+          <span class="px-3 py-1.5 rounded-xl bg-white border border-black/10 text-xs font-bold">3 000 ₽</span>
+          <span class="px-3 py-1.5 rounded-xl bg-white border border-black/10 text-xs font-bold">5 000 ₽</span>
+          <span class="px-3 py-1.5 rounded-xl bg-white border border-black/10 text-xs font-bold">10 000 ₽</span>
+        </div>
+        <button onclick="closeModal('gift-modal'); showToast('Напишите нам в Telegram для оформления сертификата 💌');" class="w-full py-3 rounded-full bg-graphite text-white text-xs font-semibold uppercase">Заказать сертификат</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10. БОКОВАЯ ШТОРКА КОРЗИНЫ (SIDE-CART DRAWER) -->
+  <div id="cart-drawer-overlay" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+    <div onclick="toggleCartDrawer(false)" class="absolute inset-0"></div>
+    
+    <div id="cart-drawer-panel" class="absolute top-0 right-0 h-full w-full max-w-md bg-cream shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 ease-out border-l border-white/60">
+      
+      <!-- Drawer Header -->
+      <div class="p-6 border-b border-black/5 bg-white/60 flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <svg class="w-5 h-5 text-graphite" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+          <h3 class="font-serif text-2xl font-bold text-graphite">Ваша шкатулка</h3>
+        </div>
+        <button onclick="toggleCartDrawer(false)" class="p-2 text-graphite-muted hover:text-graphite rounded-full hover:bg-black/5 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Drawer Content (Items List) -->
+      <div class="flex-1 overflow-y-auto p-6 space-y-4" id="cart-items-container">
+        <!-- Injected via renderCart() -->
+      </div>
+
+      <!-- Drawer Footer & Quick Checkout Form -->
+      <div class="p-6 bg-white/80 border-t border-black/5 shadow-lg space-y-4">
+        
+        <div class="flex justify-between items-baseline">
+          <span class="text-xs uppercase tracking-wider font-semibold text-graphite-muted">К оплате:</span>
+          <div class="flex items-baseline gap-1">
+            <span id="cart-total-amount" class="font-serif text-3xl font-bold text-graphite">0</span>
+            <span class="text-base font-bold text-graphite">₽</span>
+          </div>
+        </div>
+
+        <!-- Fast Checkout Fields -->
+        <div id="checkout-form-container" class="space-y-2 pt-2 border-t border-black/5">
+          <p class="text-[11px] uppercase tracking-wider font-bold text-graphite">Быстрое оформление:</p>
+          <input type="text" id="order-name" placeholder="Ваше Имя" class="w-full px-3.5 py-2 text-xs rounded-xl bg-white border border-black/10 focus:outline-none focus:border-graphite shadow-inner">
+          <input type="text" id="order-contact" placeholder="Телефон или @Telegram" class="w-full px-3.5 py-2 text-xs rounded-xl bg-white border border-black/10 focus:outline-none focus:border-graphite shadow-inner">
+          <input type="text" id="order-city" placeholder="Город доставки (СДЭК/Курьер)" class="w-full px-3.5 py-2 text-xs rounded-xl bg-white border border-black/10 focus:outline-none focus:border-graphite shadow-inner">
+          <input type="text" id="order-note" placeholder="Пожелания / Подарочная открытка" class="w-full px-3.5 py-2 text-xs rounded-xl bg-white border border-black/10 focus:outline-none focus:border-graphite shadow-inner">
+        </div>
+
+        <button onclick="handleCheckoutSubmit()" id="btn-submit-order" class="w-full py-4 rounded-2xl bg-graphite text-white font-semibold text-xs uppercase tracking-wider hover:bg-graphite/90 transition-all shadow-md active:scale-[0.99]">
+          Оформить заказ
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 11. МОДАЛЬНОЕ ОКНО УСПЕХА ЗАКАЗА -->
+  <div id="success-modal" class="fixed inset-0 z-50 hidden transition-opacity duration-300">
+    <div class="absolute inset-0 bg-graphite/50 backdrop-blur-sm" onclick="closeModal('success-modal')"></div>
+    <div class="relative w-full h-full max-w-md mx-auto p-4 flex items-center justify-center pointer-events-none">
+      <div class="w-full bg-cream rounded-3xl shadow-2xl border border-white p-8 pointer-events-auto text-center">
+        
+        <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-tr from-buttercup to-lavender flex items-center justify-center text-4xl mb-4 shadow-pearl animate-bounce">
+          ✨
+        </div>
+
+        <span class="text-[11px] uppercase tracking-widest font-bold text-graphite-muted block mb-1">Заказ успешно принят!</span>
+        <h3 class="font-serif text-3xl font-bold text-graphite mb-2">Номер заявки: <br><span id="success-order-id" class="text-lavender-800">#VP-0000</span></h3>
+        
+        <p class="text-xs text-graphite-muted leading-relaxed mb-6">
+          Спасибо за доверие к Vie Perla! Мастер свяжется с вами в течение <strong>15 минут</strong> для подтверждения сборки и отправки фото-эскиза.
+        </p>
+
+        <div class="p-4 rounded-2xl bg-white/80 border border-black/5 text-left text-xs space-y-1 mb-6">
+          <p class="font-semibold text-graphite">Детали заказа:</p>
+          <p id="success-client-info" class="text-graphite-muted">Клиент: -</p>
+          <p id="success-total-info" class="text-graphite-muted">Сумма: 0 ₽</p>
+        </div>
+
+        <button onclick="closeModal('success-modal')" class="w-full py-3.5 rounded-full bg-graphite text-white text-xs font-semibold uppercase tracking-wider hover:bg-graphite/85 transition-all">
+          Вернуться на сайт
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-graphite text-white text-xs font-medium px-5 py-3 rounded-full shadow-2xl opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-2">
+    <span id="toast-text">Товар добавлен</span>
+  </div>
+
+  <!-- JAVASCRIPT APPLICATION CORE -->
+  <script>
+    // Catalog Data Repository (8 distinct ready-made handcrafted designs)
+    const CATALOG_ITEMS = [
+      {
+        id: 'cat-1',
+        title: 'Cherry Blossom Dream',
+        category: 'bag',
+        categoryLabel: 'На сумку',
+        price: 3600,
+        emoji: '🍒',
+        bg: 'from-rose-100 to-pink-200',
+        badge: 'Хит сезона',
+        desc: 'Нежный акцент для шопера или мини-бэга. Сочетание пресноводного барочного жемчуга с сочными вишенками лэмпворк ручной работы.',
+        materials: ['Японский 7-жильный тросик', 'Натуральный жемчуг (класс AAA)', 'Лэмпворк-вишенки ручного выдува', 'Карабин с золотым PVD-покрытием']
+      },
+      {
+        id: 'cat-2',
+        title: 'Y2K Cyber Angel',
+        category: 'phone',
+        categoryLabel: 'На телефон',
+        price: 2900,
+        emoji: '⭐',
+        bg: 'from-lavender to-purple-200',
+        badge: 'Выбор стилистов',
+        desc: 'Дерзкий дофаминовый обвес для смартфона. Кристальные звездочки, дутое сердце и радужные кубики.',
+        materials: ['Усиленный шнурок-петля', 'Хромированные сферы', 'Бусины из чешского хрусталя', 'Подвеска-сердце из ювелирной стали']
+      },
+      {
+        id: 'cat-3',
+        title: 'Old Money Minimalist',
+        category: 'bag',
+        categoryLabel: 'На сумку',
+        price: 4100,
+        emoji: '🦪',
+        bg: 'from-amber-50 to-orange-100',
+        badge: 'Классика',
+        desc: 'Чистый лаконичный шик. Барочный жемчуг каплевидной формы в дуэте с гладкими серебряными дисками.',
+        materials: ['Пресноводный каплевидный жемчуг', 'Серебро 925 пробы (замки)', 'Японская стальная струна']
+      },
+      {
+        id: 'cat-4',
+        title: 'Besties Soul Duo (Парный)',
+        category: 'pair',
+        categoryLabel: 'Парные Besties',
+        price: 5400,
+        emoji: '👯‍♀️',
+        bg: 'from-pink-100 via-lavender to-buttercup',
+        badge: 'Сет из 2 шт.',
+        desc: 'Два дополняющих друг друга подвеса для вас и лучшей подруги со скрытыми половинками сердец.',
+        materials: ['2 полных подвеса в наборе', 'Индивидуальные инициалы', 'Две отдельные подарочные коробки']
+      },
+      {
+        id: 'cat-5',
+        title: 'Sunset Honey Glow',
+        category: 'bag',
+        categoryLabel: 'На сумку',
+        price: 3400,
+        emoji: '🍯',
+        bg: 'from-amber-100 to-yellow-200',
+        badge: 'New',
+        desc: 'Теплый медовый янтарь, солнечные кристаллы и винтажный бантик с позолотой.',
+        materials: ['Янтарные стеклянные бусины', 'Винтажный шарм-бант', 'Латунь с золотым напылением']
+      },
+      {
+        id: 'cat-6',
+        title: 'Candy Cloud Nine',
+        category: 'phone',
+        categoryLabel: 'На телефон',
+        price: 3100,
+        emoji: '☁️',
+        bg: 'from-sky-100 to-indigo-100',
+        badge: 'Лимитировано',
+        desc: 'Воздушное стеклянное облачко в окружении перламутровых пастельных капель.',
+        materials: ['Облачко лэмпворк', 'Матовые пастельные бусины', 'Усиленный шнурок к чехлу']
+      },
+      {
+        id: 'cat-7',
+        title: 'Noir Chic Statement',
+        category: 'bag',
+        categoryLabel: 'На сумку',
+        price: 3800,
+        emoji: '🖤',
+        bg: 'from-stone-200 to-stone-400',
+        badge: 'Exclusive',
+        desc: 'Глубокий черный оникс, темный жемчуг павлиньего отлива и массивный дутый карабин.',
+        materials: ['Натуральный черный оникс', 'Тонированный жемчуг', 'Графитовая фурнитура']
+      },
+      {
+        id: 'cat-8',
+        title: 'Twin Star Connections',
+        category: 'pair',
+        categoryLabel: 'Парные Besties',
+        price: 5200,
+        emoji: '✨',
+        bg: 'from-purple-100 to-rose-100',
+        badge: 'Сет из 2 шт.',
+        desc: 'Парный комплект с микро-звездочками и гравировкой инициалов. Связь, которая всегда с вами.',
+        materials: ['2 подвеса со звездами', 'Латунь с родированием', 'Пресноводный жемчуг']
+      }
+    ];
+
+    // BUILDER STATE (VIE STUDIO)
+    const builderState = {
+      basePrice: 1900,
+      mount: {
+        id: 'carabiner-gold',
+        name: 'Карабин (Золото)',
+        price: 0
+      },
+      stylePreset: {
+        id: 'y2k',
+        name: 'Y2K Playful'
+      },
+      palette: {
+        id: 'pearl',
+        name: 'Натуральный жемчуг'
+      },
+      letters: 'AMOUR',
+      letterColor: 'gold', // 'gold', 'clear', 'color'
+      lampwork: [
+        { id: 'cherry', name: 'Вишенка', emoji: '🍒', price: 250 }
+      ],
+      charms: [
+        { id: 'metal-bow', name: 'Металл-бант', emoji: '🎀', price: 350 }
+      ]
+    };
+
+    // CART STATE
+    let cart = [];
+
+    // INITIALIZATION ON LOAD
+    window.addEventListener('DOMContentLoaded', () => {
+      renderBestsellers();
+      renderFullCatalog('all');
+      updateBuilderUI();
+      renderLiveStrand();
+      calculateCustomPrice();
+    });
+
+    // BUILDER CONTROLLER FUNCTIONS
+    function setMount(id, name, price) {
+      builderState.mount = { id, name, price };
+      document.querySelectorAll('.mount-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.mount === id);
+        btn.classList.toggle('border-graphite', btn.dataset.mount === id);
+        btn.classList.toggle('bg-white', btn.dataset.mount === id);
+      });
+      document.getElementById('label-selected-mount').textContent = name;
+      renderLiveStrand();
+      calculateCustomPrice();
+    }
+
+    function setStylePreset(id, name) {
+      builderState.stylePreset = { id, name };
+      document.querySelectorAll('.style-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.style === id);
+        btn.classList.toggle('border-graphite', btn.dataset.style === id);
+        btn.classList.toggle('bg-white', btn.dataset.style === id);
+      });
+      document.getElementById('label-selected-style').textContent = name;
+      
+      // Auto-adapt palette based on style
+      if (id === 'clean') setPalette('pearl', 'Натуральный жемчуг');
+      if (id === 'y2k') setPalette('dopamine', 'Дофаминовый коктейль');
+      if (id === 'romantic') setPalette('pastel', 'Пастельный микс');
+      if (id === 'boho') setPalette('pastel', 'Пастельный микс');
+    }
+
+    function setPalette(id, name) {
+      builderState.palette = { id, name };
+      document.querySelectorAll('.palette-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.palette === id);
+        btn.classList.toggle('border-graphite', btn.dataset.palette === id);
+        btn.classList.toggle('bg-white', btn.dataset.palette === id);
+      });
+      document.getElementById('label-selected-palette').textContent = name;
+      renderLiveStrand();
+      calculateCustomPrice();
+    }
+
+    function setLetterStyle(style) {
+      builderState.letterColor = style;
+      document.querySelectorAll('.letter-style-btn').forEach(btn => {
+        const isCurrent = btn.dataset.letstyle === style;
+        btn.classList.toggle('active', isCurrent);
+        btn.classList.toggle('border-graphite', isCurrent);
+        btn.classList.toggle('bg-white', isCurrent);
+      });
+      renderLiveStrand();
+    }
+
+    function applyLetters() {
+      const input = document.getElementById('letter-input');
+      const sanitized = input.value.trim().toUpperCase().replace(/[^A-ZА-Я0-9]/gi, '').slice(0, 10);
+      builderState.letters = sanitized;
+      renderLiveStrand();
+      calculateCustomPrice();
+      showToast(sanitized ? `Буквы «${sanitized}» нанизаны!` : 'Буквы очищены с нити');
+    }
+
+    function toggleLampwork(id, name, emoji, price) {
+      const index = builderState.lampwork.findIndex(item => item.id === id);
+      if (index >= 0) {
+        builderState.lampwork.splice(index, 1);
+      } else {
+        if (builderState.lampwork.length >= 3) {
+          showToast('Максимум 3 фигурки лэмпворк на одной нити');
+          return;
+        }
+        builderState.lampwork.push({ id, name, emoji, price });
+      }
+      updateLampworkButtons();
+      renderLiveStrand();
+      calculateCustomPrice();
+    }
+
+    function updateLampworkButtons() {
+      document.querySelectorAll('.lampwork-btn').forEach(btn => {
+        const id = btn.dataset.id;
+        const isSelected = builderState.lampwork.some(item => item.id === id);
+        btn.classList.toggle('bg-white', isSelected);
+        btn.classList.toggle('border-graphite', isSelected);
+        btn.classList.toggle('shadow-sm', isSelected);
+      });
+    }
+
+    function toggleCharm(id, name, emoji, price) {
+      const index = builderState.charms.findIndex(item => item.id === id);
+      if (index >= 0) {
+        builderState.charms.splice(index, 1);
+      } else {
+        if (builderState.charms.length >= 3) {
+          showToast('Максимум 3 крупных шарма на подвесе');
+          return;
+        }
+        builderState.charms.push({ id, name, emoji, price });
+      }
+      updateCharmButtons();
+      renderLiveStrand();
+      calculateCustomPrice();
+    }
+
+    function updateCharmButtons() {
+      document.querySelectorAll('.charm-btn').forEach(btn => {
+        const id = btn.dataset.charm;
+        const isSelected = builderState.charms.some(item => item.id === id);
+        btn.classList.toggle('bg-white', isSelected);
+        btn.classList.toggle('border-graphite', isSelected);
+        btn.classList.toggle('shadow-sm', isSelected);
+      });
+    }
+
+    function resetBuilder() {
+      builderState.mount = { id: 'carabiner-gold', name: 'Карабин (Золото)', price: 0 };
+      builderState.stylePreset = { id: 'y2k', name: 'Y2K Playful' };
+      builderState.palette = { id: 'pearl', name: 'Натуральный жемчуг' };
+      builderState.letters = 'AMOUR';
+      builderState.letterColor = 'gold';
+      builderState.lampwork = [{ id: 'cherry', name: 'Вишенка', emoji: '🍒', price: 250 }];
+      builderState.charms = [{ id: 'metal-bow', name: 'Металл-бант', emoji: '🎀', price: 350 }];
+      
+      document.getElementById('letter-input').value = 'AMOUR';
+      updateBuilderUI();
+      renderLiveStrand();
+      calculateCustomPrice();
+      showToast('Дизайн сброшен к исходному');
+    }
+
+    function updateBuilderUI() {
+      setMount(builderState.mount.id, builderState.mount.name, builderState.mount.price);
+      setStylePreset(builderState.stylePreset.id, builderState.stylePreset.name);
+      setPalette(builderState.palette.id, builderState.palette.name);
+      setLetterStyle(builderState.letterColor);
+      updateLampworkButtons();
+      updateCharmButtons();
+    }
+
+    // RENDER LIVE STRAND IN PREVIEW
+    function renderLiveStrand() {
+      // 1. Clasp rendering
+      const claspContainer = document.getElementById('visual-clasp');
+      if (builderState.mount.id === 'carabiner-gold') {
+        claspContainer.innerHTML = `
+          <div class="w-14 h-8 rounded-full border-2 border-amber-400 bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-300 shadow-md flex items-center justify-between px-2 cursor-pointer" title="Карабин Золото">
+            <span class="w-2.5 h-2.5 rounded-full bg-white border border-amber-300"></span>
+            <span class="text-[9px] font-bold text-amber-800 tracking-tighter">VIE</span>
+          </div>`;
+      } else if (builderState.mount.id === 'carabiner-silver') {
+        claspContainer.innerHTML = `
+          <div class="w-14 h-8 rounded-full border-2 border-slate-300 bg-gradient-to-r from-slate-200 via-white to-slate-300 shadow-md flex items-center justify-between px-2 cursor-pointer" title="Карабин Серебро">
+            <span class="w-2.5 h-2.5 rounded-full bg-slate-400"></span>
+            <span class="text-[9px] font-bold text-slate-700 tracking-tighter">VIE</span>
+          </div>`;
+      } else if (builderState.mount.id === 'phone-loop') {
+        claspContainer.innerHTML = `
+          <div class="flex flex-col items-center" title="Петля для чехла">
+            <div class="w-4 h-9 rounded-full border-2 border-dashed border-graphite/40 bg-transparent"></div>
+            <div class="w-3 h-3 rounded-full bg-graphite -mt-1 shadow-sm"></div>
+          </div>`;
+      } else {
+        claspContainer.innerHTML = `
+          <div class="flex items-center gap-1 bg-amber-100 px-3 py-1 rounded-full border border-amber-300 text-[10px] font-bold text-amber-800" title="Ювелирный замочек">
+            🔒 Замок Шея
+          </div>`;
+      }
+
+      // 2. Beads rendering along wire
+      const beadsContainer = document.getElementById('strand-beads-container');
+      beadsContainer.innerHTML = '';
+
+      // Palette bead color classes
+      let beadColorClasses = 'bg-gradient-to-br from-white via-cream to-slate-100 border-white';
+      if (builderState.palette.id === 'pastel') beadColorClasses = 'bg-gradient-to-br from-pink-100 via-lavender to-buttercup border-white';
+      if (builderState.palette.id === 'metallic') beadColorClasses = 'bg-gradient-to-tr from-slate-200 via-slate-400 to-slate-100 border-slate-300';
+      if (builderState.palette.id === 'dopamine') beadColorClasses = 'bg-gradient-to-tr from-rose-300 via-yellow-100 to-teal-200 border-white';
+      if (builderState.palette.id === 'noir') beadColorClasses = 'bg-gradient-to-tr from-neutral-900 via-stone-800 to-neutral-700 border-neutral-600 text-white';
+
+      // Letter cube styles
+      let letterBg = 'bg-white text-graphite border-amber-300/60';
+      if (builderState.letterColor === 'clear') letterBg = 'bg-white/50 backdrop-blur-md text-graphite border-white';
+      if (builderState.letterColor === 'color') letterBg = 'bg-gradient-to-tr from-pink-200 to-yellow-200 text-graphite border-white';
+
+      // Top spacer beads
+      for (let i = 0; i < 2; i++) {
+        const topBead = document.createElement('div');
+        topBead.className = `w-5 h-5 rounded-full ${beadColorClasses} border shadow-sm bead-item-node`;
+        topBead.title = 'Базовая бусина основы';
+        beadsContainer.appendChild(topBead);
+      }
+
+      // Lampwork Item 1 (if present)
+      if (builderState.lampwork[0]) {
+        const lw1 = document.createElement('div');
+        lw1.className = 'w-9 h-9 rounded-2xl bg-white/90 border border-white shadow-md flex items-center justify-center text-lg bead-item-node animate-float';
+        lw1.textContent = builderState.lampwork[0].emoji;
+        lw1.title = `Удалить ${builderState.lampwork[0].name}`;
+        lw1.onclick = () => toggleLampwork(builderState.lampwork[0].id, builderState.lampwork[0].name, builderState.lampwork[0].emoji, builderState.lampwork[0].price);
+        beadsContainer.appendChild(lw1);
+      }
+
+      // Personalized Letters Strand
+      if (builderState.letters && builderState.letters.length > 0) {
+        const lettersRow = document.createElement('div');
+        lettersRow.className = 'flex items-center gap-1.5 py-1';
+        
+        builderState.letters.split('').forEach((char, idx) => {
+          const letterNode = document.createElement('div');
+          letterNode.className = `w-7 h-7 rounded-xl ${letterBg} border shadow-sm flex items-center justify-center font-bold text-xs bead-item-node`;
+          letterNode.textContent = char;
+          letterNode.title = `Буква "${char}" (Кликните на поле ввода для изменения)`;
+          lettersRow.appendChild(letterNode);
+        });
+        beadsContainer.appendChild(lettersRow);
+      }
+
+      // Remaining Lampwork items
+      if (builderState.lampwork.length > 1) {
+        for (let i = 1; i < builderState.lampwork.length; i++) {
+          const lw = builderState.lampwork[i];
+          const lwNode = document.createElement('div');
+          lwNode.className = 'w-9 h-9 rounded-2xl bg-white/90 border border-white shadow-md flex items-center justify-center text-lg bead-item-node';
+          lwNode.textContent = lw.emoji;
+          lwNode.title = `Удалить ${lw.name}`;
+          lwNode.onclick = () => toggleLampwork(lw.id, lw.name, lw.emoji, lw.price);
+          beadsContainer.appendChild(lwNode);
+        }
+      }
+
+      // Bottom spacer beads
+      for (let i = 0; i < 2; i++) {
+        const bottomBead = document.createElement('div');
+        bottomBead.className = `w-5 h-5 rounded-full ${beadColorClasses} border shadow-sm bead-item-node`;
+        beadsContainer.appendChild(bottomBead);
+      }
+
+      // 3. Dangling Charms at bottom
+      const charmsContainer = document.getElementById('strand-charms-container');
+      charmsContainer.innerHTML = '';
+      
+      if (builderState.charms.length === 0) {
+        charmsContainer.innerHTML = `<span class="text-[10px] text-graphite/40 italic">Шармы не выбраны</span>`;
+      } else {
+        builderState.charms.forEach(charm => {
+          const charmNode = document.createElement('div');
+          charmNode.className = 'p-2 rounded-2xl bg-gradient-to-tr from-white via-cream to-amber-100 border border-amber-200/60 shadow-md transform hover:rotate-12 transition-transform cursor-pointer bead-item-node text-xl flex items-center justify-center';
+          charmNode.textContent = charm.emoji;
+          charmNode.title = `Удалить шарм "${charm.name}"`;
+          charmNode.onclick = () => toggleCharm(charm.id, charm.name, charm.emoji, charm.price);
+          charmsContainer.appendChild(charmNode);
+        });
+      }
+
+      // Total count indicator
+      const totalElements = 4 + (builderState.letters ? builderState.letters.length : 0) + builderState.lampwork.length + builderState.charms.length;
+      document.getElementById('preview-bead-count').textContent = `Элементов на нити: ${totalElements}`;
+
+      // Estimated physical length
+      const estLength = 12 + (builderState.letters ? builderState.letters.length * 1.2 : 0) + (builderState.lampwork.length * 1.8);
+      document.getElementById('calculated-length').textContent = `~ ${Math.round(estLength)} см`;
+    }
+
+    // CALCULATE REALTIME PRICE
+    function calculateCustomPrice() {
+      let total = builderState.basePrice;
+      const detailsContainer = document.getElementById('price-breakdown-details');
+      detailsContainer.innerHTML = '';
+
+      // Base
+      let detailsHTML = `<div class="flex justify-between"><span>Базовая нить + тросик:</span><span>${builderState.basePrice} ₽</span></div>`;
+
+      // Mount addition
+      if (builderState.mount.price > 0) {
+        total += builderState.mount.price;
+        detailsHTML += `<div class="flex justify-between"><span>${builderState.mount.name}:</span><span>+${builderState.mount.price} ₽</span></div>`;
+      }
+
+      // Letters addition
+      const letterCount = builderState.letters ? builderState.letters.length : 0;
+      if (letterCount > 0) {
+        const lettersCost = letterCount * 40;
+        total += lettersCost;
+        detailsHTML += `<div class="flex justify-between"><span>Буквы (${letterCount} шт × 40 ₽):</span><span>+${lettersCost} ₽</span></div>`;
+      }
+
+      // Lampwork addition
+      builderState.lampwork.forEach(item => {
+        total += item.price;
+        detailsHTML += `<div class="flex justify-between"><span>Лэмпворк (${item.name}):</span><span>+${item.price} ₽</span></div>`;
+      });
+
+      // Charms addition
+      builderState.charms.forEach(charm => {
+        total += charm.price;
+        detailsHTML += `<div class="flex justify-between"><span>Шарм (${charm.name}):</span><span>+${charm.price} ₽</span></div>`;
+      });
+
+      detailsContainer.innerHTML = detailsHTML;
+      document.getElementById('custom-total-price').textContent = total.toLocaleString('ru-RU');
+      return total;
+    }
+
+    // ADD CUSTOM DESIGN TO CART
+    function addCustomToCart() {
+      const currentPrice = calculateCustomPrice();
+      const customItem = {
+        cartId: 'custom-' + Date.now(),
+        isCustom: true,
+        title: 'Кастомный подвес VIE',
+        price: currentPrice,
+        quantity: 1,
+        emoji: builderState.charms[0] ? builderState.charms[0].emoji : (builderState.lampwork[0] ? builderState.lampwork[0].emoji : '✨'),
+        specs: {
+          mount: builderState.mount.name,
+          style: builderState.stylePreset.name,
+          palette: builderState.palette.name,
+          word: builderState.letters || 'Без букв',
+          lampwork: builderState.lampwork.map(l => l.name).join(', ') || 'Нет',
+          charms: builderState.charms.map(c => c.name).join(', ') || 'Нет'
+        }
+      };
+
+      cart.push(customItem);
+      updateCartUI();
+      toggleCartDrawer(true);
+      showToast('Ваш персональный талисман добавлен в корзину! ✨');
+    }
+
+    // RENDER BESTSELLERS (4 items)
+    function renderBestsellers() {
+      const container = document.getElementById('bestsellers-grid');
+      container.innerHTML = '';
+      const items = CATALOG_ITEMS.slice(0, 4);
+
+      items.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'glass-card rounded-3xl p-5 border border-white/80 shadow-subtle flex flex-col justify-between group hover:-translate-y-1.5 transition-all duration-300';
+        card.innerHTML = `
+          <div>
+            <div class="relative w-full aspect-square rounded-2xl bg-gradient-to-tr ${item.bg} flex items-center justify-center text-6xl shadow-inner mb-4 overflow-hidden">
+              <span class="transform group-hover:scale-110 transition-transform duration-500">${item.emoji}</span>
+              <span class="absolute top-2.5 left-2.5 text-[9px] uppercase tracking-wider font-bold px-2 py-0.5 bg-white/90 rounded-full shadow-xs">${item.badge}</span>
+            </div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[10px] uppercase tracking-wider text-graphite-muted font-bold">${item.categoryLabel}</span>
+              <span class="text-xs font-bold text-graphite">${item.price.toLocaleString('ru-RU')} ₽</span>
+            </div>
+            <h3 class="font-serif text-xl font-bold text-graphite mb-1.5">${item.title}</h3>
+            <p class="text-xs text-graphite-muted line-clamp-2 leading-relaxed mb-4">${item.desc}</p>
+          </div>
+
+          <div class="flex items-center gap-2 pt-2 border-t border-black/5">
+            <button onclick="openQuickView('${item.id}')" class="flex-1 py-2 rounded-xl bg-white/80 hover:bg-white text-[11px] font-semibold text-graphite border border-black/5 transition-colors">
+              Быстрый просмотр
+            </button>
+            <button onclick="addCatalogItemToCart('${item.id}')" class="p-2 rounded-xl bg-graphite hover:bg-graphite/85 text-buttercup transition-transform active:scale-90" title="В корзину">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // RENDER FULL CATALOG MODAL
+    function renderFullCatalog(filter = 'all') {
+      const container = document.getElementById('catalog-full-grid');
+      container.innerHTML = '';
+
+      const filtered = filter === 'all' 
+        ? CATALOG_ITEMS 
+        : CATALOG_ITEMS.filter(item => item.category === filter);
+
+      filtered.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'glass-card rounded-3xl p-4 border border-white shadow-xs flex flex-col justify-between hover:shadow-md transition-shadow';
+        card.innerHTML = `
+          <div>
+            <div class="w-full aspect-square rounded-2xl bg-gradient-to-tr ${item.bg} flex items-center justify-center text-5xl mb-3 shadow-inner">
+              <span>${item.emoji}</span>
+            </div>
+            <span class="text-[9px] uppercase tracking-wider text-graphite-muted font-bold block">${item.categoryLabel}</span>
+            <h4 class="font-serif text-lg font-bold text-graphite leading-tight mb-1">${item.title}</h4>
+            <p class="text-xs font-bold text-graphite mb-3">${item.price.toLocaleString('ru-RU')} ₽</p>
+          </div>
+          <div class="flex gap-1.5">
+            <button onclick="openQuickView('${item.id}')" class="flex-1 py-2 rounded-xl bg-white text-[10px] font-semibold border border-black/5">Детали</button>
+            <button onclick="addCatalogItemToCart('${item.id}')" class="px-3 py-2 rounded-xl bg-graphite text-buttercup text-[10px] font-bold">Купить</button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function filterCatalog(category, btnElement) {
+      document.querySelectorAll('.catalog-filter-btn').forEach(btn => {
+        btn.classList.remove('bg-graphite', 'text-white');
+        btn.classList.add('bg-white/80', 'text-graphite');
+      });
+      btnElement.classList.add('bg-graphite', 'text-white');
+      btnElement.classList.remove('bg-white/80', 'text-graphite');
+      renderFullCatalog(category);
+    }
+
+    // QUICK VIEW MODAL CONTROLLER
+    function openQuickView(itemId) {
+      const item = CATALOG_ITEMS.find(i => i.id === itemId);
+      if (!item) return;
+
+      document.getElementById('qv-emoji').textContent = item.emoji;
+      document.getElementById('qv-badge').textContent = item.badge;
+      document.getElementById('qv-category').textContent = item.categoryLabel;
+      document.getElementById('qv-title').textContent = item.title;
+      document.getElementById('qv-price').textContent = `${item.price.toLocaleString('ru-RU')} ₽`;
+      document.getElementById('qv-desc').textContent = item.desc;
+      
+      const matList = document.getElementById('qv-materials');
+      matList.innerHTML = '';
+      item.materials.forEach(mat => {
+        const li = document.createElement('li');
+        li.textContent = `• ${mat}`;
+        matList.appendChild(li);
+      });
+
+      const addBtn = document.getElementById('qv-add-btn');
+      addBtn.onclick = () => {
+        addCatalogItemToCart(item.id);
+        closeModal('quickview-modal');
+      };
+
+      openModal('quickview-modal');
+    }
+
+    // CART OPERATIONS
+    function addCatalogItemToCart(itemId) {
+      const item = CATALOG_ITEMS.find(i => i.id === itemId);
+      if (!item) return;
+
+      const existing = cart.find(ci => ci.id === itemId && !ci.isCustom);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({
+          cartId: 'cat-' + item.id + '-' + Date.now(),
+          id: item.id,
+          isCustom: false,
+          title: item.title,
+          price: item.price,
+          quantity: 1,
+          emoji: item.emoji,
+          categoryLabel: item.categoryLabel
+        });
+      }
+
+      updateCartUI();
+      toggleCartDrawer(true);
+      showToast(`«${item.title}» в корзине!`);
+    }
+
+    function changeQuantity(cartId, delta) {
+      const item = cart.find(ci => ci.cartId === cartId);
+      if (!item) return;
+
+      item.quantity += delta;
+      if (item.quantity <= 0) {
+        cart = cart.filter(ci => ci.cartId !== cartId);
+      }
+      updateCartUI();
+    }
+
+    function removeCartItem(cartId) {
+      cart = cart.filter(ci => ci.cartId !== cartId);
+      updateCartUI();
+      showToast('Товар удален из шкатулки');
+    }
+
+    function updateCartUI() {
+      const counter = document.getElementById('cart-counter');
+      const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+      counter.textContent = totalCount;
+
+      const container = document.getElementById('cart-items-container');
+      const totalContainer = document.getElementById('cart-total-amount');
+      const checkoutForm = document.getElementById('checkout-form-container');
+      const submitBtn = document.getElementById('btn-submit-order');
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="h-full flex flex-col items-center justify-center text-center py-16">
+            <span class="text-5xl mb-3 opacity-60">🦪</span>
+            <p class="font-serif text-2xl font-bold text-graphite mb-1">Шкатулка пуста</p>
+            <p class="text-xs text-graphite-muted max-w-xs mb-6">Соберите свой первый талисман в конструкторе или выберите готовый концепт.</p>
+            <a href="#studio" onclick="toggleCartDrawer(false)" class="px-6 py-2.5 rounded-full bg-graphite text-white text-xs font-semibold uppercase tracking-wider">Перейти в студию</a>
+          </div>
+        `;
+        totalContainer.textContent = '0';
+        checkoutForm.classList.add('opacity-40', 'pointer-events-none');
+        submitBtn.disabled = true;
+        submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        return;
+      }
+
+      checkoutForm.classList.remove('opacity-40', 'pointer-events-none');
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+
+      container.innerHTML = '';
+      let subtotal = 0;
+
+      cart.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+        subtotal += itemTotal;
+
+        const el = document.createElement('div');
+        el.className = 'p-4 rounded-2xl bg-white border border-black/5 shadow-xs flex gap-3 relative';
+        
+        let customSpecHTML = '';
+        if (item.isCustom) {
+          customSpecHTML = `
+            <div class="mt-1.5 p-2 rounded-xl bg-lavender/30 text-[10px] text-graphite space-y-0.5">
+              <div><strong>Фурнитура:</strong> ${item.specs.mount}</div>
+              <div><strong>Стиль:</strong> ${item.specs.style} | ${item.specs.palette}</div>
+              <div><strong>Текст:</strong> «${item.specs.word}»</div>
+              <div><strong>Шармы:</strong> ${item.specs.lampwork}, ${item.specs.charms}</div>
+            </div>
+          `;
+        }
+
+        el.innerHTML = `
+          <div class="w-14 h-14 shrink-0 rounded-xl bg-cream border border-black/5 flex items-center justify-center text-2xl shadow-inner">
+            ${item.emoji}
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex justify-between items-start">
+              <h4 class="font-semibold text-xs text-graphite truncate">${item.title}</h4>
+              <button onclick="removeCartItem('${item.cartId}')" class="text-graphite-muted hover:text-rose-500 p-0.5 ml-1">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              </button>
+            </div>
+            
+            <div class="text-xs font-bold text-graphite mt-1">${item.price.toLocaleString('ru-RU')} ₽</div>
+            ${customSpecHTML}
+
+            <div class="flex items-center justify-between mt-3 pt-2 border-t border-black/5">
+              <div class="flex items-center border border-black/10 rounded-lg overflow-hidden bg-cream">
+                <button onclick="changeQuantity('${item.cartId}', -1)" class="px-2 py-0.5 text-xs text-graphite hover:bg-black/5">-</button>
+                <span class="px-2 py-0.5 text-xs font-semibold text-graphite">${item.quantity}</span>
+                <button onclick="changeQuantity('${item.cartId}', 1)" class="px-2 py-0.5 text-xs text-graphite hover:bg-black/5">+</button>
+              </div>
+              <span class="text-xs font-bold text-graphite">${itemTotal.toLocaleString('ru-RU')} ₽</span>
+            </div>
+          </div>
+        `;
+        container.appendChild(el);
+      });
+
+      totalContainer.textContent = subtotal.toLocaleString('ru-RU');
+    }
+
+    function toggleCartDrawer(open) {
+      const overlay = document.getElementById('cart-drawer-overlay');
+      const panel = document.getElementById('cart-drawer-panel');
+
+      if (open) {
+        overlay.classList.remove('opacity-0', 'pointer-events-none');
+        panel.classList.remove('translate-x-full');
+        document.body.style.overflow = 'hidden';
+      } else {
+        overlay.classList.add('opacity-0', 'pointer-events-none');
+        panel.classList.add('translate-x-full');
+        document.body.style.overflow = '';
+      }
+    }
+
+    // CHECKOUT SUBMISSION
+    function handleCheckoutSubmit() {
+      if (cart.length === 0) return;
+
+      const name = document.getElementById('order-name').value.trim();
+      const contact = document.getElementById('order-contact').value.trim();
+      const city = document.getElementById('order-city').value.trim();
+
+      if (!name || !contact) {
+        showToast('Пожалуйста, укажите имя и контакты для связи');
+        return;
+      }
+
+      // Generate random order ID #VP-XXXX
+      const randomId = '#VP-' + Math.floor(1000 + Math.random() * 9000);
+      const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+      document.getElementById('success-order-id').textContent = randomId;
+      document.getElementById('success-client-info').textContent = `Клиент: ${name} (${contact}), Город: ${city || 'Не указан'}`;
+      document.getElementById('success-total-info').textContent = `Сумма к оплате: ${total.toLocaleString('ru-RU')} ₽ (${cart.length} поз.)`;
+
+      // Clear Cart
+      cart = [];
+      updateCartUI();
+      toggleCartDrawer(false);
+
+      // Reset form
+      document.getElementById('order-name').value = '';
+      document.getElementById('order-contact').value = '';
+      document.getElementById('order-city').value = '';
+      document.getElementById('order-note').value = '';
+
+      // Open Success Modal
+      openModal('success-modal');
+    }
+
+    // GENERAL MODAL HELPERS
+    function openModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (!modal) return;
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (!modal) return;
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    // Close on Escape Key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const modals = ['catalog-modal', 'quickview-modal', 'shipping-modal', 'care-modal', 'gift-modal', 'success-modal'];
+        modals.forEach(closeModal);
+        toggleCartDrawer(false);
+      }
+    });
+
+    // TOAST NOTIFICATIONS
+    let toastTimeout;
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const text = document.getElementById('toast-text');
+      text.textContent = message;
+
+      toast.classList.remove('opacity-0', 'pointer-events-none');
+      toast.classList.add('opacity-100');
+
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0', 'pointer-events-none');
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
