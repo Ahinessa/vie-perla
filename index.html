@@ -2,10 +2,10 @@
 <html lang="ru" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>VIE PERLA — Эксклюзивные кастомные подвесы и украшения</title>
   
-<!-- Шрифты: Cormorant Garamond (Заголовки) + Inter (Интерфейс) -->
+  <!-- Шрифты: Cormorant Garamond + Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -15,6 +15,13 @@
   <script>
     tailwind.config = {
       theme: {
+        screens: {
+          'xs': '360px',
+          'sm': '640px',
+          'md': '768px',
+          'lg': '1024px',
+          'xl': '1280px',
+        },
         extend: {
           colors: {
             cream: '#FAF8F5',
@@ -29,7 +36,7 @@
           },
           fontFamily: {
             serif: ['"Cormorant Garamond"', 'serif'],
-              sans: ['"Inter"', 'sans-serif'],
+            sans: ['"Inter"', 'sans-serif'],
           },
           boxShadow: {
             'pearl': '0 20px 45px -15px rgba(230, 222, 252, 0.65), 0 0 25px 2px rgba(255, 227, 209, 0.4)',
@@ -47,55 +54,53 @@
       color: #272322;
       font-family: 'Inter', sans-serif;
       overflow-x: hidden;
+      width: 100%;
     }
 
     h1, h3, .font-cormorant {
       font-family: 'Cormorant Garamond', serif;
     }
 
-    /* Soft organic ambient glows */
     .orb-glow {
       position: absolute;
       border-radius: 9999px;
       filter: blur(80px);
       pointer-events: none;
       z-index: 0;
-      opacity: 0.6;
+      opacity: 0.5;
     }
 
-    /* Все заголовки H2 = medium */
     h2 {
-      font-family: var(--font-heading);
+      font-family: 'Cormorant Garamond', serif;
       font-weight: 500;
-      font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+      font-size: clamp(1.85rem, 5.5vw, 3.2rem);
       line-height: 1.15;
-      color: var(--text-main);
+      color: #272322;
       letter-spacing: -0.01em;
     }
 	
     .glass-card {
-      background: rgba(255, 255, 255, 0.68);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
     }
 
     .glass-card-lavender {
-      background: rgba(230, 222, 252, 0.45);
+      background: rgba(230, 222, 252, 0.5);
       backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.7);
     }
 
     .glass-card-sorbet {
-      background: rgba(255, 227, 209, 0.45);
+      background: rgba(255, 227, 209, 0.5);
       backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.7);
     }
 
-    /* Animated shimmering beads */
     @keyframes floatSlow {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-10px) rotate(2deg); }
+      50% { transform: translateY(-6px) rotate(1deg); }
     }
 
     .animate-float {
@@ -103,18 +108,17 @@
     }
 
     @keyframes pulseGlow {
-      0%, 100% { opacity: 0.55; transform: scale(1); }
-      50% { opacity: 0.85; transform: scale(1.05); }
+      0%, 100% { opacity: 0.45; transform: scale(1); }
+      50% { opacity: 0.75; transform: scale(1.04); }
     }
 
     .animate-glow {
       animation: pulseGlow 6s ease-in-out infinite alternate;
     }
 
-    /* Custom scrollbar */
     ::-webkit-scrollbar {
-      width: 7px;
-      height: 7px;
+      width: 5px;
+      height: 5px;
     }
     ::-webkit-scrollbar-track {
       background: #FAF8F5;
@@ -123,41 +127,44 @@
       background: #E6DEFC;
       border-radius: 9999px;
     }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #d3c4fc;
-    }
 
-    /* Custom bead hover scale in constructor */
     .bead-item-node {
       transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.2s ease;
       cursor: pointer;
     }
-    .bead-item-node:hover {
-      transform: scale(1.18);
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.18));
+    .bead-item-node:hover, .bead-item-node:active {
+      transform: scale(1.15);
+      filter: drop-shadow(0 3px 6px rgba(0,0,0,0.18));
+    }
+
+    @media (max-width: 639px) {
+      .hero-title-responsive {
+        font-size: 2.35rem !important;
+        line-height: 1.1 !important;
+      }
     }
   </style>
 </head>
 <body class="relative min-h-screen text-graphite selection:bg-lavender selection:text-graphite">
 
-  <!-- Ambient Decorative Glowing Orbs -->
-  <div class="fixed top-[-10%] left-[-8%] w-[500px] h-[500px] bg-lavender orb-glow animate-glow"></div>
-  <div class="fixed top-[30%] right-[-10%] w-[550px] h-[550px] bg-sorbet orb-glow animate-glow" style="animation-delay: -3s;"></div>
-  <div class="fixed bottom-[-5%] left-[20%] w-[600px] h-[600px] bg-buttercup orb-glow animate-glow" style="animation-delay: -1.5s; opacity: 0.35;"></div>
+  <!-- Фоновые сферы -->
+  <div class="fixed top-[-10%] left-[-15%] w-[320px] sm:w-[500px] h-[320px] sm:h-[500px] bg-lavender orb-glow animate-glow"></div>
+  <div class="fixed top-[30%] right-[-15%] w-[320px] sm:w-[550px] h-[320px] sm:h-[550px] bg-sorbet orb-glow animate-glow" style="animation-delay: -3s;"></div>
+  <div class="fixed bottom-[-5%] left-[10%] w-[340px] sm:w-[600px] h-[340px] sm:h-[600px] bg-buttercup orb-glow animate-glow" style="animation-delay: -1.5s; opacity: 0.35;"></div>
 
   <!-- 1. STICKY HEADER -->
-  <header class="sticky top-0 z-40 w-full glass-card border-b border-white/60 transition-all duration-300 py-3.5 px-4 md:px-8">
+  <header class="sticky top-0 z-40 w-full glass-card border-b border-white/60 transition-all duration-300 py-3.5 px-6 sm:px-8 md:px-10 lg:px-12">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       
       <!-- Brand Logo -->
-      <a href="#" class="flex items-center gap-2.5 group">
-        <span class="relative flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-tr from-lavender via-white to-sorbet shadow-md group-hover:scale-105 transition-transform duration-300">
-          <span class="h-3.5 w-3.5 rounded-full bg-gradient-to-b from-white to-[#eae4f9] shadow-inner border border-white"></span>
-          <span class="absolute top-1 right-1.5 w-1.5 h-1.5 rounded-full bg-white opacity-90 blur-[0.3px]"></span>
+      <a href="#" class="flex items-center gap-2 group">
+        <span class="relative flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full bg-gradient-to-tr from-lavender via-white to-sorbet shadow-md group-hover:scale-105 transition-transform duration-300">
+          <span class="h-3 w-3 sm:h-3.5 sm:w-3.5 rounded-full bg-gradient-to-b from-white to-[#eae4f9] shadow-inner border border-white"></span>
+          <span class="absolute top-1 right-1.5 w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-white opacity-90 blur-[0.3px]"></span>
         </span>
         <div class="flex flex-col">
-          <span class="font-serif text-2xl tracking-[0.22em] font-bold text-graphite uppercase">Vie Perla</span>
-          <span class="text-[9px] uppercase tracking-[0.25em] text-graphite-muted -mt-1">Atelier d'émotions</span>
+          <span class="font-serif text-xl sm:text-2xl tracking-[0.18em] sm:tracking-[0.22em] font-bold text-graphite uppercase leading-tight">Vie Perla</span>
+          <span class="text-[8px] sm:text-[9px] uppercase tracking-[0.22em] text-graphite-muted">Atelier d'émotions</span>
         </div>
       </a>
 
@@ -170,98 +177,97 @@
         <button onclick="openModal('shipping-modal')" class="hover:text-graphite transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-graphite hover:after:w-full after:transition-all">ДОСТАВКА</button>
       </nav>
 
-      <!-- Cart Button & Mobile Menu Toggle -->
-      <div class="flex items-center gap-3">
-        <button onclick="toggleCartDrawer(true)" class="relative p-2.5 rounded-full bg-white/80 hover:bg-white shadow-sm border border-black/5 transition-all duration-300 flex items-center justify-center hover:shadow-md hover:scale-105 active:scale-95" aria-label="Открыть корзину">
-          <svg class="w-5 h-5 text-graphite" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <!-- Cart Button & CTA -->
+      <div class="flex items-center gap-2.5 sm:gap-3">
+        <button onclick="toggleCartDrawer(true)" class="relative p-2 sm:p-2.5 rounded-full bg-white/80 hover:bg-white shadow-sm border border-black/5 transition-all duration-300 flex items-center justify-center hover:shadow-md hover:scale-105 active:scale-95" aria-label="Открыть корзину">
+          <svg class="w-4 h-4 sm:w-5 sm:h-5 text-graphite" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
           </svg>
-          <span id="cart-counter" class="absolute -top-1 -right-1 flex items-center justify-center h-5 min-w-[20px] px-1 text-[11px] font-bold text-graphite bg-buttercup border border-white rounded-full shadow-sm">0</span>
+          <span id="cart-counter" class="absolute -top-1 -right-1 flex items-center justify-center h-4 sm:h-5 min-w-[17px] sm:min-w-[20px] px-1 text-[10px] sm:text-[11px] font-bold text-graphite bg-buttercup border border-white rounded-full shadow-sm">0</span>
         </button>
 
-        <a href="#studio" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold uppercase tracking-wider bg-graphite text-white rounded-full hover:bg-graphite/85 transition-all shadow-sm">
+        <a href="#studio" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 sm:px-4 sm:py-2 text-[11px] sm:text-xs font-semibold uppercase tracking-wider bg-graphite text-white rounded-full hover:bg-graphite/85 transition-all shadow-sm">
           <span>Собрать</span>
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
         </a>
       </div>
     </div>
   </header>
 
-  <main class="relative z-10">
+  <main class="relative z-10 w-full overflow-hidden">
     <!-- 2. HERO SECTION -->
-    <section class="relative pt-12 pb-20 md:pt-20 md:pb-32 px-4 md:px-8 overflow-hidden">
-      <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+    <section class="relative pt-8 pb-14 sm:pt-14 sm:pb-20 md:pt-20 md:pb-32 px-6 sm:px-8 md:px-10 lg:px-12">
+      <div class="max-w-7xl mx-auto flex flex-col lg:grid lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-8 items-center">
         
         <!-- Left copy -->
-        <div class="lg:col-span-7 flex flex-col items-start">
-          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/70 border border-lavender shadow-sm mb-6">
-            <span class="w-2 h-2 rounded-full bg-gold-accent animate-ping"></span>
-            <span class="text-xs uppercase font-medium tracking-[0.2em] text-graphite-muted">Dopamine Elegance &bull; Ручная сборка</span>
+        <div class="w-full lg:col-span-7 flex flex-col items-start">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/70 border border-lavender shadow-sm mb-4 sm:mb-6">
+            <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-gold-accent animate-ping"></span>
+            <span class="text-[10px] sm:text-xs uppercase font-medium tracking-[0.16em] sm:tracking-[0.2em] text-graphite-muted">Dopamine Elegance &bull; Ручная сборка</span>
           </div>
 
-          <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[1.05] font-normal tracking-tight text-graphite mb-6">
+          <h1 class="hero-title-responsive font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.08] font-normal tracking-tight text-graphite mb-4 sm:mb-6">
             Собери свой мир <br>
             <span class="italic font-light bg-gradient-to-r from-graphite via-[#63557e] to-graphite bg-clip-text text-transparent">в одной нити</span>
           </h1>
 
-          <p class="text-base sm:text-lg text-graphite-muted max-w-[510px] font-normal leading-relaxed mb-8 text-justify">
-  Авторские подвесы-талисманы, отражающие твоё настроение, дорогие воспоминания и личные знаки. 
-  Каждое изделие плетётся вручную из жемчуга, бус, дутого стекла и символичных шармов
-</p>
+          <p class="text-xs sm:text-base md:text-lg text-graphite-muted max-w-full sm:max-w-[510px] font-normal leading-relaxed mb-6 sm:mb-8 text-left sm:text-justify">
+            Авторские подвесы-талисманы, отражающие твоё настроение, дорогие воспоминания и личные знаки. Каждое изделие плетётся вручную из жемчуга, бус, дутого стекла и символичных шармов
+          </p>
 
-          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
-            <a href="#studio" class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-graphite text-white font-medium text-sm uppercase tracking-wider hover:bg-graphite/90 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-graphite/10">
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 w-full sm:w-auto">
+            <a href="#studio" class="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 sm:px-8 sm:py-4 rounded-full bg-graphite text-white font-medium text-xs sm:text-sm uppercase tracking-wider hover:bg-graphite/90 active:scale-[0.98] transition-all shadow-lg shadow-graphite/10 text-center">
               <span>Создать свой подвес</span>
-              <svg class="w-4 h-4 text-buttercup" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+              <svg class="w-3.5 h-3.5 text-buttercup" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </a>
             
-            <button onclick="openModal('catalog-modal')" class="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full glass-card text-graphite font-medium text-sm uppercase tracking-wider hover:bg-white transition-all shadow-sm">
+            <button onclick="openModal('catalog-modal')" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:px-7 sm:py-4 rounded-full glass-card text-graphite font-medium text-xs sm:text-sm uppercase tracking-wider hover:bg-white active:scale-[0.98] transition-all shadow-sm text-center">
               <span>Смотреть каталог</span>
             </button>
           </div>
 
           <!-- Feature Tagline Badge -->
-          <div class="mt-12 flex items-center gap-4 p-3.5 pr-6 rounded-2xl glass-card-lavender border border-white/80">
-            <div class="w-12 h-12 rounded-xl bg-white/90 flex items-center justify-center text-xl shadow-inner">
+          <div class="mt-8 sm:mt-12 w-full sm:w-auto flex items-center gap-3 sm:gap-4 p-3.5 sm:p-4 rounded-2xl glass-card-lavender border border-white/80">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-xl bg-white/90 flex items-center justify-center text-lg sm:text-xl shadow-inner">
               ✨
             </div>
             <div>
-              <p class="text-sm font-semibold text-graphite">«Каждая бусина уникальна — как и ты»</p>
-              <p class="text-xs text-graphite-muted">Неповторимый барочный жемчуг и стекло ручного выдува лэмпворк</p>
+              <p class="text-xs sm:text-sm font-semibold text-graphite">«Каждая бусина уникальна — как и ты»</p>
+              <p class="text-[10px] sm:text-xs text-graphite-muted">Неповторимый барочный жемчуг и стекло ручного выдува лэмпворк</p>
             </div>
           </div>
         </div>
 
         <!-- Right Hero Visual Collage -->
-        <div class="lg:col-span-5 relative flex justify-center items-center">
-          <div class="relative w-full max-w-md aspect-[4/5] rounded-[36px] p-6 glass-card shadow-pearl flex flex-col justify-between overflow-hidden">
-            <!-- Pearlescent background element inside card -->
-            <div class="absolute -top-16 -right-16 w-52 h-52 rounded-full bg-gradient-to-br from-lavender/60 to-sorbet/40 blur-2xl pointer-events-none"></div>
+        <div class="w-full lg:col-span-5 relative flex justify-center items-center mt-2 sm:mt-0">
+          <div class="relative w-full max-w-[340px] sm:max-w-md aspect-[4/5] rounded-[28px] sm:rounded-[36px] p-5 sm:p-6 glass-card shadow-pearl flex flex-col justify-between overflow-hidden">
+            <div class="absolute -top-16 -right-16 w-44 sm:w-52 h-44 sm:h-52 rounded-full bg-gradient-to-br from-lavender/60 to-sorbet/40 blur-2xl pointer-events-none"></div>
             
             <!-- Top tag -->
             <div class="flex items-center justify-between z-10">
-              <span class="text-xs font-semibold tracking-wider uppercase px-3 py-1 bg-white/90 rounded-full border border-black/5 shadow-xs">Vie Perla Studio</span>
-              <span class="text-xs text-graphite-muted">№ 2026/EDITION</span>
+              <span class="text-[10px] sm:text-xs font-semibold tracking-wider uppercase px-2.5 py-1 bg-white/90 rounded-full border border-black/5 shadow-xs">Vie Perla Studio</span>
+              <span class="text-[10px] sm:text-xs text-graphite-muted">№ 2026/EDITION</span>
             </div>
 
-           <!-- Hero Showcase Photo Presentation -->
-            <div class="relative my-3 flex flex-col items-center justify-center z-10 animate-float w-full">
-              <div class="relative w-full aspect-square max-h-[300px] rounded-3xl overflow-hidden shadow-md border border-white/80 bg-white/40">
+            <!-- Главное фото подвеса в Hero -->
+            <div class="relative my-2 sm:my-3 flex flex-col items-center justify-center z-10 animate-float w-full">
+              <div class="relative w-full aspect-square max-h-[240px] sm:max-h-[300px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-md border border-white/80 bg-white/40">
                 <img 
                   src="4TxRxVsL4jpzstSNjHKZy_Hflanls0.png" 
                   alt="Флагманский подвес-талисман VIE PERLA" 
                   class="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-700"
-                >
+                >[cite: 15]
                 <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none"></div>
               </div>
             </div>
+
             <!-- Floating mini labels -->
-            <div class="z-10 bg-white/80 backdrop-blur-md p-3.5 rounded-2xl border border-white/70 shadow-sm flex items-center justify-between">
+            <div class="z-10 bg-white/80 backdrop-blur-md p-3 rounded-xl sm:rounded-2xl border border-white/70 shadow-sm flex items-center justify-between">
               <div>
-                <p class="text-xs uppercase text-graphite-muted tracking-wider">Ваш уникальный талисман</p>
-                <p class="text-sm font-semibold text-graphite">«Sweet Serenade»</p>
+                <p class="text-[9px] sm:text-xs uppercase text-graphite-muted tracking-wider">Ваш уникальный талисман</p>
+                <p class="text-xs sm:text-sm font-semibold text-graphite">«Sweet Serenade»</p>
               </div>
-              <span class="text-xs font-bold px-2.5 py-1 bg-lavender rounded-lg text-graphite">от 3 400 ₽</span>
+              <span class="text-[10px] sm:text-xs font-bold px-2.5 py-1 bg-lavender rounded-lg text-graphite">от 3 400 ₽</span>
             </div>
           </div>
         </div>
@@ -270,56 +276,56 @@
     </section>
 
     <!-- 3. OCCASIONS SECTION -->
-    <section id="occasions" class="py-20 px-4 md:px-8 relative">
+    <section id="occasions" class="py-14 sm:py-20 px-6 sm:px-8 md:px-10 lg:px-12 relative">
       <div class="max-w-7xl mx-auto">
-        <div class="text-center max-w-2xl mx-auto mb-16">
-          <span class="text-xs uppercase tracking-[0.25em] font-semibold text-graphite-muted bg-white/80 px-3.5 py-1.5 rounded-full border border-lavender/50">Почему VIE PERLA?</span>
-          <h2 class="font-serif text-4xl sm:text-5xl font-normal text-graphite mt-4 mb-2">Поводы, созданные с душой</h2>
-          <p class="text-graphite-muted text-sm sm:text-base">Каждый подвес — это жизнь, который можно носить каждый день</p>
+        <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-16">
+          <span class="text-[10px] sm:text-xs uppercase tracking-[0.2em] font-semibold text-graphite-muted bg-white/80 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full border border-lavender/50">Почему VIE PERLA?</span>
+          <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-graphite mt-3 mb-2">Поводы, созданные с душой</h2>
+          <p class="text-graphite-muted text-xs sm:text-sm md:text-base">Каждый подвес — это жизнь, который можно носить каждый день</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
           
           <!-- Card 1 -->
-          <div class="glass-card p-8 rounded-3xl relative overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group border border-white/80">
-            <div class="w-14 h-14 rounded-2xl bg-lavender flex items-center justify-center text-3xl mb-6 shadow-inner group-hover:scale-110 transition-transform">
+          <div class="glass-card p-6 sm:p-8 rounded-2xl sm:rounded-3xl relative overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl group border border-white/80">
+            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-lavender flex items-center justify-center text-2xl sm:text-3xl mb-4 sm:mb-6 shadow-inner group-hover:scale-110 transition-transform">
               🎁
             </div>
-            <h3 class="font-serif text-2xl font-bold text-graphite mb-3">Подарок со смыслом</h3>
-            <p class="text-sm text-graphite-muted leading-relaxed text-justify mb-6">
+            <h3 class="font-serif text-xl sm:text-2xl font-bold text-graphite mb-2 sm:mb-3">Подарок со смыслом</h3>
+            <p class="text-xs sm:text-sm text-graphite-muted leading-relaxed mb-4 sm:mb-6">
               Имя близкого человека, секретная дата первой встречи или персональный код, понятный только двоим — подвес сохранит память
             </p>
-            <div class="pt-4 border-t border-black/5 flex items-center justify-between text-xs font-semibold text-graphite">
+            <div class="pt-3 sm:pt-4 border-t border-black/5 flex items-center justify-between text-[11px] sm:text-xs font-semibold text-graphite">
               <span>Персонализация букв</span>
               <span class="text-lavender-700 font-bold">100% восторг</span>
             </div>
           </div>
 
           <!-- Card 2 -->
-          <div class="glass-card-sorbet p-8 rounded-3xl relative overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group border border-white/80">
-            <div class="w-14 h-14 rounded-2xl bg-white/90 flex items-center justify-center text-3xl mb-6 shadow-inner group-hover:scale-110 transition-transform">
+          <div class="glass-card-sorbet p-6 sm:p-8 rounded-2xl sm:rounded-3xl relative overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl group border border-white/80">
+            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-white/90 flex items-center justify-center text-2xl sm:text-3xl mb-4 sm:mb-6 shadow-inner group-hover:scale-110 transition-transform">
               👯‍♀️
             </div>
-            <h3 class="font-serif text-2xl font-bold text-graphite mb-3">Браслеты для лучших подруг</h3>
-            <p class="text-sm text-graphite-muted leading-relaxed text-justify mb-6">
+            <h3 class="font-serif text-xl sm:text-2xl font-bold text-graphite mb-2 sm:mb-3">Браслеты для лучших подруг</h3>
+            <p class="text-xs sm:text-sm text-graphite-muted leading-relaxed mb-4 sm:mb-6">
               Символы дружбы в единой истории — соберите два гармонирующих дизайна для себя и лучшей подруги
             </p>
-            <div class="pt-4 border-t border-black/5 flex items-center justify-between text-xs font-semibold text-graphite">
+            <div class="pt-3 sm:pt-4 border-t border-black/5 flex items-center justify-between text-[11px] sm:text-xs font-semibold text-graphite">
               <span>Скидка 15% на дуэт</span>
               <span class="font-bold">Всегда рядом</span>
             </div>
           </div>
 
           <!-- Card 3 -->
-          <div class="glass-card-lavender p-8 rounded-3xl relative overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group border border-white/80">
-            <div class="w-14 h-14 rounded-2xl bg-buttercup flex items-center justify-center text-3xl mb-6 shadow-inner group-hover:scale-110 transition-transform">
+          <div class="glass-card-lavender p-6 sm:p-8 rounded-2xl sm:rounded-3xl relative overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl group border border-white/80">
+            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-buttercup flex items-center justify-center text-2xl sm:text-3xl mb-4 sm:mb-6 shadow-inner group-hover:scale-110 transition-transform">
               ✨
             </div>
-            <h3 class="font-serif text-2xl font-bold text-graphite mb-3">Личный обвес-талисман</h3>
-            <p class="text-sm text-graphite-muted leading-relaxed text-justify mb-6">
+            <h3 class="font-serif text-xl sm:text-2xl font-bold text-graphite mb-2 sm:mb-3">Личный обвес-талисман</h3>
+            <p class="text-xs sm:text-sm text-graphite-muted leading-relaxed mb-4 sm:mb-6">
               Главный акцент сезона, который дарит дофаминовый всплеск радости при каждом взгляде
             </p>
-            <div class="pt-4 border-t border-black/5 flex items-center justify-between text-xs font-semibold text-graphite">
+            <div class="pt-3 sm:pt-4 border-t border-black/5 flex items-center justify-between text-[11px] sm:text-xs font-semibold text-graphite">
               <span>Стиль Dopamine Chic</span>
               <span class="font-bold">Трендовый акцент</span>
             </div>
@@ -330,212 +336,211 @@
     </section>
 
     <!-- 4. ГЛУБОКИЙ ИНТЕРАКТИВНЫЙ КОНСТРУКТОР (VIE STUDIO) -->
-    <section id="studio" class="py-20 px-4 md:px-8 relative bg-white/40">
+    <section id="studio" class="py-14 sm:py-20 px-6 sm:px-8 md:px-10 lg:px-12 relative bg-white/40">
       <div class="max-w-7xl mx-auto">
         
-<div class="flex flex-col md:flex-row md:items-end  lg:gap-12 mb-12">
-  <div>
-    <div class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] font-semibold text-graphite-muted bg-white px-3 py-1 rounded-full border border-black/5 mb-3">
-      <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-      Онлайн Ателье
-    </div>
-    <h2 class="font-serif text-4xl sm:text-5xl font-normal text-graphite">VIE STUDIO: Создай свой талисман</h2>
-  </div>
-<p class="text-sm text-graphite-muted max-w-md mt-4 md:mt-0" style="margin-right: auto; margin-left: 30px;">            Выбирайте фурнитуру, бусины ручной работы и напишите своё имя. Все изменения мгновенно отображаются на живой нити.
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12">
+          <div>
+            <div class="inline-flex items-center gap-1.5 text-[10px] sm:text-xs uppercase tracking-[0.2em] font-semibold text-graphite-muted bg-white px-3 py-1 rounded-full border border-black/5 mb-2.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              Онлайн Ателье
+            </div>
+            <h2 class="font-serif text-2xl sm:text-4xl lg:text-5xl font-normal text-graphite">VIE STUDIO: Создай свой талисман</h2>
+          </div>
+          <p class="text-xs sm:text-sm text-graphite-muted max-w-md mt-2.5 md:mt-0">
+            Выбирайте фурнитуру, бусины ручной работы и напишите своё имя. Все изменения мгновенно отображаются на живой нити
           </p>
         </div>
 
         <!-- Two-column workspace -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div class="flex flex-col lg:grid lg:grid-cols-12 gap-6 sm:gap-8 items-start">
           
-          <!-- LEFT COLUMN: Studio Controls Panel -->
-          <div class="lg:col-span-7 space-y-6">
+          <!-- LEFT COLUMN: Панель параметров -->
+          <div class="w-full lg:col-span-7 space-y-4 sm:space-y-6">
             
             <!-- Step 1: Clasp / Mount -->
-            <div class="glass-card p-6 sm:p-7 rounded-3xl shadow-subtle">
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-xs font-bold uppercase tracking-wider text-graphite/60 flex items-center gap-2">
-                  <span class="w-5 h-5 rounded-full bg-lavender flex items-center justify-center text-[10px] text-graphite">1</span>
+            <div class="glass-card p-5 sm:p-7 rounded-2xl sm:rounded-3xl shadow-subtle">
+              <div class="flex items-center justify-between mb-3 sm:mb-4">
+                <span class="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-graphite/70 flex items-center gap-1.5">
+                  <span class="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-lavender flex items-center justify-center text-[9px] sm:text-[10px] text-graphite">1</span>
                   Тип крепления и фурнитура
                 </span>
-                <span id="label-selected-mount" class="text-xs font-medium text-graphite-muted">Карабин (Золото)</span>
+                <span id="label-selected-mount" class="text-[10px] sm:text-xs font-medium text-graphite-muted">Карабин (Золото)</span>
               </div>
-              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="mount-selector">
-                <button type="button" onclick="setMount('carabiner-gold', 'Карабин (Золото)', 0)" class="mount-btn active p-3 rounded-2xl border text-center transition-all bg-white border-graphite shadow-sm" data-mount="carabiner-gold">
-                  <div class="w-7 h-7 mx-auto rounded-full border-2 border-amber-400 bg-amber-100 mb-1.5 flex items-center justify-center text-xs">🪙</div>
-                  <span class="text-xs font-semibold block text-graphite">Карабин Gold</span>
-                  <span class="text-[10px] text-graphite-muted">Для сумки</span>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3" id="mount-selector">
+                <button type="button" onclick="setMount('carabiner-gold', 'Карабин (Золото)', 0)" class="mount-btn active p-2.5 sm:p-3 rounded-xl sm:rounded-2xl border text-center transition-all bg-white border-graphite shadow-sm" data-mount="carabiner-gold">
+                  <div class="w-6 h-6 sm:w-7 sm:h-7 mx-auto rounded-full border-2 border-amber-400 bg-amber-100 mb-1 flex items-center justify-center text-xs">🪙</div>
+                  <span class="text-[11px] sm:text-xs font-semibold block text-graphite leading-tight">Карабин Gold</span>
+                  <span class="text-[9px] sm:text-[10px] text-graphite-muted">Для сумки</span>
                 </button>
-                <button type="button" onclick="setMount('carabiner-silver', 'Карабин (Серебро)', 0)" class="mount-btn p-3 rounded-2xl border border-black/10 text-center transition-all bg-white/60 hover:bg-white" data-mount="carabiner-silver">
-                  <div class="w-7 h-7 mx-auto rounded-full border-2 border-slate-300 bg-slate-100 mb-1.5 flex items-center justify-center text-xs">🔘</div>
-                  <span class="text-xs font-semibold block text-graphite">Карабин Silver</span>
-                  <span class="text-[10px] text-graphite-muted">Для сумки</span>
+                <button type="button" onclick="setMount('carabiner-silver', 'Карабин (Серебро)', 0)" class="mount-btn p-2.5 sm:p-3 rounded-xl sm:rounded-2xl border border-black/10 text-center transition-all bg-white/60 hover:bg-white" data-mount="carabiner-silver">
+                  <div class="w-6 h-6 sm:w-7 sm:h-7 mx-auto rounded-full border-2 border-slate-300 bg-slate-100 mb-1 flex items-center justify-center text-xs">🔘</div>
+                  <span class="text-[11px] sm:text-xs font-semibold block text-graphite leading-tight">Карабин Silver</span>
+                  <span class="text-[9px] sm:text-[10px] text-graphite-muted">Для сумки</span>
                 </button>
-                <button type="button" onclick="setMount('phone-loop', 'Петля для телефона', 0)" class="mount-btn p-3 rounded-2xl border border-black/10 text-center transition-all bg-white/60 hover:bg-white" data-mount="phone-loop">
-                  <div class="w-7 h-7 mx-auto rounded-full border-2 border-lavender bg-lavender-soft mb-1.5 flex items-center justify-center text-xs">🧵</div>
-                  <span class="text-xs font-semibold block text-graphite">Шнурок-петля</span>
-                  <span class="text-[10px] text-graphite-muted">На смартфон</span>
+                <button type="button" onclick="setMount('phone-loop', 'Петля для телефона', 0)" class="mount-btn p-2.5 sm:p-3 rounded-xl sm:rounded-2xl border border-black/10 text-center transition-all bg-white/60 hover:bg-white" data-mount="phone-loop">
+                  <div class="w-6 h-6 sm:w-7 sm:h-7 mx-auto rounded-full border-2 border-lavender bg-lavender-soft mb-1 flex items-center justify-center text-xs">🧵</div>
+                  <span class="text-[11px] sm:text-xs font-semibold block text-graphite leading-tight">Шнурок-петля</span>
+                  <span class="text-[9px] sm:text-[10px] text-graphite-muted">На смартфон</span>
                 </button>
-                <button type="button" onclick="setMount('necklace-lock', 'Ювелирный замок (Шея)', 400)" class="mount-btn p-3 rounded-2xl border border-black/10 text-center transition-all bg-white/60 hover:bg-white" data-mount="necklace-lock">
-                  <div class="w-7 h-7 mx-auto rounded-full border-2 border-amber-300 bg-amber-50 mb-1.5 flex items-center justify-center text-xs">✨</div>
-                  <span class="text-xs font-semibold block text-graphite">Замок на шею</span>
-                  <span class="text-[10px] text-amber-700 font-medium">+400 ₽</span>
+                <button type="button" onclick="setMount('necklace-lock', 'Ювелирный замок (Шея)', 400)" class="mount-btn p-2.5 sm:p-3 rounded-xl sm:rounded-2xl border border-black/10 text-center transition-all bg-white/60 hover:bg-white" data-mount="necklace-lock">
+                  <div class="w-6 h-6 sm:w-7 sm:h-7 mx-auto rounded-full border-2 border-amber-300 bg-amber-50 mb-1 flex items-center justify-center text-xs">✨</div>
+                  <span class="text-[11px] sm:text-xs font-semibold block text-graphite leading-tight">Замок на шею</span>
+                  <span class="text-[9px] sm:text-[10px] text-amber-700 font-medium">+400 ₽</span>
                 </button>
               </div>
             </div>
-
-
 
             <!-- Step 2: Base Beads Color Palette -->
-            <div class="glass-card p-6 sm:p-7 rounded-3xl shadow-subtle">
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-xs font-bold uppercase tracking-wider text-graphite/60 flex items-center gap-2">
-                  <span class="w-5 h-5 rounded-full bg-lavender flex items-center justify-center text-[10px] text-graphite">2</span>
+            <div class="glass-card p-5 sm:p-7 rounded-2xl sm:rounded-3xl shadow-subtle">
+              <div class="flex items-center justify-between mb-3 sm:mb-4">
+                <span class="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-graphite/70 flex items-center gap-1.5">
+                  <span class="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-lavender flex items-center justify-center text-[9px] sm:text-[10px] text-graphite">2</span>
                   Цвет бусин
                 </span>
-                <span id="label-selected-palette" class="text-xs font-medium text-graphite-muted">Натуральный жемчуг</span>
+                <span id="label-selected-palette" class="text-[10px] sm:text-xs font-medium text-graphite-muted">Натуральный жемчуг</span>
               </div>
-              <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
-                <button type="button" onclick="setPalette('pearl', 'Натуральный жемчуг')" class="palette-btn active p-2.5 rounded-2xl border bg-white border-graphite flex flex-col items-center gap-2" data-palette="pearl">
-                  <span class="w-8 h-8 rounded-full bg-gradient-to-tr from-[#FFFDF9] via-[#FAF4EB] to-[#E9E4D4] border border-black/10 shadow-inner"></span>
-                  <span class="text-[11px] font-semibold text-center leading-tight">Жемчуг</span>
+              <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 sm:gap-2.5">
+                <button type="button" onclick="setPalette('pearl', 'Натуральный жемчуг')" class="palette-btn active p-2.5 rounded-xl sm:rounded-2xl border bg-white border-graphite flex flex-col items-center gap-1.5" data-palette="pearl">
+                  <span class="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-tr from-[#FFFDF9] via-[#FAF4EB] to-[#E9E4D4] border border-black/10 shadow-inner"></span>
+                  <span class="text-[10px] sm:text-[11px] font-semibold text-center leading-tight">Жемчуг</span>
                 </button>
-                <button type="button" onclick="setPalette('pastel', 'Пастельный микс')" class="palette-btn p-2.5 rounded-2xl border border-black/10 bg-white/60 hover:bg-white flex flex-col items-center gap-2" data-palette="pastel">
-                  <span class="w-8 h-8 rounded-full bg-gradient-to-tr from-lavender via-sorbet to-buttercup border border-black/10 shadow-inner"></span>
-                  <span class="text-[11px] font-semibold text-center leading-tight">Пастель</span>
+                <button type="button" onclick="setPalette('pastel', 'Пастельный микс')" class="palette-btn p-2.5 rounded-xl sm:rounded-2xl border border-black/10 bg-white/60 hover:bg-white flex flex-col items-center gap-1.5" data-palette="pastel">
+                  <span class="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-tr from-lavender via-sorbet to-buttercup border border-black/10 shadow-inner"></span>
+                  <span class="text-[10px] sm:text-[11px] font-semibold text-center leading-tight">Пастель</span>
                 </button>
-                <button type="button" onclick="setPalette('metallic', 'Металлик-хром')" class="palette-btn p-2.5 rounded-2xl border border-black/10 bg-white/60 hover:bg-white flex flex-col items-center gap-2" data-palette="metallic">
-                  <span class="w-8 h-8 rounded-full bg-gradient-to-tr from-slate-200 via-slate-400 to-slate-100 border border-black/10 shadow-inner"></span>
-                  <span class="text-[11px] font-semibold text-center leading-tight">Хром</span>
+                <button type="button" onclick="setPalette('metallic', 'Металлик-хром')" class="palette-btn p-2.5 rounded-xl sm:rounded-2xl border border-black/10 bg-white/60 hover:bg-white flex flex-col items-center gap-1.5" data-palette="metallic">
+                  <span class="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-tr from-slate-200 via-slate-400 to-slate-100 border border-black/10 shadow-inner"></span>
+                  <span class="text-[10px] sm:text-[11px] font-semibold text-center leading-tight">Хром</span>
                 </button>
-                <button type="button" onclick="setPalette('dopamine', 'Дофаминовый коктейль')" class="palette-btn p-2.5 rounded-2xl border border-black/10 bg-white/60 hover:bg-white flex flex-col items-center gap-2" data-palette="dopamine">
-                  <span class="w-8 h-8 rounded-full bg-gradient-to-tr from-rose-300 via-yellow-200 to-teal-300 border border-black/10 shadow-inner"></span>
-                  <span class="text-[11px] font-semibold text-center leading-tight">Дофамин</span>
+                <button type="button" onclick="setPalette('dopamine', 'Дофаминовый коктейль')" class="palette-btn p-2.5 rounded-xl sm:rounded-2xl border border-black/10 bg-white/60 hover:bg-white flex flex-col items-center gap-1.5" data-palette="dopamine">
+                  <span class="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-tr from-rose-300 via-yellow-200 to-teal-300 border border-black/10 shadow-inner"></span>
+                  <span class="text-[10px] sm:text-[11px] font-semibold text-center leading-tight">Дофамин</span>
                 </button>
-                <button type="button" onclick="setPalette('noir', 'Черный монохром')" class="palette-btn p-2.5 rounded-2xl border border-black/10 bg-white/60 hover:bg-white flex flex-col items-center gap-2 col-span-2 sm:col-span-1" data-palette="noir">
-                  <span class="w-8 h-8 rounded-full bg-gradient-to-tr from-slate-900 via-neutral-800 to-neutral-700 border border-black/10 shadow-inner"></span>
-                  <span class="text-[11px] font-semibold text-center leading-tight">Noir</span>
+                <button type="button" onclick="setPalette('noir', 'Черный монохром')" class="palette-btn p-2.5 rounded-xl sm:rounded-2xl border border-black/10 bg-white/60 hover:bg-white flex flex-col items-center gap-1.5 col-span-2 sm:col-span-1" data-palette="noir">
+                  <span class="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-tr from-slate-900 via-neutral-800 to-neutral-700 border border-black/10 shadow-inner"></span>
+                  <span class="text-[10px] sm:text-[11px] font-semibold text-center leading-tight">Noir</span>
                 </button>
               </div>
             </div>
 
-            <!-- Step 3: Personalization (Letters / Text) -->
-            <div class="glass-card p-6 sm:p-7 rounded-3xl shadow-subtle">
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-xs font-bold uppercase tracking-wider text-graphite/60 flex items-center gap-2">
-                  <span class="w-5 h-5 rounded-full bg-lavender flex items-center justify-center text-[10px] text-graphite">3</span>
-                  Персонализация (Даты / Слова)
+            <!-- Step 3: Personalization -->
+            <div class="glass-card p-5 sm:p-7 rounded-2xl sm:rounded-3xl shadow-subtle">
+              <div class="flex items-center justify-between mb-3 sm:mb-4">
+                <span class="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-graphite/70 flex items-center gap-1.5">
+                  <span class="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-lavender flex items-center justify-center text-[9px] sm:text-[10px] text-graphite">3</span>
+                  Персонализация (Буквы / Текст)
                 </span>
-                <span class="text-xs text-graphite-muted">+40 ₽ за букву</span>
+                <span class="text-[10px] sm:text-xs text-graphite-muted">+40 ₽ за букву</span>
               </div>
               
-              <div class="flex flex-col sm:flex-row gap-3 items-center mb-3">
+              <div class="flex flex-col sm:flex-row gap-2.5 sm:gap-3 items-center mb-3">
                 <div class="relative w-full">
-                  <input type="text" id="letter-input" maxlength="10" placeholder="Имя, фраза или дата (напр. AMOUR)" class="w-full uppercase px-4 py-3 rounded-2xl bg-white border border-black/10 focus:border-graphite focus:outline-none text-sm font-semibold tracking-widest placeholder:text-graphite/30 shadow-inner">
-                  <span class="absolute right-3.5 top-3.5 text-[10px] font-bold text-graphite/40 uppercase">max 10</span>
+                  <input type="text" id="letter-input" maxlength="10" placeholder="Имя или слово (AMOUR)" class="w-full uppercase px-4 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl bg-white border border-black/10 focus:border-graphite focus:outline-none text-xs sm:text-sm font-semibold tracking-wider placeholder:text-graphite/30 shadow-inner">
+                  <span class="absolute right-3.5 top-3 sm:top-3.5 text-[9px] sm:text-[10px] font-bold text-graphite/40 uppercase">max 10</span>
                 </div>
-                <button type="button" onclick="applyLetters()" class="w-full sm:w-auto shrink-0 px-6 py-3 rounded-2xl bg-graphite text-white font-medium text-xs uppercase tracking-wider hover:bg-graphite/85 transition-all shadow-sm">
-                  Добавить бусины
+                <button type="button" onclick="applyLetters()" class="w-full sm:w-auto shrink-0 px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl bg-graphite text-white font-medium text-[11px] sm:text-xs uppercase tracking-wider hover:bg-graphite/85 active:scale-95 transition-all shadow-sm">
+                  Добавить
                 </button>
               </div>
 
-              <!-- Bead letter style toggle -->
-              <div class="flex items-center gap-2 pt-1 text-xs">
+              <!-- Цвет кубиков -->
+              <div class="flex flex-col sm:flex-row sm:items-center gap-2 pt-1 text-[11px] sm:text-xs">
                 <span class="text-graphite-muted">Цвет кубиков:</span>
-                <div class="flex items-center gap-1.5" id="letter-color-swatches">
-                  <button type="button" onclick="setLetterStyle('gold')" class="letter-style-btn active px-3 py-1 rounded-xl border border-graphite bg-white text-[11px] font-semibold" data-letstyle="gold">Белый с золотом</button>
-                  <button type="button" onclick="setLetterStyle('clear')" class="letter-style-btn px-3 py-1 rounded-xl border border-black/10 bg-white/60 hover:bg-white text-[11px]" data-letstyle="clear">Прозрачный кристалл</button>
-                  <button type="button" onclick="setLetterStyle('color')" class="letter-style-btn px-3 py-1 rounded-xl border border-black/10 bg-white/60 hover:bg-white text-[11px]" data-letstyle="color">Разноцветный конфетти</button>
+                <div class="grid grid-cols-3 sm:flex items-center gap-1.5" id="letter-color-swatches">
+                  <button type="button" onclick="setLetterStyle('gold')" class="letter-style-btn active px-2.5 sm:px-3 py-1 rounded-lg sm:rounded-xl border border-graphite bg-white text-[10px] sm:text-[11px] font-semibold text-center" data-letstyle="gold">Золото</button>
+                  <button type="button" onclick="setLetterStyle('clear')" class="letter-style-btn px-2.5 sm:px-3 py-1 rounded-lg sm:rounded-xl border border-black/10 bg-white/60 hover:bg-white text-[10px] sm:text-[11px] text-center" data-letstyle="clear">Кристалл</button>
+                  <button type="button" onclick="setLetterStyle('color')" class="letter-style-btn px-2.5 sm:px-3 py-1 rounded-lg sm:rounded-xl border border-black/10 bg-white/60 hover:bg-white text-[10px] sm:text-[11px] text-center" data-letstyle="color">Конфетти</button>
                 </div>
               </div>
             </div>
 
-            <!-- Step 4: Handmade Lampwork Beads -->
-            <div class="glass-card p-6 sm:p-7 rounded-3xl shadow-subtle">
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-xs font-bold uppercase tracking-wider text-graphite/60 flex items-center gap-2">
-                  <span class="w-5 h-5 rounded-full bg-lavender flex items-center justify-center text-[10px] text-graphite">4</span>
+            <!-- Step 4: Lampwork Beads -->
+            <div class="glass-card p-5 sm:p-7 rounded-2xl sm:rounded-3xl shadow-subtle">
+              <div class="flex items-center justify-between mb-3 sm:mb-4">
+                <span class="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-graphite/70 flex items-center gap-1.5">
+                  <span class="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-lavender flex items-center justify-center text-[9px] sm:text-[10px] text-graphite">4</span>
                   Уникальные лэмпворк-бусины
                 </span>
-                <span class="text-xs text-graphite-muted">+150 ₽ / шт (до 3-х)</span>
+                <span class="text-[10px] sm:text-xs text-graphite-muted">+150 ₽ / шт (до 3-х)</span>
               </div>
-              <p class="text-xs text-graphite-muted mb-3">Нажмите, чтобы добавить или убрать из дизайна:</p>
+              <p class="text-[10px] sm:text-xs text-graphite-muted mb-2.5 sm:mb-3">Нажмите, чтобы добавить или убрать из дизайна:</p>
               
-              <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5" id="lampwork-grid">
-                <button type="button" onclick="toggleLampwork('cherry', 'Вишенка', '🍒', 150)" class="lampwork-btn p-3 rounded-2xl border border-black/10 bg-white/60 hover:bg-white text-center transition-all flex flex-col items-center" data-id="cherry">
-                  <span class="text-2xl mb-1">🍒</span>
-                  <span class="text-xs font-bold text-graphite">Вишенка</span>
-                  <span class="text-[10px] text-graphite-muted">+150 ₽</span>
+              <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 sm:gap-2.5" id="lampwork-grid">
+                <button type="button" onclick="toggleLampwork('cherry', 'Вишенка', '🍒', 150)" class="lampwork-btn p-2.5 sm:p-3 rounded-xl sm:rounded-2xl border border-black/10 bg-white/60 hover:bg-white text-center transition-all flex flex-col items-center" data-id="cherry">
+                  <span class="text-xl sm:text-2xl mb-0.5">🍒</span>
+                  <span class="text-[11px] sm:text-xs font-bold text-graphite leading-tight">Вишенка</span>
+                  <span class="text-[9px] sm:text-[10px] text-graphite-muted">+150 ₽</span>
                 </button>
-                <button type="button" onclick="toggleLampwork('mushroom', 'Грибочек', '🍄', 150)" class="lampwork-btn p-3 rounded-2xl border border-black/10 bg-white/60 hover:bg-white text-center transition-all flex flex-col items-center" data-id="mushroom">
-                  <span class="text-2xl mb-1">🍄</span>
-                  <span class="text-xs font-bold text-graphite">Грибочек</span>
-                  <span class="text-[10px] text-graphite-muted">+150 ₽</span>
+                <button type="button" onclick="toggleLampwork('mushroom', 'Грибочек', '🍄', 150)" class="lampwork-btn p-2.5 sm:p-3 rounded-xl sm:rounded-2xl border border-black/10 bg-white/60 hover:bg-white text-center transition-all flex flex-col items-center" data-id="mushroom">
+                  <span class="text-xl sm:text-2xl mb-0.5">🍄</span>
+                  <span class="text-[11px] sm:text-xs font-bold text-graphite leading-tight">Грибочек</span>
+                  <span class="text-[9px] sm:text-[10px] text-graphite-muted">+150 ₽</span>
                 </button>
-                <button type="button" onclick="toggleLampwork('cloud', 'Облачко', '☁️', 150)" class="lampwork-btn p-3 rounded-2xl border border-black/10 bg-white/60 hover:bg-white text-center transition-all flex flex-col items-center" data-id="cloud">
-                  <span class="text-2xl mb-1">☁️</span>
-                  <span class="text-xs font-bold text-graphite">Облачко</span>
-                  <span class="text-[10px] text-graphite-muted">+150 ₽</span>
+                <button type="button" onclick="toggleLampwork('cloud', 'Облачко', '☁️', 150)" class="lampwork-btn p-2.5 sm:p-3 rounded-xl sm:rounded-2xl border border-black/10 bg-white/60 hover:bg-white text-center transition-all flex flex-col items-center" data-id="cloud">
+                  <span class="text-xl sm:text-2xl mb-0.5">☁️</span>
+                  <span class="text-[11px] sm:text-xs font-bold text-graphite leading-tight">Облачко</span>
+                  <span class="text-[9px] sm:text-[10px] text-graphite-muted">+150 ₽</span>
                 </button>
-                <button type="button" onclick="toggleLampwork('smile', 'Смайл', '😊', 150)" class="lampwork-btn p-3 rounded-2xl border border-black/10 bg-white/60 hover:bg-white text-center transition-all flex flex-col items-center" data-id="smile">
-                  <span class="text-2xl mb-1">😊</span>
-                  <span class="text-xs font-bold text-graphite">Смайлик</span>
-                  <span class="text-[10px] text-graphite-muted">+150 ₽</span>
+                <button type="button" onclick="toggleLampwork('smile', 'Смайл', '😊', 150)" class="lampwork-btn p-2.5 sm:p-3 rounded-xl sm:rounded-2xl border border-black/10 bg-white/60 hover:bg-white text-center transition-all flex flex-col items-center" data-id="smile">
+                  <span class="text-xl sm:text-2xl mb-0.5">😊</span>
+                  <span class="text-[11px] sm:text-xs font-bold text-graphite leading-tight">Смайлик</span>
+                  <span class="text-[9px] sm:text-[10px] text-graphite-muted">+150 ₽</span>
                 </button>
-                <button type="button" onclick="toggleLampwork('daisy', 'Ромашка', '🌼', 150)" class="lampwork-btn p-3 rounded-2xl border border-black/10 bg-white/60 hover:bg-white text-center transition-all flex flex-col items-center col-span-2 sm:col-span-1" data-id="daisy">
-                  <span class="text-2xl mb-1">🌼</span>
-                  <span class="text-xs font-bold text-graphite">Ромашка</span>
-                  <span class="text-[10px] text-graphite-muted">+150 ₽</span>
+                <button type="button" onclick="toggleLampwork('daisy', 'Ромашка', '🌼', 150)" class="lampwork-btn p-2.5 sm:p-3 rounded-xl sm:rounded-2xl border border-black/10 bg-white/60 hover:bg-white text-center transition-all flex flex-col items-center col-span-2 sm:col-span-1" data-id="daisy">
+                  <span class="text-xl sm:text-2xl mb-0.5">🌼</span>
+                  <span class="text-[11px] sm:text-xs font-bold text-graphite leading-tight">Ромашка</span>
+                  <span class="text-[9px] sm:text-[10px] text-graphite-muted">+150 ₽</span>
                 </button>
               </div>
             </div>
 
             <!-- Step 5: Dangles & Heavy Charms -->
-            <div class="glass-card p-6 sm:p-7 rounded-3xl shadow-subtle">
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-xs font-bold uppercase tracking-wider text-graphite/60 flex items-center gap-2">
-                  <span class="w-5 h-5 rounded-full bg-lavender flex items-center justify-center text-[10px] text-graphite">5</span>
+            <div class="glass-card p-5 sm:p-7 rounded-2xl sm:rounded-3xl shadow-subtle">
+              <div class="flex items-center justify-between mb-3 sm:mb-4">
+                <span class="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-graphite/70 flex items-center gap-1.5">
+                  <span class="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-lavender flex items-center justify-center text-[9px] sm:text-[10px] text-graphite">5</span>
                   Крупные подвесы-шармы
                 </span>
-                <span class="text-xs text-graphite-muted">+350 ₽ / шт (до 3-х)</span>
+                <span class="text-[10px] sm:text-xs text-graphite-muted">+350 ₽ / шт (до 3-х)</span>
               </div>
-			  <p class="text-xs text-graphite-muted mb-3">Нажмите, чтобы добавить или убрать из дизайна:</p>
+              <p class="text-[10px] sm:text-xs text-graphite-muted mb-2.5 sm:mb-3">Нажмите, чтобы добавить или убрать из дизайна:</p>
 
-              <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5 mb-4" id="charms-grid">
-                <button type="button" onclick="toggleCharm('puffy-heart', 'Дутое сердце', '🤍', 350)" class="charm-btn p-3 rounded-2xl border border-black/10 bg-white/60 hover:bg-white text-center transition-all flex flex-col items-center" data-charm="puffy-heart">
-                  <span class="text-2xl mb-1">🤍</span>
-                  <span class="text-xs font-bold text-graphite">Сердце</span>
-                  <span class="text-[10px] text-graphite-muted">+350 ₽</span>
+              <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 sm:gap-2.5 mb-3" id="charms-grid">
+                <button type="button" onclick="toggleCharm('puffy-heart', 'Дутое сердце', '🤍', 350)" class="charm-btn p-2.5 sm:p-3 rounded-xl sm:rounded-2xl border border-black/10 bg-white/60 hover:bg-white text-center transition-all flex flex-col items-center" data-charm="puffy-heart">
+                  <span class="text-xl sm:text-2xl mb-0.5">🤍</span>
+                  <span class="text-[11px] sm:text-xs font-bold text-graphite leading-tight">Сердце</span>
+                  <span class="text-[9px] sm:text-[10px] text-graphite-muted">+350 ₽</span>
                 </button>
-                <button type="button" onclick="toggleCharm('metal-bow', 'Металл-бант', '🎀', 350)" class="charm-btn p-3 rounded-2xl border border-black/10 bg-white/60 hover:bg-white text-center transition-all flex flex-col items-center" data-charm="metal-bow">
-                  <span class="text-2xl mb-1">🎀</span>
-                  <span class="text-xs font-bold text-graphite">Бантик</span>
-                  <span class="text-[10px] text-graphite-muted">+350 ₽</span>
+                <button type="button" onclick="toggleCharm('metal-bow', 'Металл-бант', '🎀', 350)" class="charm-btn p-2.5 sm:p-3 rounded-xl sm:rounded-2xl border border-black/10 bg-white/60 hover:bg-white text-center transition-all flex flex-col items-center" data-charm="metal-bow">
+                  <span class="text-xl sm:text-2xl mb-0.5">🎀</span>
+                  <span class="text-[11px] sm:text-xs font-bold text-graphite leading-tight">Бантик</span>
+                  <span class="text-[9px] sm:text-[10px] text-graphite-muted">+350 ₽</span>
                 </button>
-                <button type="button" onclick="toggleCharm('crystal-star', 'Кристалл Звезда', '⭐', 350)" class="charm-btn p-3 rounded-2xl border border-black/10 bg-white/60 hover:bg-white text-center transition-all flex flex-col items-center" data-charm="crystal-star">
-                  <span class="text-2xl mb-1">⭐</span>
-                  <span class="text-xs font-bold text-graphite">Звезда</span>
-                  <span class="text-[10px] text-graphite-muted">+350 ₽</span>
+                <button type="button" onclick="toggleCharm('crystal-star', 'Кристалл Звезда', '⭐', 350)" class="charm-btn p-2.5 sm:p-3 rounded-xl sm:rounded-2xl border border-black/10 bg-white/60 hover:bg-white text-center transition-all flex flex-col items-center" data-charm="crystal-star">
+                  <span class="text-xl sm:text-2xl mb-0.5">⭐</span>
+                  <span class="text-[11px] sm:text-xs font-bold text-graphite leading-tight">Звезда</span>
+                  <span class="text-[9px] sm:text-[10px] text-graphite-muted">+350 ₽</span>
                 </button>
-                <button type="button" onclick="toggleCharm('teddy-bear', 'Мишка Тедди', '🧸', 350)" class="charm-btn p-3 rounded-2xl border border-black/10 bg-white/60 hover:bg-white text-center transition-all flex flex-col items-center" data-charm="teddy-bear">
-                  <span class="text-2xl mb-1">🧸</span>
-                  <span class="text-xs font-bold text-graphite">Мишка</span>
-                  <span class="text-[10px] text-graphite-muted">+350 ₽</span>
+                <button type="button" onclick="toggleCharm('teddy-bear', 'Мишка Тедди', '🧸', 350)" class="charm-btn p-2.5 sm:p-3 rounded-xl sm:rounded-2xl border border-black/10 bg-white/60 hover:bg-white text-center transition-all flex flex-col items-center" data-charm="teddy-bear">
+                  <span class="text-xl sm:text-2xl mb-0.5">🧸</span>
+                  <span class="text-[11px] sm:text-xs font-bold text-graphite leading-tight">Мишка</span>
+                  <span class="text-[9px] sm:text-[10px] text-graphite-muted">+350 ₽</span>
                 </button>
-                <button type="button" onclick="toggleCharm('clover', 'Четырехлистник', '🍀', 350)" class="charm-btn p-3 rounded-2xl border border-black/10 bg-white/60 hover:bg-white text-center transition-all flex flex-col items-center col-span-2 sm:col-span-1" data-charm="clover">
-                  <span class="text-2xl mb-1">🍀</span>
-                  <span class="text-xs font-bold text-graphite">Клевер</span>
-                  <span class="text-[10px] text-graphite-muted">+350 ₽</span>
+                <button type="button" onclick="toggleCharm('clover', 'Четырехлистник', '🍀', 350)" class="charm-btn p-2.5 sm:p-3 rounded-xl sm:rounded-2xl border border-black/10 bg-white/60 hover:bg-white text-center transition-all flex flex-col items-center col-span-2 sm:col-span-1" data-charm="clover">
+                  <span class="text-xl sm:text-2xl mb-0.5">🍀</span>
+                  <span class="text-[11px] sm:text-xs font-bold text-graphite leading-tight">Клевер</span>
+                  <span class="text-[9px] sm:text-[10px] text-graphite-muted">+350 ₽</span>
                 </button>
               </div>
 
               <!-- Reset / Clear action -->
-              <div class="flex items-center justify-between pt-3 border-t border-black/5">
-                <div class="flex items-center gap-2">
-                  <span class="text-xs text-graphite-muted">Расчетная длина изделия:</span>
-                  <span id="calculated-length" class="text-xs font-bold px-2 py-0.5 bg-lavender/60 rounded-md">~ 18 см</span>
+              <div class="flex items-center justify-between pt-3 border-t border-black/5 text-[11px] sm:text-xs">
+                <div class="flex items-center gap-1.5">
+                  <span class="text-graphite-muted">Длина:</span>
+                  <span id="calculated-length" class="font-bold px-2 py-0.5 bg-lavender/60 rounded-md">~ 18 см</span>
                 </div>
-                <button type="button" onclick="resetBuilder()" class="text-xs font-medium text-rose-500 hover:text-rose-700 underline decoration-dotted transition-colors">
+                <button type="button" onclick="resetBuilder()" class="font-medium text-rose-500 hover:text-rose-700 underline decoration-dotted transition-colors">
                   Сбросить дизайн
                 </button>
               </div>
@@ -543,45 +548,34 @@
 
           </div>
 
-          <!-- RIGHT COLUMN: Interactive Live Visualizer & Price Card -->
-          <div class="lg:col-span-5 sticky top-24 space-y-5">
+          <!-- RIGHT COLUMN: Живая нить -->
+          <div class="w-full lg:col-span-5 lg:sticky lg:top-24 space-y-4 sm:space-y-5">
             
-            <div class="glass-card p-6 sm:p-8 rounded-[32px] shadow-pearl border border-white relative overflow-hidden flex flex-col items-center">
+            <div class="glass-card p-5 sm:p-8 rounded-2xl sm:rounded-[32px] shadow-pearl border border-white relative overflow-hidden flex flex-col items-center">
               
-              <!-- Subtle preview background effect -->
               <div class="absolute inset-0 bg-gradient-to-b from-white/70 via-lavender/10 to-sorbet/20 pointer-events-none"></div>
 
-              <div class="w-full flex items-center justify-between mb-4 z-10">
-                <span class="text-xs font-bold uppercase tracking-widest text-graphite">Живая нить (Превью)</span>
-                <span class="text-[11px] bg-white/90 px-2.5 py-1 rounded-full border border-black/5 text-graphite-muted">Кликните на бусину для удаления</span>
+              <div class="w-full flex items-center justify-between mb-3 sm:mb-4 z-10">
+                <span class="text-xs font-bold uppercase tracking-widest text-graphite">Живая нить</span>
+                <span class="text-[10px] sm:text-[11px] bg-white/90 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full border border-black/5 text-graphite-muted">Клик для удаления</span>
               </div>
 
-              <!-- Live Strand Interactive Visualizer Container -->
-              <div class="w-full min-h-[380px] bg-white/60 rounded-2xl border border-black/5 p-6 flex flex-col items-center justify-between relative shadow-inner z-10 overflow-hidden">
+              <!-- Окно живой нити -->
+              <div class="w-full min-h-[320px] sm:min-h-[380px] bg-white/60 rounded-xl sm:rounded-2xl border border-black/5 p-4 sm:p-6 flex flex-col items-center justify-between relative shadow-inner z-10 overflow-hidden">
                 
                 <!-- Clasp / Mount Visual -->
-                <div id="visual-clasp" class="transition-all duration-300 transform">
-                  <!-- dynamically injected clasp -->
-                </div>
+                <div id="visual-clasp" class="transition-all duration-300 transform"></div>
 
                 <!-- Central Visual Strand -->
                 <div class="relative w-full flex flex-col items-center my-auto py-2">
-                  <!-- Physical Wire Line Indicator -->
                   <div class="absolute top-0 bottom-0 w-[2px] bg-gradient-to-b from-slate-400 via-slate-300 to-slate-400 opacity-60 pointer-events-none"></div>
                   
-                  <!-- Bead Elements List on Wire -->
-                  <div id="strand-beads-container" class="relative z-10 flex flex-col items-center gap-2 transition-all duration-300 py-2">
-                    <!-- Populated via renderLiveStrand() -->
-                  </div>
-
-                  <!-- Dangling Charms Cluster -->
-                  <div id="strand-charms-container" class="relative z-20 flex items-center justify-center gap-3 pt-3">
-                    <!-- Populated via renderLiveStrand() -->
-                  </div>
+                  <div id="strand-beads-container" class="relative z-10 flex flex-col items-center gap-1.5 sm:gap-2 transition-all duration-300 py-1 sm:py-2"></div>
+                  <div id="strand-charms-container" class="relative z-20 flex items-center justify-center gap-2 sm:gap-3 pt-2 sm:pt-3"></div>
                 </div>
 
                 <!-- Live stats footer in preview -->
-                <div class="w-full flex items-center justify-between text-[11px] text-graphite-muted pt-3 border-t border-black/5">
+                <div class="w-full flex items-center justify-between text-[10px] sm:text-[11px] text-graphite-muted pt-2.5 sm:pt-3 border-t border-black/5">
                   <span id="preview-bead-count">Элементов: 0</span>
                   <span class="flex items-center gap-1 text-emerald-700 font-medium">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -591,35 +585,32 @@
               </div>
 
               <!-- Price breakdown & action -->
-              <div class="w-full mt-6 pt-5 border-t border-black/5 z-10">
+              <div class="w-full mt-4 sm:mt-6 pt-4 sm:pt-5 border-t border-black/5 z-10">
                 <div class="flex items-baseline justify-between mb-2">
-                  <span class="text-sm font-semibold text-graphite-muted">Итоговая стоимость:</span>
+                  <span class="text-xs sm:text-sm font-semibold text-graphite-muted">Итоговая стоимость:</span>
                   <div class="flex items-baseline gap-1">
-                    <span id="custom-total-price" class="font-serif text-3xl sm:text-4xl font-bold text-graphite">2 600</span>
-                    <span class="text-lg font-bold text-graphite">₽</span>
+                    <span id="custom-total-price" class="font-serif text-2xl sm:text-4xl font-bold text-graphite">2 600</span>
+                    <span class="text-base sm:text-lg font-bold text-graphite">₽</span>
                   </div>
                 </div>
 
-                <div class="text-[11px] text-graphite-muted mb-5 space-y-0.5" id="price-breakdown-details">
-                  <!-- Live calculation rows -->
+                <div class="text-[10px] sm:text-[11px] text-graphite-muted mb-4 space-y-0.5" id="price-breakdown-details"></div>
+
+                <div class="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-amber-50/80 border border-amber-200/80 shadow-sm flex items-center gap-2.5 text-[11px] sm:text-xs text-amber-950 font-bold mb-4">
+                  <span class="text-lg">✨</span>
+                  <span>Мастер согласует фото готового изделия в Telegram перед финальной отправкой</span>
                 </div>
-				<!-- Mini Assurance Pill -->
-            <div class="p-4 rounded-2xl bg-white/70 border border-white shadow-sm flex items-center gap-3 text-xs text-graphite-muted mb-5">
-              <span class="text-xl">✨</span>
-              <span>Мастер согласует фото готового изделия в Telegram перед финальной отправкой</span>
-            </div>
 
                 <!-- Add to cart CTA -->
-                <button type="button" id="btn-add-custom-to-cart" onclick="addCustomToCart()" class="w-full py-4 rounded-2xl bg-graphite text-white font-semibold text-sm uppercase tracking-wider hover:bg-graphite/90 active:scale-[0.98] transition-all flex items-center justify-center gap-3 shadow-lg shadow-graphite/20">
-                  <svg class="w-5 h-5 text-buttercup" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                <button type="button" id="btn-add-custom-to-cart" onclick="addCustomToCart()" class="w-full py-3.5 sm:py-4 rounded-xl sm:rounded-2xl bg-graphite text-white font-semibold text-xs sm:text-sm uppercase tracking-wider hover:bg-graphite/90 active:scale-[0.98] transition-all flex items-center justify-center gap-2.5 shadow-lg shadow-graphite/20">
+                  <svg class="w-4 h-4 sm:w-5 sm:h-5 text-buttercup" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
                   </svg>
-                  <span>Добавить в коризну</span>
+                  <span>Добавить в корзину</span>
                 </button>
               </div>
 
             </div>
-
 
           </div>
 
@@ -628,71 +619,69 @@
       </div>
     </section>
 
-    <!-- 5. БЕСТСЕЛЛЕРЫ (МИНИ-КАТАЛОГ ГОТОВЫХ ДИЗАЙНОВ) -->
-    <section id="bestsellers" class="py-24 px-4 md:px-8 relative">
+    <!-- 5. БЕСТСЕЛЛЕРЫ -->
+    <section id="bestsellers" class="py-14 sm:py-24 px-6 sm:px-8 md:px-10 lg:px-12 relative">
       <div class="max-w-7xl mx-auto">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-14">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-14">
           <div>
-            <span class="text-xs uppercase tracking-[0.25em] font-semibold text-graphite-muted bg-white/80 px-3.5 py-1.5 rounded-full border border-lavender/50">Готовые концепты</span>
-            <h2 class="font-serif text-4xl sm:text-5xl font-normal text-graphite mt-4">Наши бестселлеры</h2>
+            <span class="text-[10px] sm:text-xs uppercase tracking-[0.2em] font-semibold text-graphite-muted bg-white/80 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full border border-lavender/50">Готовые концепты</span>
+            <h2 class="font-serif text-3xl sm:text-5xl font-normal text-graphite mt-3">Наши бестселлеры</h2>
           </div>
-          <p class="text-sm text-graphite-muted max-w-sm mt-3 md:mt-0">
-           Хиты наших мастеров, доступные к отправке уже сегодня в фирменной подарочной коробке
+          <p class="text-xs sm:text-sm text-graphite-muted max-w-sm mt-2 sm:mt-3 md:mt-0">
+            Хиты наших мастеров, доступные к отправке уже сегодня в фирменной подарочной коробке
           </p>
         </div>
 
         <!-- 4 Bestseller Cards -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12" id="bestsellers-grid">
-          <!-- Populated dynamically via JS renderBestsellers() -->
-        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12" id="bestsellers-grid"></div>
 
-        <!-- Full Catalog Trigger Button -->
         <div class="text-center">
-          <button onclick="openModal('catalog-modal')" class="inline-flex items-center gap-3 px-8 py-4 rounded-full glass-card hover:bg-white border border-lavender text-graphite font-semibold text-xs uppercase tracking-widest hover:shadow-md transition-all">
+          <button onclick="openModal('catalog-modal')" class="inline-flex items-center gap-2.5 px-6 py-3.5 sm:px-8 sm:py-4 rounded-full glass-card hover:bg-white border border-lavender text-graphite font-semibold text-[11px] sm:text-xs uppercase tracking-widest hover:shadow-md transition-all">
             <span>Открыть полный каталог</span>
-            <svg class="w-4 h-4 text-graphite" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <svg class="w-3.5 h-3.5 text-graphite" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </button>
         </div>
       </div>
     </section>
 
     <!-- 6. БЛОК НАДЕЖНОСТИ И МАТЕРИАЛОВ -->
-    <section id="materials" class="py-20 px-4 md:px-8 bg-gradient-to-b from-transparent via-lavender/25 to-transparent relative">
+    <section id="materials" class="py-14 sm:py-20 px-6 sm:px-8 md:px-10 lg:px-12 bg-gradient-to-b from-transparent via-lavender/25 to-transparent relative">
       <div class="max-w-7xl mx-auto">
-        <div class="glass-card p-8 md:p-14 rounded-[36px] border border-white shadow-subtle">
+        <div class="glass-card p-6 sm:p-8 md:p-14 rounded-2xl sm:rounded-[36px] border border-white shadow-subtle">
           
-          <div class="max-w-2xl mb-12">
-            <span class="text-xs uppercase tracking-[0.25em] font-semibold text-graphite-muted bg-white/80 px-3.5 py-1.5 rounded-full border border-lavender/50">Стандарты качества Vie Perla</span>
-            <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-graphite mt-3">Украшение на года</h2>
+          <div class="max-w-2xl mb-8 sm:mb-12">
+            <span class="text-[10px] sm:text-xs uppercase tracking-[0.2em] font-semibold text-graphite-muted bg-white/80 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full border border-lavender/50">Стандарты качества Vie Perla</span>
+            <h2 class="font-serif text-2xl sm:text-4xl md:text-5xl font-normal text-graphite mt-3">Украшение на года</h2>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Сетка карточек качества -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8">
             
-            <div class="p-6 rounded-2xl bg-white/70 border border-white/80 shadow-xs">
-              <div class="w-12 h-12 rounded-xl bg-amber-100  text-white flex items-center justify-center text-xl mb-4 shadow-sm">
+            <div class="p-5 sm:p-6 rounded-xl sm:rounded-2xl bg-white/70 border border-white/80 shadow-xs">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-amber-100 text-white flex items-center justify-center text-lg sm:text-xl mb-3 sm:mb-4 shadow-sm">
                 🛡️
               </div>
-              <h3 class="font-serif text-xl font-bold text-graphite mb-2">7-жильный стальной трос</h3>
+              <h3 class="font-serif text-lg sm:text-xl font-bold text-graphite mb-1.5 sm:mb-2">7-жильный стальной трос</h3>
               <p class="text-xs sm:text-sm text-graphite-muted leading-relaxed">
                 Ювелирный японский тросик в полимерной оплетке: не рвётся, не перетирается об острые края фурнитуры и выдерживает вес даже тяжелой сумки
               </p>
             </div>
 
-            <div class="p-6 rounded-2xl bg-white/70 border border-white/80 shadow-xs">
-              <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-900 flex items-center justify-center text-xl mb-4 shadow-sm">
+            <div class="p-5 sm:p-6 rounded-xl sm:rounded-2xl bg-white/70 border border-white/80 shadow-xs">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-amber-100 text-amber-900 flex items-center justify-center text-lg sm:text-xl mb-3 sm:mb-4 shadow-sm">
                 🦪
               </div>
-              <h3 class="font-serif text-xl font-bold text-graphite mb-2">Пресноводный жемчуг и лэмпворк</h3>
+              <h3 class="font-serif text-lg sm:text-xl font-bold text-graphite mb-1.5 sm:mb-2">Пресноводный жемчуг и лэмпворк</h3>
               <p class="text-xs sm:text-sm text-graphite-muted leading-relaxed">
                 Отборный жемчуг с глубоким перламутром и уникальные стеклянные фигурки ручного выдува — каждая деталь имеет собственный характер
               </p>
             </div>
 
-            <div class="p-6 rounded-2xl bg-white/70 border border-white/80 shadow-xs">
-              <div class="w-12 h-12 rounded-xl bg-buttercup text-graphite flex items-center justify-center text-xl mb-4 shadow-sm">
+            <div class="p-5 sm:p-6 rounded-xl sm:rounded-2xl bg-white/70 border border-white/80 shadow-xs">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-buttercup text-graphite flex items-center justify-center text-lg sm:text-xl mb-3 sm:mb-4 shadow-sm">
                 🎀
               </div>
-              <h3 class="font-serif text-xl font-bold text-graphite mb-2">Фирменная коробочка в подарок</h3>
+              <h3 class="font-serif text-lg sm:text-xl font-bold text-graphite mb-1.5 sm:mb-2">Фирменная коробочка в подарок</h3>
               <p class="text-xs sm:text-sm text-graphite-muted leading-relaxed">
                 Каждый заказ упакован в бархатный мешочек, коробку с атласной лентой и карточку с пожеланием — готовый подарок без лишних хлопот
               </p>
@@ -705,111 +694,96 @@
     </section>
 
     <!-- 7. UGC & СОЦИАЛЬНЫЕ СЕТИ -->
-    <section class="py-20 px-4 md:px-8 relative">
+    <section class="py-14 sm:py-20 px-6 sm:px-8 md:px-10 lg:px-12 relative">
       <div class="max-w-7xl mx-auto">
-        <div class="text-center max-w-2xl mx-auto mb-16">
-          <div>
-             <span class="text-xs uppercase tracking-[0.25em] font-semibold text-graphite-muted bg-white/80 px-3.5 py-1.5 rounded-full border border-lavender/50">#ViePerlaVibe</span>
-            <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-graphite mt-3">Истории наших покупателей</h2>
-          </div>
-          
-            </a>
-          </div>
+        <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-16">
+          <span class="text-[10px] sm:text-xs uppercase tracking-[0.2em] font-semibold text-graphite-muted bg-white/80 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full border border-lavender/50">#ViePerlaVibe</span>
+          <h2 class="font-serif text-2xl sm:text-4xl md:text-5xl font-normal text-graphite mt-3">В объективе наших гостей</h2>
+          <p class="text-graphite-muted text-xs sm:text-sm md:text-base mt-2">Как наши подвесы живут в вашей повседневной эстетике</p>
         </div>
 
-<!-- UGC Photo-style Cards -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+        <!-- UGC Карточки -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3.5 sm:gap-6">
           
-          <div class="group relative rounded-3xl overflow-hidden glass-card p-3 aspect-[4/5] flex flex-col justify-end">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"></div>
-            <div class="absolute inset-0 bg-[#f4ebf8] flex items-center justify-center text-7xl select-none group-hover:scale-105 transition-transform duration-500">
-              👜
-            </div>
+          <div class="group relative rounded-2xl sm:rounded-3xl overflow-hidden glass-card p-2 sm:p-2.5 aspect-[4/5] flex flex-col justify-end border border-white shadow-sm hover:shadow-xl transition-all duration-300">
+            <img src="EyBe9z6TDwWetGmpJ2mio_YeBO4wnK.png" alt="Подвес на шелке" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">[cite: 19]
+            <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent z-10 pointer-events-none"></div>
             <div class="relative z-20 text-white p-2">
-              <p class="text-xs font-semibold">@alina_cher</p>
-              <p class="text-[10px] text-white/80">Карабин на кожаный шопер</p>
+              <p class="text-[11px] sm:text-xs font-semibold drop-shadow-sm leading-tight">@alina_cher</p>
             </div>
           </div>
 
-          <div class="group relative rounded-3xl overflow-hidden glass-card p-3 aspect-[4/5] flex flex-col justify-end">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"></div>
-            <div class="absolute inset-0 bg-[#e7f0fa] flex items-center justify-center text-7xl select-none group-hover:scale-105 transition-transform duration-500">
-              📱
-            </div>
+          <div class="group relative rounded-2xl sm:rounded-3xl overflow-hidden glass-card p-2 sm:p-2.5 aspect-[4/5] flex flex-col justify-end border border-white shadow-sm hover:shadow-xl transition-all duration-300">
+            <img src="Os1g4zgUP2_nCJeiri5M1_BGSzmOYs.png" alt="Обвес на смартфон" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">[cite: 18]
+            <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent z-10 pointer-events-none"></div>
             <div class="relative z-20 text-white p-2">
-              <p class="text-xs font-semibold">@daria.mood</p>
-              <p class="text-[10px] text-white/80">Шнурок на iPhone 15 Pro</p>
+              <p class="text-[11px] sm:text-xs font-semibold drop-shadow-sm leading-tight">@daria.mood</p>
             </div>
           </div>
 
-          <div class="group relative rounded-3xl overflow-hidden glass-card p-3 aspect-[4/5] flex flex-col justify-end">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"></div>
-            <div class="absolute inset-0 bg-[#fff5ea] flex items-center justify-center text-7xl select-none group-hover:scale-105 transition-transform duration-500">
-              🗝️
-            </div>
+          <div class="group relative rounded-2xl sm:rounded-3xl overflow-hidden glass-card p-2 sm:p-2.5 aspect-[4/5] flex flex-col justify-end border border-white shadow-sm hover:shadow-xl transition-all duration-300">
+            <img src="3eDFGW2We2x3D6O3mFZKR_2jomVdtT.png" alt="Оберег на ключи авто" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">[cite: 17]
+            <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent z-10 pointer-events-none"></div>
             <div class="relative z-20 text-white p-2">
-              <p class="text-xs font-semibold">@kate_velvet</p>
-              <p class="text-[10px] text-white/80">Оберег на ключи авто</p>
+              <p class="text-[11px] sm:text-xs font-semibold drop-shadow-sm leading-tight">@kate_velvet</p>
             </div>
           </div>
 
-          <div class="group relative rounded-3xl overflow-hidden glass-card p-3 aspect-[4/5] flex flex-col justify-end">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"></div>
-            <div class="absolute inset-0 bg-[#fdebf3] flex items-center justify-center text-7xl select-none group-hover:scale-105 transition-transform duration-500">
-              👖
-            </div>
+          <div class="group relative rounded-2xl sm:rounded-3xl overflow-hidden glass-card p-2 sm:p-2.5 aspect-[4/5] flex flex-col justify-end border border-white shadow-sm hover:shadow-xl transition-all duration-300">
+            <img src="dem0zrjWpZyH-OA4bb0Ho_SIjdlBvk.png" alt="Подвес с облачком" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">[cite: 16]
+            <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent z-10 pointer-events-none"></div>
             <div class="relative z-20 text-white p-2">
-              <p class="text-xs font-semibold">@sonya_perla</p>
-              <p class="text-[10px] text-white/80">Обвес на шлевку джинс</p>
+              <p class="text-[11px] sm:text-xs font-semibold drop-shadow-sm leading-tight">@sonya_perla</p>
             </div>
           </div>
+
         </div>
 
-<!-- Кнопки по центру с равными промежутками -->
-        <div class="flex items-center justify-center flex-wrap gap-4 mt-8 w-full">
-          <a href="https://t.me" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-full bg-white border border-black/10 text-xs font-semibold text-graphite hover:bg-lavender transition-all flex items-center justify-center">
+        <!-- Кнопки соцсетей -->
+        <div class="flex items-center justify-center flex-wrap gap-2.5 sm:gap-4 mt-6 sm:mt-8 w-full">
+          <a href="https://t.me" target="_blank" rel="noopener noreferrer" class="px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-white border border-black/10 text-[11px] sm:text-xs font-semibold text-graphite hover:bg-lavender transition-all flex items-center justify-center">
             <span>Telegram</span>
           </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-full bg-white border border-black/10 text-xs font-semibold text-graphite hover:bg-sorbet transition-all flex items-center justify-center">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-white border border-black/10 text-[11px] sm:text-xs font-semibold text-graphite hover:bg-sorbet transition-all flex items-center justify-center">
             <span>Instagram</span>
           </a>
-          <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-full bg-white border border-black/10 text-xs font-semibold text-graphite hover:bg-lavender transition-all flex items-center justify-center">
+          <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-white border border-black/10 text-[11px] sm:text-xs font-semibold text-graphite hover:bg-lavender transition-all flex items-center justify-center">
             <span>TikTok</span>
           </a>
-          <a href="https://vk.com" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-full bg-white border border-black/10 text-xs font-semibold text-graphite hover:bg-sorbet transition-all flex items-center justify-center">
+          <a href="https://vk.com" target="_blank" rel="noopener noreferrer" class="px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-white border border-black/10 text-[11px] sm:text-xs font-semibold text-graphite hover:bg-sorbet transition-all flex items-center justify-center">
             <span>ВКонтакте</span>
           </a>
         </div>
 
-        <!-- Надпись по центру под кнопками -->
-        <p class="text-center text-xs sm:text-sm font-medium text-graphite-muted mt-4">
-          Отмечайте нас в соцсетях ♡
+        <p class="text-center text-[11px] sm:text-sm font-medium text-graphite-muted mt-3.5 sm:mt-4">
+          отмечайте нас в соцсетях ♡
         </p>
-      </section>
-    </main>
-  
+
+      </div>
+    </section>
+  </main>
 
   <!-- 8. FOOTER -->
-  <footer class="border-t border-black/5 bg-white/70 backdrop-blur-md pt-16 pb-12 px-4 md:px-8 relative z-20">
+  <footer class="border-t border-black/5 bg-white/70 backdrop-blur-md pt-12 sm:pt-16 pb-8 sm:pb-12 px-6 sm:px-8 md:px-10 lg:px-12 relative z-20">
     <div class="max-w-7xl mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-black/5">
+      <div class="flex flex-col md:grid md:grid-cols-12 gap-8 sm:gap-10 pb-8 sm:pb-12 border-b border-black/5">
         
-        <div class="md:col-span-4 flex flex-col items-start">
-          <div class="flex items-center gap-2 mb-3">
-            <span class="w-6 h-6 rounded-full bg-gradient-to-tr from-lavender to-buttercup flex items-center justify-center shadow-xs">
-              <span class="w-2.5 h-2.5 rounded-full bg-white"></span>
+        <div class="w-full md:col-span-4 flex flex-col items-start">
+          <div class="flex items-center gap-2 mb-2 sm:mb-3">
+            <span class="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-gradient-to-tr from-lavender to-buttercup flex items-center justify-center shadow-xs">
+              <span class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-white"></span>
             </span>
-            <span class="font-serif text-2xl tracking-[0.2em] font-bold text-graphite uppercase">VIE PERLA</span>
+            <span class="font-serif text-xl sm:text-2xl tracking-[0.2em] font-bold text-graphite uppercase">VIE PERLA</span>
           </div>
-          <p class="text-xs text-graphite-muted leading-relaxed max-w-sm mb-6">
+          <p class="text-xs text-graphite-muted leading-relaxed max-w-sm mb-4 sm:mb-6">
             Камерная мастерская уникальных украшений и обвесов со смыслом. Ручная сборка с любовью к каждой детали
           </p>
           <span class="text-xs font-semibold text-graphite">«Жизнь в каждой бусине»</span>
         </div>
 
-        <div class="md:col-span-2 col-span-1">
-          <h4 class="text-xs uppercase font-bold tracking-wider text-graphite mb-4">Навигация</h4>
-          <ul class="space-y-2.5 text-xs text-graphite-muted">
+        <div class="w-full md:col-span-2 col-span-1">
+          <h4 class="text-xs uppercase font-bold tracking-wider text-graphite mb-3 sm:mb-4">Навигация</h4>
+          <ul class="space-y-2 text-xs text-graphite-muted">
             <li><a href="#studio" class="hover:text-graphite transition-colors">Конструктор</a></li>
             <li><a href="#bestsellers" class="hover:text-graphite transition-colors">Готовая коллекция</a></li>
             <li><a href="#occasions" class="hover:text-graphite transition-colors">Поводы и идеи</a></li>
@@ -817,9 +791,9 @@
           </ul>
         </div>
 
-        <div class="md:col-span-3 col-span-1">
-          <h4 class="text-xs uppercase font-bold tracking-wider text-graphite mb-4">Клиентам</h4>
-          <ul class="space-y-2.5 text-xs text-graphite-muted">
+        <div class="w-full md:col-span-3 col-span-1">
+          <h4 class="text-xs uppercase font-bold tracking-wider text-graphite mb-3 sm:mb-4">Клиентам</h4>
+          <ul class="space-y-2 text-xs text-graphite-muted">
             <li><button onclick="openModal('shipping-modal')" class="hover:text-graphite transition-colors text-left">Доставка и оплата</button></li>
             <li><button onclick="openModal('care-modal')" class="hover:text-graphite transition-colors text-left">Гарантия и уход за украшениями</button></li>
             <li><button onclick="openModal('gift-modal')" class="hover:text-graphite transition-colors text-left">Подарочные сертификаты</button></li>
@@ -827,20 +801,21 @@
           </ul>
         </div>
 
-        <div class="md:col-span-3 col-span-1">
-          <h4 class="text-xs uppercase font-bold tracking-wider text-graphite mb-4">Связь с ателье</h4>
-          <a href="https://t.me" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-graphite hover:underline block mb-1">@vieperla_atelier</a>
-		            <p class="text-xs text-graphite-muted mb-2">Ежедневно с 10:00 до 21:00</p>
+        <div class="w-full md:col-span-3 col-span-1">
+          <h4 class="text-xs uppercase font-bold tracking-wider text-graphite mb-3 sm:mb-4">Связь с нами</h4>
+          <a href="https://t.me/vieperla_manager1" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-semibold text-graphite hover:underline block mb-1">Менеджер: @vieperla_manager1</a>
+          <a href="https://vk.com" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-semibold text-graphite hover:underline block mb-2">Сообщество ВКонтакте</a>
+          <p class="text-[11px] sm:text-xs text-graphite-muted">Ежедневно с 10:00 до 21:00</p>
         </div>
 
       </div>
 
-      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-graphite-muted gap-4">
-        <p>&copy; 2026 «VIE PERLA». Все права защищены.</p>
-        <p class="flex items-center gap-4">
-          <span class="hover:underline cursor-pointer" onclick="openModal('care-modal')">Правила конфиденциальности</span>
+      <div class="pt-6 sm:pt-8 flex flex-col sm:flex-row items-center justify-between text-[10px] sm:text-[11px] text-graphite-muted gap-2.5 sm:gap-4 text-center sm:text-left">
+        <p>&copy; 2026 «VIE PERLA». Все права защищены</p>
+        <p class="flex items-center gap-3">
+          <span class="hover:underline cursor-pointer" onclick="openModal('care-modal')">Конфиденциальность</span>
           <span>&bull;</span>
-          <span class="hover:underline cursor-pointer" onclick="openModal('shipping-modal')">Публичная оферта</span>
+          <span class="hover:underline cursor-pointer" onclick="openModal('shipping-modal')">Оферта</span>
         </p>
       </div>
     </div>
@@ -849,73 +824,61 @@
   <!-- 9.1 MODAL: FULL CATALOG -->
   <div id="catalog-modal" class="fixed inset-0 z-50 hidden transition-opacity duration-300">
     <div class="absolute inset-0 bg-graphite/40 backdrop-blur-sm" onclick="closeModal('catalog-modal')"></div>
-    <div class="relative w-full h-full max-w-5xl mx-auto p-4 md:p-8 flex items-center justify-center pointer-events-none">
-      <div class="w-full max-h-[90vh] bg-cream rounded-3xl shadow-2xl border border-white flex flex-col pointer-events-auto overflow-hidden">
+    <div class="relative w-full h-full max-w-5xl mx-auto p-4 sm:p-6 md:p-8 flex items-center justify-center pointer-events-none">
+      <div class="w-full max-h-[92vh] bg-cream rounded-2xl sm:rounded-3xl shadow-2xl border border-white flex flex-col pointer-events-auto overflow-hidden">
         
-        <!-- Header -->
-        <div class="p-6 md:p-8 border-b border-black/5 flex items-center justify-between bg-white/70">
+        <div class="p-5 sm:p-6 md:p-8 border-b border-black/5 flex items-center justify-between bg-white/70">
           <div>
-            <span class="text-[11px] uppercase tracking-widest text-graphite-muted font-semibold">Вселенная подвесов</span>
-            <h3 class="font-serif text-3xl font-bold text-graphite">Полный каталог дизайнов</h3>
+            <span class="text-[9px] sm:text-[11px] uppercase tracking-widest text-graphite-muted font-semibold">Вселенная подвесов</span>
+            <h3 class="font-serif text-xl sm:text-3xl font-bold text-graphite">Полный каталог дизайнов</h3>
           </div>
-          <button onclick="closeModal('catalog-modal')" class="p-2.5 rounded-full hover:bg-black/5 text-graphite transition-colors">
+          <button onclick="closeModal('catalog-modal')" class="p-2 sm:p-2.5 rounded-full hover:bg-black/5 text-graphite transition-colors">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
           </button>
         </div>
 
-        <!-- Filter tabs -->
-        <div class="px-6 md:px-8 py-3 bg-white/40 border-b border-black/5 flex items-center gap-2 overflow-x-auto">
-          <button onclick="filterCatalog('all', this)" class="catalog-filter-btn active px-4 py-1.5 rounded-full bg-graphite text-white text-xs font-semibold transition-all">Все дизайны</button>
-          <button onclick="filterCatalog('bag', this)" class="catalog-filter-btn px-4 py-1.5 rounded-full bg-white/80 hover:bg-white text-graphite text-xs font-semibold transition-all">На сумку</button>
-          <button onclick="filterCatalog('phone', this)" class="catalog-filter-btn px-4 py-1.5 rounded-full bg-white/80 hover:bg-white text-graphite text-xs font-semibold transition-all">На телефон</button>
-          <button onclick="filterCatalog('pair', this)" class="catalog-filter-btn px-4 py-1.5 rounded-full bg-white/80 hover:bg-white text-graphite text-xs font-semibold transition-all">Парные</button>
+        <div class="px-4 sm:px-6 md:px-8 py-3 bg-white/40 border-b border-black/5 flex items-center gap-2 overflow-x-auto whitespace-nowrap">
+          <button onclick="filterCatalog('all', this)" class="catalog-filter-btn active px-3.5 sm:px-4 py-1.5 rounded-full bg-graphite text-white text-[11px] sm:text-xs font-semibold transition-all">Все дизайны</button>
+          <button onclick="filterCatalog('bag', this)" class="catalog-filter-btn px-3.5 sm:px-4 py-1.5 rounded-full bg-white/80 hover:bg-white text-graphite text-[11px] sm:text-xs font-semibold transition-all">На сумку</button>
+          <button onclick="filterCatalog('phone', this)" class="catalog-filter-btn px-3.5 sm:px-4 py-1.5 rounded-full bg-white/80 hover:bg-white text-graphite text-[11px] sm:text-xs font-semibold transition-all">На телефон</button>
+          <button onclick="filterCatalog('pair', this)" class="catalog-filter-btn px-3.5 sm:px-4 py-1.5 rounded-full bg-white/80 hover:bg-white text-graphite text-[11px] sm:text-xs font-semibold transition-all">Парные</button>
         </div>
 
-        <!-- Catalog items grid (Scrollable) -->
-        <div class="p-6 md:p-8 overflow-y-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="catalog-full-grid">
-          <!-- Populated dynamically via JS renderFullCatalog() -->
-        </div>
+        <div class="p-4 sm:p-6 md:p-8 overflow-y-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6" id="catalog-full-grid"></div>
 
       </div>
     </div>
   </div>
 
-  <!-- 9.2 MODAL: QUICK VIEW (Быстрый просмотр) -->
+  <!-- 9.2 MODAL: QUICK VIEW -->
   <div id="quickview-modal" class="fixed inset-0 z-50 hidden transition-opacity duration-300">
     <div class="absolute inset-0 bg-graphite/40 backdrop-blur-sm" onclick="closeModal('quickview-modal')"></div>
-    <div class="relative w-full h-full max-w-3xl mx-auto p-4 flex items-center justify-center pointer-events-none">
-      <div class="w-full max-h-[90vh] bg-cream rounded-3xl shadow-2xl border border-white flex flex-col md:flex-row pointer-events-auto overflow-hidden">
+    <div class="relative w-full h-full max-w-3xl mx-auto p-4 sm:p-6 flex items-center justify-center pointer-events-none">
+      <div class="w-full max-h-[92vh] bg-cream rounded-2xl sm:rounded-3xl shadow-2xl border border-white flex flex-col md:flex-row pointer-events-auto overflow-hidden">
         
-        <!-- Visual left area -->
-        <div id="qv-image-box" class="md:w-1/2 p-8 bg-gradient-to-tr from-lavender/40 to-sorbet/30 flex flex-col items-center justify-center relative min-h-[260px]">
-          <span id="qv-emoji" class="text-8xl select-none filter drop-shadow-lg animate-float">🎀</span>
-          <span id="qv-badge" class="absolute top-4 left-4 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 bg-white/90 rounded-full shadow-xs">Хит продаж</span>
-        </div>
+        <div id="qv-image-box" class="w-full md:w-1/2 relative min-h-[220px] sm:min-h-[260px] md:min-h-[300px] bg-cream flex items-center justify-center overflow-hidden"></div>
 
-        <!-- Info right area -->
-        <div class="md:w-1/2 p-6 md:p-8 flex flex-col justify-between overflow-y-auto">
+        <div class="w-full md:w-1/2 p-5 sm:p-6 md:p-8 flex flex-col justify-between overflow-y-auto">
           <div>
             <div class="flex justify-between items-start mb-2">
-              <span id="qv-category" class="text-[10px] uppercase tracking-wider text-graphite-muted font-bold">На сумку</span>
-              <button onclick="closeModal('quickview-modal')" class="p-1.5 text-graphite-muted hover:text-graphite">
+              <span id="qv-category" class="text-[9px] sm:text-[10px] uppercase tracking-wider text-graphite-muted font-bold">На сумку</span>
+              <button onclick="closeModal('quickview-modal')" class="p-1 text-graphite-muted hover:text-graphite">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
               </button>
             </div>
             
-            <h3 id="qv-title" class="font-serif text-3xl font-bold text-graphite mb-2">Название товара</h3>
-            <p id="qv-price" class="text-2xl font-bold text-graphite mb-4">3 200 ₽</p>
-            <p id="qv-desc" class="text-xs text-graphite-muted leading-relaxed mb-6">Описание изделия и концепция сборки.</p>
+            <h3 id="qv-title" class="font-serif text-2xl sm:text-3xl font-bold text-graphite mb-1.5 sm:mb-2">Название товара</h3>
+            <p id="qv-price" class="text-xl sm:text-2xl font-bold text-graphite mb-3 sm:mb-4">3 200 ₽</p>
+            <p id="qv-desc" class="text-xs text-graphite-muted leading-relaxed mb-4 sm:mb-6">Описание изделия и концепция сборки</p>
 
-            <div class="p-3.5 rounded-2xl bg-white/70 border border-black/5 mb-6">
-              <span class="text-[11px] uppercase font-bold tracking-wider text-graphite block mb-1.5">Состав бусин:</span>
-              <ul id="qv-materials" class="text-xs text-graphite-muted space-y-1">
-                <!-- Injected via JS -->
-              </ul>
+            <div class="p-3.5 rounded-xl sm:rounded-2xl bg-white/70 border border-black/5 mb-5 sm:mb-6">
+              <span class="text-[10px] sm:text-[11px] uppercase font-bold tracking-wider text-graphite block mb-1">Состав бусин:</span>
+              <ul id="qv-materials" class="text-[11px] sm:text-xs text-graphite-muted space-y-1"></ul>
             </div>
           </div>
 
-          <div class="flex items-center gap-3 pt-4 border-t border-black/5">
-            <button id="qv-add-btn" class="flex-1 py-3.5 rounded-2xl bg-graphite text-white font-semibold text-xs uppercase tracking-wider hover:bg-graphite/90 transition-all shadow-md">
+          <div class="pt-3 border-t border-black/5">
+            <button id="qv-add-btn" class="w-full py-3.5 rounded-xl sm:rounded-2xl bg-graphite text-white font-semibold text-xs uppercase tracking-wider hover:bg-graphite/90 transition-all shadow-md">
               Добавить в корзину
             </button>
           </div>
@@ -929,40 +892,40 @@
   <!-- 9.3 MODAL: SHIPPING & PAYMENT -->
   <div id="shipping-modal" class="fixed inset-0 z-50 hidden transition-opacity duration-300">
     <div class="absolute inset-0 bg-graphite/40 backdrop-blur-sm" onclick="closeModal('shipping-modal')"></div>
-    <div class="relative w-full h-full max-w-2xl mx-auto p-4 flex items-center justify-center pointer-events-none">
-      <div class="w-full max-h-[90vh] bg-cream rounded-3xl shadow-2xl border border-white p-6 md:p-8 pointer-events-auto overflow-y-auto">
+    <div class="relative w-full h-full max-w-2xl mx-auto p-4 sm:p-6 flex items-center justify-center pointer-events-none">
+      <div class="w-full max-h-[90vh] bg-cream rounded-2xl sm:rounded-3xl shadow-2xl border border-white p-6 sm:p-8 pointer-events-auto overflow-y-auto">
         
-        <div class="flex items-center justify-between pb-4 border-b border-black/5 mb-6">
-          <h3 class="font-serif text-3xl font-bold text-graphite">Условия доставки и оплаты</h3>
-          <button onclick="closeModal('shipping-modal')" class="p-2 text-graphite-muted hover:text-graphite">
+        <div class="flex items-center justify-between pb-3 sm:pb-4 border-b border-black/5 mb-4 sm:mb-6">
+          <h3 class="font-serif text-2xl sm:text-3xl font-bold text-graphite">Условия доставки и оплаты</h3>
+          <button onclick="closeModal('shipping-modal')" class="p-1 text-graphite-muted hover:text-graphite">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
           </button>
         </div>
 
-        <div class="space-y-6 text-sm text-graphite-muted leading-relaxed">
-          <div class="p-4 rounded-2xl bg-white/80 border border-lavender/60">
-            <h4 class="font-semibold text-graphite text-base mb-1">⏱ Сроки изготовления</h4>
-            <p>Каждое украшение собирается вручную мастером за <strong>1–2 рабочих дня</strong> с момента согласования эскиза.</p>
+        <div class="space-y-4 sm:space-y-6 text-xs sm:text-sm text-graphite-muted leading-relaxed">
+          <div class="p-4 rounded-xl sm:rounded-2xl bg-white/80 border border-lavender/60">
+            <h4 class="font-semibold text-graphite text-sm sm:text-base mb-1">⏱ Сроки изготовления</h4>
+            <p>Каждое украшение собирается вручную мастером за <strong>1–2 рабочих дня</strong> с момента согласования эскиза</p>
           </div>
 
           <div>
-            <h4 class="font-semibold text-graphite text-base mb-2">📦 Способы доставки:</h4>
-            <ul class="list-disc pl-5 space-y-1.5 text-xs sm:text-sm">
-              <li><strong>СДЭК до двери или ПВЗ</strong> — по всей России (2–4 дня, от 350 ₽). Бесплатно от 7 000 ₽.</li>
-              <li><strong>Курьер по Москве</strong> — доставка день-в-день после готовности (500 ₽).</li>
-              <li><strong>Почта России / EMS</strong> — отправка в любую точку мира.</li>
+            <h4 class="font-semibold text-graphite text-sm sm:text-base mb-1.5 sm:mb-2">📦 Способы доставки:</h4>
+            <ul class="list-disc pl-4 space-y-1 text-xs sm:text-sm">
+              <li><strong>СДЭК до двери или ПВЗ</strong> — по всей России (2–4 дня, от 350 ₽). Бесплатно от 7 000 ₽</li>
+              <li><strong>Курьер по Москве</strong> — доставка день-в-день после готовности (500 ₽)</li>
+              <li><strong>Почта России / EMS</strong> — отправка в любую точку мира</li>
             </ul>
           </div>
 
           <div>
-            <h4 class="font-semibold text-graphite text-base mb-2">💳 Оплата:</h4>
+            <h4 class="font-semibold text-graphite text-sm sm:text-base mb-1.5 sm:mb-2">💳 Оплата:</h4>
             <p class="text-xs sm:text-sm">
-              Для кастомных изделий предусмотрена предоплата 50% перед сборкой и 50% после фото-отчета готового изделия (СБП, Тинькофф, банковские карты РФ и зарубежные).
+              Для кастомных изделий предусмотрена оплата после фото-отчета готового изделия (СБП, банковские карты РФ и зарубежные)
             </p>
           </div>
         </div>
 
-        <div class="mt-8 text-center">
+        <div class="mt-6 text-center">
           <button onclick="closeModal('shipping-modal')" class="px-8 py-3 rounded-full bg-graphite text-white text-xs font-semibold uppercase tracking-wider">Понятно</button>
         </div>
 
@@ -973,18 +936,18 @@
   <!-- 9.4 MODAL: CARE & WARRANTY -->
   <div id="care-modal" class="fixed inset-0 z-50 hidden transition-opacity duration-300">
     <div class="absolute inset-0 bg-graphite/40 backdrop-blur-sm" onclick="closeModal('care-modal')"></div>
-    <div class="relative w-full h-full max-w-xl mx-auto p-4 flex items-center justify-center pointer-events-none">
-      <div class="w-full bg-cream rounded-3xl shadow-2xl border border-white p-6 md:p-8 pointer-events-auto">
-        <div class="flex items-center justify-between pb-4 border-b border-black/5 mb-4">
-          <h3 class="font-serif text-2xl font-bold text-graphite">Гарантия & Уход</h3>
-          <button onclick="closeModal('care-modal')" class="p-2 text-graphite-muted hover:text-graphite">
+    <div class="relative w-full h-full max-w-xl mx-auto p-4 sm:p-6 flex items-center justify-center pointer-events-none">
+      <div class="w-full bg-cream rounded-2xl sm:rounded-3xl shadow-2xl border border-white p-6 sm:p-8 pointer-events-auto">
+        <div class="flex items-center justify-between pb-3 sm:pb-4 border-b border-black/5 mb-3 sm:mb-4">
+          <h3 class="font-serif text-xl sm:text-2xl font-bold text-graphite">Гарантия & Уход</h3>
+          <button onclick="closeModal('care-modal')" class="p-1 text-graphite-muted hover:text-graphite">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
           </button>
         </div>
-        <div class="space-y-4 text-xs sm:text-sm text-graphite-muted leading-relaxed">
-          <p>✨ <strong>Гарантия 1 год:</strong> Бесплатно пересоберем украшение, если повредится тросик или замок.</p>
-          <p>💧 <strong>Берегите от парфюма:</strong> Натуральный жемчуг любит дыхание кожи, но не переносит агрессивные спиртовые спреи.</p>
-          <p>🧼 <strong>Очищение:</strong> Протирайте мягкой замшевой или хлопковой салфеткой без абразивных средств.</p>
+        <div class="space-y-3 sm:space-y-4 text-xs sm:text-sm text-graphite-muted leading-relaxed">
+          <p>✨ <strong>Гарантия 1 год:</strong> Бесплатно пересоберем украшение, если повредится тросик или замок</p>
+          <p>💧 <strong>Берегите от парфюма:</strong> Натуральный жемчуг любит дыхание кожи, но не переносит агрессивные спиртовые спреи</p>
+          <p>🧼 <strong>Очищение:</strong> Протирайте мягкой замшевой или хлопковой салфеткой без абразивных средств</p>
         </div>
         <div class="mt-6 text-center">
           <button onclick="closeModal('care-modal')" class="px-6 py-2.5 rounded-full bg-graphite text-white text-xs font-semibold uppercase">Закрыть</button>
@@ -996,16 +959,16 @@
   <!-- 9.5 MODAL: GIFT CERTIFICATE -->
   <div id="gift-modal" class="fixed inset-0 z-50 hidden transition-opacity duration-300">
     <div class="absolute inset-0 bg-graphite/40 backdrop-blur-sm" onclick="closeModal('gift-modal')"></div>
-    <div class="relative w-full h-full max-w-md mx-auto p-4 flex items-center justify-center pointer-events-none">
-      <div class="w-full bg-cream rounded-3xl shadow-2xl border border-white p-6 md:p-8 pointer-events-auto text-center">
-        <div class="w-16 h-16 mx-auto rounded-2xl bg-lavender flex items-center justify-center text-3xl mb-4 shadow-sm">
+    <div class="relative w-full h-full max-w-md mx-auto p-4 sm:p-6 flex items-center justify-center pointer-events-none">
+      <div class="w-full bg-cream rounded-2xl sm:rounded-3xl shadow-2xl border border-white p-6 sm:p-8 pointer-events-auto text-center">
+        <div class="w-12 h-12 sm:w-16 sm:h-16 mx-auto rounded-xl sm:rounded-2xl bg-lavender flex items-center justify-center text-2xl sm:text-3xl mb-3 sm:mb-4 shadow-sm">
           💌
         </div>
-        <h3 class="font-serif text-2xl font-bold text-graphite mb-2">Подарочный сертификат</h3>
-        <p class="text-xs text-graphite-muted leading-relaxed mb-6">
-          Подарите возможность собрать собственный обвес! Электронный сертификат с именным промокодом отправляется на почту за 5 минут.
+        <h3 class="font-serif text-xl sm:text-2xl font-bold text-graphite mb-1.5 sm:mb-2">Подарочный сертификат</h3>
+        <p class="text-xs text-graphite-muted leading-relaxed mb-4 sm:mb-6">
+          Подарите возможность собрать собственный обвес! Электронный сертификат с именным промокодом отправляется на почту за 5 минут
         </p>
-        <div class="flex gap-2 justify-center mb-6">
+        <div class="flex gap-2 justify-center mb-5 sm:mb-6">
           <span class="px-3 py-1.5 rounded-xl bg-white border border-black/10 text-xs font-bold">3 000 ₽</span>
           <span class="px-3 py-1.5 rounded-xl bg-white border border-black/10 text-xs font-bold">5 000 ₽</span>
           <span class="px-3 py-1.5 rounded-xl bg-white border border-black/10 text-xs font-bold">10 000 ₽</span>
@@ -1015,51 +978,43 @@
     </div>
   </div>
 
-  <!-- 10. БОКОВАЯ ШТОРКА КОРЗИНЫ (SIDE-CART DRAWER) -->
+  <!-- 10. БОКОВАЯ ШТОРКА КОРЗИНЫ -->
   <div id="cart-drawer-overlay" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
     <div onclick="toggleCartDrawer(false)" class="absolute inset-0"></div>
     
-    <div id="cart-drawer-panel" class="absolute top-0 right-0 h-full w-full max-w-md bg-cream shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 ease-out border-l border-white/60">
+    <div id="cart-drawer-panel" class="absolute top-0 right-0 h-full w-full max-w-[360px] sm:max-w-md bg-cream shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 ease-out border-l border-white/60">
       
-      <!-- Drawer Header -->
-      <div class="p-6 border-b border-black/5 bg-white/60 flex items-center justify-between">
-        <div class="flex items-center gap-2.5">
+      <div class="p-5 sm:p-6 border-b border-black/5 bg-white/60 flex items-center justify-between">
+        <div class="flex items-center gap-2">
           <svg class="w-5 h-5 text-graphite" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-          <h3 class="font-serif text-2xl font-bold text-graphite">Ваша шкатулка</h3>
+          <h3 class="font-serif text-xl sm:text-2xl font-bold text-graphite">Ваша шкатулка</h3>
         </div>
-        <button onclick="toggleCartDrawer(false)" class="p-2 text-graphite-muted hover:text-graphite rounded-full hover:bg-black/5 transition-colors">
+        <button onclick="toggleCartDrawer(false)" class="p-1 text-graphite-muted hover:text-graphite rounded-full hover:bg-black/5 transition-colors">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
       </div>
 
-      <!-- Drawer Content (Items List) -->
-      <div class="flex-1 overflow-y-auto p-6 space-y-4" id="cart-items-container">
-        <!-- Injected via renderCart() -->
-      </div>
+      <div class="flex-1 overflow-y-auto p-5 sm:p-6 space-y-3.5 sm:space-y-4" id="cart-items-container"></div>
 
-      <!-- Drawer Footer & Quick Checkout Form -->
-      <div class="p-6 bg-white/80 border-t border-black/5 shadow-lg space-y-4">
-
-        
+      <div class="p-5 sm:p-6 bg-white/80 border-t border-black/5 shadow-lg space-y-3.5 sm:space-y-4">
         
         <div class="flex justify-between items-baseline">
-          <span class="text-xs uppercase tracking-wider font-semibold text-graphite-muted">К оплате:</span>
+          <span class="text-[11px] sm:text-xs uppercase tracking-wider font-semibold text-graphite-muted">К оплате:</span>
           <div class="flex items-baseline gap-1">
-            <span id="cart-total-amount" class="font-serif text-3xl font-bold text-graphite">0</span>
-            <span class="text-base font-bold text-graphite">₽</span>
+            <span id="cart-total-amount" class="font-serif text-2xl sm:text-3xl font-bold text-graphite">0</span>
+            <span class="text-sm sm:text-base font-bold text-graphite">₽</span>
           </div>
         </div>
 
-        <!-- Fast Checkout Fields -->
-        <div id="checkout-form-container" class="space-y-2 pt-2 border-t border-black/5">
-          <p class="text-[11px] uppercase tracking-wider font-bold text-graphite">Быстрое оформление:</p>
+        <div id="checkout-form-container" class="space-y-2 pt-1 border-t border-black/5">
+          <p class="text-[10px] sm:text-[11px] uppercase tracking-wider font-bold text-graphite">Быстрое оформление:</p>
           <input type="text" id="order-name" placeholder="ФИО" class="w-full px-3.5 py-2 text-xs rounded-xl bg-white border border-black/10 focus:outline-none focus:border-graphite shadow-inner">
-          <input type="text" id="order-contact" placeholder="Telegram" class="w-full px-3.5 py-2 text-xs rounded-xl bg-white border border-black/10 focus:outline-none focus:border-graphite shadow-inner">
-          <input type="text" id="order-city" placeholder="Адрес доставки (СДЭК/Курьер)" class="w-full px-3.5 py-2 text-xs rounded-xl bg-white border border-black/10 focus:outline-none focus:border-graphite shadow-inner">
+          <input type="text" id="order-contact" placeholder="Telegram (@username)" class="w-full px-3.5 py-2 text-xs rounded-xl bg-white border border-black/10 focus:outline-none focus:border-graphite shadow-inner">
+          <input type="text" id="order-city" placeholder="Пункт доставки СДЭК, город" class="w-full px-3.5 py-2 text-xs rounded-xl bg-white border border-black/10 focus:outline-none focus:border-graphite shadow-inner">
           <input type="text" id="order-note" placeholder="Комментарий к заказу" class="w-full px-3.5 py-2 text-xs rounded-xl bg-white border border-black/10 focus:outline-none focus:border-graphite shadow-inner">
         </div>
 
-        <button onclick="handleCheckoutSubmit()" id="btn-submit-order" class="w-full py-4 rounded-2xl bg-graphite text-white font-semibold text-xs uppercase tracking-wider hover:bg-graphite/90 transition-all shadow-md active:scale-[0.99]">
+        <button onclick="handleCheckoutSubmit()" id="btn-submit-order" class="w-full py-3.5 sm:py-4 rounded-xl sm:rounded-2xl bg-graphite text-white font-semibold text-xs uppercase tracking-wider hover:bg-graphite/90 transition-all shadow-md active:scale-[0.99]">
           Оформить заказ
         </button>
 
@@ -1072,26 +1027,26 @@
   <div id="success-modal" class="fixed inset-0 z-50 hidden transition-opacity duration-300">
     <div class="absolute inset-0 bg-graphite/50 backdrop-blur-sm" onclick="closeModal('success-modal')"></div>
     <div class="relative w-full h-full max-w-md mx-auto p-4 flex items-center justify-center pointer-events-none">
-      <div class="w-full bg-cream rounded-3xl shadow-2xl border border-white p-8 pointer-events-auto text-center">
+      <div class="w-full bg-cream rounded-2xl sm:rounded-3xl shadow-2xl border border-white p-6 sm:p-8 pointer-events-auto text-center">
         
-        <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-tr from-buttercup to-lavender flex items-center justify-center text-4xl mb-4 shadow-pearl animate-bounce">
+        <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-full bg-gradient-to-tr from-buttercup to-lavender flex items-center justify-center text-3xl sm:text-4xl mb-3 sm:mb-4 shadow-pearl animate-bounce">
           ✨
         </div>
 
-        <span class="text-[11px] uppercase tracking-widest font-bold text-graphite-muted block mb-1">Заказ успешно принят!</span>
-        <h3 class="font-serif text-3xl font-bold text-graphite mb-2">Номер заявки: <br><span id="success-order-id" class="text-lavender-800">#VP-0000</span></h3>
+        <span class="text-[10px] sm:text-[11px] uppercase tracking-widest font-bold text-graphite-muted block mb-1">Заказ успешно принят!</span>
+        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-graphite mb-2">Номер заявки: <br><span id="success-order-id" class="text-lavender-800">#VP-0000</span></h3>
         
-        <p class="text-xs text-graphite-muted leading-relaxed mb-6">
-          Спасибо за доверие к Vie Perla! Мастер свяжется с вами в течение <strong>15 минут</strong> для подтверждения сборки и отправки фото-эскиза.
+        <p class="text-xs text-graphite-muted leading-relaxed mb-4 sm:mb-6">
+          Спасибо за доверие к Vie Perla! Мастер свяжется с вами в Telegram в течение <strong>15 минут</strong> для подтверждения сборки и отправки фото-эскиза
         </p>
 
-        <div class="p-4 rounded-2xl bg-white/80 border border-black/5 text-left text-xs space-y-1 mb-6">
+        <div class="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-white/80 border border-black/5 text-left text-xs space-y-1 mb-4 sm:mb-6">
           <p class="font-semibold text-graphite">Детали заказа:</p>
           <p id="success-client-info" class="text-graphite-muted">Клиент: -</p>
           <p id="success-total-info" class="text-graphite-muted">Сумма: 0 ₽</p>
         </div>
 
-        <button onclick="closeModal('success-modal')" class="w-full py-3.5 rounded-full bg-graphite text-white text-xs font-semibold uppercase tracking-wider hover:bg-graphite/85 transition-all">
+        <button onclick="closeModal('success-modal')" class="w-full py-3 sm:py-3.5 rounded-full bg-graphite text-white text-xs font-semibold uppercase tracking-wider hover:bg-graphite/85 transition-all">
           Вернуться на сайт
         </button>
 
@@ -1099,15 +1054,13 @@
     </div>
   </div>
 
-  <!-- Toast Notification Container -->
-  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-graphite text-white text-xs font-medium px-5 py-3 rounded-full shadow-2xl opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-2">
+  <!-- Toast -->
+  <div id="toast" class="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-50 bg-graphite text-white text-[11px] sm:text-xs font-medium px-5 py-3 rounded-full shadow-2xl opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-2 max-w-[90vw] text-center">
     <span id="toast-text">Товар добавлен</span>
   </div>
 
   <!-- JAVASCRIPT APPLICATION CORE -->
- <!-- JAVASCRIPT APPLICATION CORE -->
   <script>
-    // Каталог товаров с привязанными фотографиями
     const CATALOG_ITEMS = [
       {
         id: 'cat-1',
@@ -1117,7 +1070,7 @@
         price: 3600,
         image: '8Ee4qH9uXpxjLIPaLjbPh_FcwLl7tE.png',
         badge: 'Хит сезона',
-        desc: 'Нежный акцент для шопера или мини-бэга. Сочетание пресноводного барочного жемчуга с сочными вишенками лэмпворк ручной работы.',
+        desc: 'Нежный акцент для шопера или мини-бэга. Сочетание пресноводного барочного жемчуга с сочными вишенками лэмпворк ручной работы',
         materials: ['Японский 7-жильный тросик', 'Натуральный жемчуг (класс AAA)', 'Лэмпворк-вишенки ручного выдува', 'Карабин с золотым PVD-покрытием']
       },
       {
@@ -1128,7 +1081,7 @@
         price: 2900,
         image: 'aJAMrK-1jJ3YA2586j98x_duHHf7Pv.png',
         badge: 'Выбор стилистов',
-        desc: 'Дерзкий дофаминовый обвес для смартфона. Кристальные звездочки, дутое сердце и радужные кубики.',
+        desc: 'Дерзкий дофаминовый обвес для смартфона. Кристальные звездочки, дутое сердце и радужные кубики',
         materials: ['Усиленный шнурок-петля', 'Хромированные сферы', 'Бусины из чешского хрусталя', 'Подвеска-сердце из ювелирной стали']
       },
       {
@@ -1139,7 +1092,7 @@
         price: 4100,
         image: 'u-kw6L37vY-7iubZYtxff_O83mT3Zl.png',
         badge: 'Классика',
-        desc: 'Чистый лаконичный шик. Барочный жемчуг каплевидной формы в дуэте с гладкими серебряными дисками.',
+        desc: 'Чистый лаконичный шик. Барочный жемчуг каплевидной формы в дуэте с гладкими серебряными дисками',
         materials: ['Пресноводный каплевидный жемчуг', 'Серебро 925 пробы (замки)', 'Японская стальная струна']
       },
       {
@@ -1149,8 +1102,8 @@
         categoryLabel: 'Парные',
         price: 5400,
         image: 'lafCE2M3-6C4v53NVM0sU_JDqj7Zbj.png',
-        badge: 'Сет из 2 шт.',
-        desc: 'Два дополняющих друг друга подвеса для вас и лучшей подруги со скрытыми половинками сердец.',
+        badge: 'Сет из 2 шт',
+        desc: 'Два дополняющих друг друга подвеса для вас и лучшей подруги со скрытыми половинками сердец',
         materials: ['2 полных подвеса в наборе', 'Индивидуальные инициалы', 'Две отдельные подарочные коробки']
       },
       {
@@ -1161,7 +1114,7 @@
         price: 3400,
         image: 'kVIUQSDjiMx42DcftG7g6_ldZTQxx4.png',
         badge: 'New',
-        desc: 'Теплый медовый янтарь, солнечные кристаллы и винтажный бантик с позолотой.',
+        desc: 'Теплый медовый янтарь, солнечные кристаллы и винтажный бантик с позолотой',
         materials: ['Янтарные стеклянные бусины', 'Винтажный шарм-бант', 'Латунь с золотым напылением']
       },
       {
@@ -1172,7 +1125,7 @@
         price: 3100,
         image: 'r26kuq_yHiRK3efUxTUiI_wkAMyTLf.png',
         badge: 'Лимитировано',
-        desc: 'Воздушное стеклянное облачко в окружении перламутровых пастельных капель.',
+        desc: 'Воздушное стеклянное облачко в окружении перламутровых пастельных капель',
         materials: ['Облачко лэмпворк', 'Матовые пастельные бусины', 'Усиленный шнурок к чехлу']
       },
       {
@@ -1183,7 +1136,7 @@
         price: 3800,
         image: '__Aaov2zD3_uhTwSFTkck_eJaWsOGn.png',
         badge: 'Exclusive',
-        desc: 'Глубокий черный оникс, темный жемчуг павлиньего отлива и массивный дутый карабин.',
+        desc: 'Глубокий черный оникс, темный жемчуг павлиньего отлива и массивный дутый карабин',
         materials: ['Натуральный черный оникс', 'Тонированный жемчуг', 'Графитовая фурнитура']
       },
       {
@@ -1193,13 +1146,12 @@
         categoryLabel: 'Парные',
         price: 5200,
         image: 'GcvagwRQ0QSIVzG5HZ_iJ_7alUYD03.png',
-        badge: 'Сет из 2 шт.',
-        desc: 'Парный комплект с микро-звездочками и гравировкой инициалов. Связь, которая всегда с вами.',
+        badge: 'Сет из 2 шт',
+        desc: 'Парный комплект с микро-звездочками и гравировкой инициалов. Связь, которая всегда с вами',
         materials: ['2 подвеса со звездами', 'Латунь с родированием', 'Пресноводный жемчуг']
       }
     ];
 
-    // BUILDER STATE (VIE STUDIO)
     const builderState = {
       basePrice: 1900,
       mount: { id: 'carabiner-gold', name: 'Карабин (Золото)', price: 0 },
@@ -1207,7 +1159,7 @@
       palette: { id: 'pearl', name: 'Натуральный жемчуг' },
       letters: 'AMOUR',
       letterColor: 'gold',
-      lampwork: [{ id: 'cherry', name: 'Вишенка', emoji: '🍒', price: 250 }],
+      lampwork: [{ id: 'cherry', name: 'Вишенка', emoji: '🍒', price: 150 }],
       charms: [{ id: 'metal-bow', name: 'Металл-бант', emoji: '🎀', price: 350 }]
     };
 
@@ -1231,13 +1183,6 @@
       document.getElementById('label-selected-mount').textContent = name;
       renderLiveStrand();
       calculateCustomPrice();
-    }
-
-    function setStylePreset(id, name) {
-      builderState.stylePreset = { id, name };
-      if (id === 'clean') setPalette('pearl', 'Натуральный жемчуг');
-      if (id === 'y2k') setPalette('dopamine', 'Дофаминовый коктейль');
-      if (id === 'romantic' || id === 'boho') setPalette('pastel', 'Пастельный микс');
     }
 
     function setPalette(id, name) {
@@ -1278,7 +1223,7 @@
         builderState.lampwork.splice(index, 1);
       } else {
         if (builderState.lampwork.length >= 3) {
-          showToast('Максимум 3 фигурки лэмпворк на одной нити');
+          showToast('Максимум 3 фигурки лэмпворк на нити');
           return;
         }
         builderState.lampwork.push({ id, name, emoji, price });
@@ -1304,7 +1249,7 @@
         builderState.charms.splice(index, 1);
       } else {
         if (builderState.charms.length >= 3) {
-          showToast('Максимум 3 крупных шарма на подвесе');
+          showToast('Максимум 3 шарма на подвесе');
           return;
         }
         builderState.charms.push({ id, name, emoji, price });
@@ -1326,11 +1271,10 @@
 
     function resetBuilder() {
       builderState.mount = { id: 'carabiner-gold', name: 'Карабин (Золото)', price: 0 };
-      builderState.stylePreset = { id: 'y2k', name: 'Y2K Playful' };
       builderState.palette = { id: 'pearl', name: 'Натуральный жемчуг' };
       builderState.letters = 'AMOUR';
       builderState.letterColor = 'gold';
-      builderState.lampwork = [{ id: 'cherry', name: 'Вишенка', emoji: '🍒', price: 250 }];
+      builderState.lampwork = [{ id: 'cherry', name: 'Вишенка', emoji: '🍒', price: 150 }];
       builderState.charms = [{ id: 'metal-bow', name: 'Металл-бант', emoji: '🎀', price: 350 }];
       
       document.getElementById('letter-input').value = 'AMOUR';
@@ -1352,25 +1296,25 @@
       const claspContainer = document.getElementById('visual-clasp');
       if (builderState.mount.id === 'carabiner-gold') {
         claspContainer.innerHTML = `
-          <div class="w-14 h-8 rounded-full border-2 border-amber-400 bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-300 shadow-md flex items-center justify-between px-2 cursor-pointer" title="Карабин Золото">
-            <span class="w-2.5 h-2.5 rounded-full bg-white border border-amber-300"></span>
-            <span class="text-[9px] font-bold text-amber-800 tracking-tighter">VIE</span>
+          <div class="w-12 h-7 sm:w-14 sm:h-8 rounded-full border-2 border-amber-400 bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-300 shadow-md flex items-center justify-between px-2 cursor-pointer" title="Карабин Золото">
+            <span class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-white border border-amber-300"></span>
+            <span class="text-[8px] sm:text-[9px] font-bold text-amber-800 tracking-tighter">VIE</span>
           </div>`;
       } else if (builderState.mount.id === 'carabiner-silver') {
         claspContainer.innerHTML = `
-          <div class="w-14 h-8 rounded-full border-2 border-slate-300 bg-gradient-to-r from-slate-200 via-white to-slate-300 shadow-md flex items-center justify-between px-2 cursor-pointer" title="Карабин Серебро">
-            <span class="w-2.5 h-2.5 rounded-full bg-slate-400"></span>
-            <span class="text-[9px] font-bold text-slate-700 tracking-tighter">VIE</span>
+          <div class="w-12 h-7 sm:w-14 sm:h-8 rounded-full border-2 border-slate-300 bg-gradient-to-r from-slate-200 via-white to-slate-300 shadow-md flex items-center justify-between px-2 cursor-pointer" title="Карабин Серебро">
+            <span class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-slate-400"></span>
+            <span class="text-[8px] sm:text-[9px] font-bold text-slate-700 tracking-tighter">VIE</span>
           </div>`;
       } else if (builderState.mount.id === 'phone-loop') {
         claspContainer.innerHTML = `
           <div class="flex flex-col items-center" title="Петля для чехла">
-            <div class="w-4 h-9 rounded-full border-2 border-dashed border-graphite/40 bg-transparent"></div>
-            <div class="w-3 h-3 rounded-full bg-graphite -mt-1 shadow-sm"></div>
+            <div class="w-3.5 h-8 sm:w-4 sm:h-9 rounded-full border-2 border-dashed border-graphite/40 bg-transparent"></div>
+            <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-graphite -mt-1 shadow-sm"></div>
           </div>`;
       } else {
         claspContainer.innerHTML = `
-          <div class="flex items-center gap-1 bg-amber-100 px-3 py-1 rounded-full border border-amber-300 text-[10px] font-bold text-amber-800" title="Ювелирный замочек">
+          <div class="flex items-center gap-1 bg-amber-100 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full border border-amber-300 text-[9px] sm:text-[10px] font-bold text-amber-800" title="Ювелирный замочек">
             🔒 Замок Шея
           </div>`;
       }
@@ -1390,13 +1334,13 @@
 
       for (let i = 0; i < 2; i++) {
         const topBead = document.createElement('div');
-        topBead.className = `w-5 h-5 rounded-full ${beadColorClasses} border shadow-sm bead-item-node`;
+        topBead.className = `w-4 h-4 sm:w-5 sm:h-5 rounded-full ${beadColorClasses} border shadow-sm bead-item-node`;
         beadsContainer.appendChild(topBead);
       }
 
       if (builderState.lampwork[0]) {
         const lw1 = document.createElement('div');
-        lw1.className = 'w-9 h-9 rounded-2xl bg-white/90 border border-white shadow-md flex items-center justify-center text-lg bead-item-node animate-float';
+        lw1.className = 'w-7 h-7 sm:w-9 sm:h-9 rounded-xl sm:rounded-2xl bg-white/90 border border-white shadow-md flex items-center justify-center text-base sm:text-lg bead-item-node animate-float';
         lw1.textContent = builderState.lampwork[0].emoji;
         lw1.onclick = () => toggleLampwork(builderState.lampwork[0].id, builderState.lampwork[0].name, builderState.lampwork[0].emoji, builderState.lampwork[0].price);
         beadsContainer.appendChild(lw1);
@@ -1404,10 +1348,10 @@
 
       if (builderState.letters && builderState.letters.length > 0) {
         const lettersRow = document.createElement('div');
-        lettersRow.className = 'flex items-center gap-1.5 py-1';
+        lettersRow.className = 'flex items-center gap-1 sm:gap-1.5 py-0.5 sm:py-1';
         builderState.letters.split('').forEach(char => {
           const letterNode = document.createElement('div');
-          letterNode.className = `w-7 h-7 rounded-xl ${letterBg} border shadow-sm flex items-center justify-center font-bold text-xs bead-item-node`;
+          letterNode.className = `w-6 h-6 sm:w-7 sm:h-7 rounded-lg sm:rounded-xl ${letterBg} border shadow-sm flex items-center justify-center font-bold text-[11px] sm:text-xs bead-item-node`;
           letterNode.textContent = char;
           lettersRow.appendChild(letterNode);
         });
@@ -1418,7 +1362,7 @@
         for (let i = 1; i < builderState.lampwork.length; i++) {
           const lw = builderState.lampwork[i];
           const lwNode = document.createElement('div');
-          lwNode.className = 'w-9 h-9 rounded-2xl bg-white/90 border border-white shadow-md flex items-center justify-center text-lg bead-item-node';
+          lwNode.className = 'w-7 h-7 sm:w-9 sm:h-9 rounded-xl sm:rounded-2xl bg-white/90 border border-white shadow-md flex items-center justify-center text-base sm:text-lg bead-item-node';
           lwNode.textContent = lw.emoji;
           lwNode.onclick = () => toggleLampwork(lw.id, lw.name, lw.emoji, lw.price);
           beadsContainer.appendChild(lwNode);
@@ -1427,18 +1371,18 @@
 
       for (let i = 0; i < 2; i++) {
         const bottomBead = document.createElement('div');
-        bottomBead.className = `w-5 h-5 rounded-full ${beadColorClasses} border shadow-sm bead-item-node`;
+        bottomBead.className = `w-4 h-4 sm:w-5 sm:h-5 rounded-full ${beadColorClasses} border shadow-sm bead-item-node`;
         beadsContainer.appendChild(bottomBead);
       }
 
       const charmsContainer = document.getElementById('strand-charms-container');
       charmsContainer.innerHTML = '';
       if (builderState.charms.length === 0) {
-        charmsContainer.innerHTML = `<span class="text-[10px] text-graphite/40 italic">Шармы не выбраны</span>`;
+        charmsContainer.innerHTML = `<span class="text-[9px] sm:text-[10px] text-graphite/40 italic">Шармы не выбраны</span>`;
       } else {
         builderState.charms.forEach(charm => {
           const charmNode = document.createElement('div');
-          charmNode.className = 'p-2 rounded-2xl bg-gradient-to-tr from-white via-cream to-amber-100 border border-amber-200/60 shadow-md transform hover:rotate-12 transition-transform cursor-pointer bead-item-node text-xl flex items-center justify-center';
+          charmNode.className = 'p-1.5 sm:p-2 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-white via-cream to-amber-100 border border-amber-200/60 shadow-md transform hover:rotate-12 transition-transform cursor-pointer bead-item-node text-lg sm:text-xl flex items-center justify-center';
           charmNode.textContent = charm.emoji;
           charmNode.onclick = () => toggleCharm(charm.id, charm.name, charm.emoji, charm.price);
           charmsContainer.appendChild(charmNode);
@@ -1498,7 +1442,7 @@
         emoji: builderState.charms[0] ? builderState.charms[0].emoji : (builderState.lampwork[0] ? builderState.lampwork[0].emoji : '✨'),
         specs: {
           mount: builderState.mount.name,
-          style: builderState.stylePreset.name,
+          style: 'Индивидуальный',
           palette: builderState.palette.name,
           word: builderState.letters || 'Без букв',
           lampwork: builderState.lampwork.map(l => l.name).join(', ') || 'Нет',
@@ -1512,7 +1456,6 @@
       showToast('Ваш персональный талисман добавлен в корзину! ✨');
     }
 
-    // Отрисовка Бестселлеров с фотографиями
     function renderBestsellers() {
       const container = document.getElementById('bestsellers-grid');
       container.innerHTML = '';
@@ -1520,27 +1463,27 @@
 
       items.forEach(item => {
         const card = document.createElement('div');
-        card.className = 'glass-card rounded-3xl p-5 border border-white/80 shadow-subtle flex flex-col justify-between group hover:-translate-y-1.5 transition-all duration-300';
+        card.className = 'glass-card rounded-2xl sm:rounded-3xl p-5 border border-white/80 shadow-subtle flex flex-col justify-between group hover:-translate-y-1.5 transition-all duration-300';
         card.innerHTML = `
           <div>
-            <div class="relative w-full aspect-square rounded-2xl overflow-hidden shadow-inner mb-4 bg-cream">
+            <div class="relative w-full aspect-square rounded-xl sm:rounded-2xl overflow-hidden shadow-inner mb-3 sm:mb-4 bg-cream">
               <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <span class="absolute top-2.5 left-2.5 text-[9px] uppercase tracking-wider font-bold px-2 py-0.5 bg-white/90 backdrop-blur-md rounded-full shadow-xs">${item.badge}</span>
+              <span class="absolute top-2 left-2 text-[8px] sm:text-[9px] uppercase tracking-wider font-bold px-2 py-0.5 bg-white/90 backdrop-blur-md rounded-full shadow-xs">${item.badge}</span>
             </div>
             <div class="flex items-center justify-between mb-1">
-              <span class="text-[10px] uppercase tracking-wider text-graphite-muted font-bold">${item.categoryLabel}</span>
-              <span class="text-xs font-bold text-graphite">${item.price.toLocaleString('ru-RU')} ₽</span>
+              <span class="text-[9px] sm:text-[10px] uppercase tracking-wider text-graphite-muted font-bold">${item.categoryLabel}</span>
+              <span class="text-xs sm:text-sm font-bold text-graphite">${item.price.toLocaleString('ru-RU')} ₽</span>
             </div>
-            <h3 class="font-serif text-xl font-bold text-graphite mb-1.5">${item.title}</h3>
-            <p class="text-xs text-graphite-muted line-clamp-2 leading-relaxed mb-4">${item.desc}</p>
+            <h3 class="font-serif text-lg sm:text-xl font-bold text-graphite mb-1 leading-snug">${item.title}</h3>
+            <p class="text-xs text-graphite-muted line-clamp-2 leading-relaxed mb-3 sm:mb-4">${item.desc}</p>
           </div>
 
           <div class="flex items-center gap-2 pt-2 border-t border-black/5">
-            <button onclick="openQuickView('${item.id}')" class="flex-1 py-2 rounded-xl bg-white/80 hover:bg-white text-[11px] font-semibold text-graphite border border-black/5 transition-colors">
+            <button onclick="openQuickView('${item.id}')" class="flex-1 py-2.5 rounded-xl bg-white/80 hover:bg-white text-[10px] sm:text-[11px] font-semibold text-graphite border border-black/5 transition-colors">
               Быстрый просмотр
             </button>
-            <button onclick="addCatalogItemToCart('${item.id}')" class="p-2 rounded-xl bg-graphite hover:bg-graphite/85 text-buttercup transition-transform active:scale-90" title="В корзину">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            <button onclick="addCatalogItemToCart('${item.id}')" class="p-2.5 rounded-xl bg-graphite hover:bg-graphite/85 text-buttercup transition-transform active:scale-90" title="В корзину">
+              <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
             </button>
           </div>
         `;
@@ -1548,7 +1491,6 @@
       });
     }
 
-    // Отрисовка Полного каталога с фотографиями
     function renderFullCatalog(filter = 'all') {
       const container = document.getElementById('catalog-full-grid');
       container.innerHTML = '';
@@ -1559,20 +1501,20 @@
 
       filtered.forEach(item => {
         const card = document.createElement('div');
-        card.className = 'glass-card rounded-3xl p-4 border border-white shadow-xs flex flex-col justify-between hover:shadow-md transition-shadow group';
+        card.className = 'glass-card rounded-2xl sm:rounded-3xl p-4 border border-white shadow-xs flex flex-col justify-between hover:shadow-md transition-shadow group';
         card.innerHTML = `
           <div>
-            <div class="w-full aspect-square rounded-2xl overflow-hidden mb-3 shadow-inner bg-cream relative">
+            <div class="w-full aspect-square rounded-xl sm:rounded-2xl overflow-hidden mb-2.5 shadow-inner bg-cream relative">
               <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <span class="absolute top-2 left-2 text-[8px] uppercase tracking-wider font-bold px-2 py-0.5 bg-white/90 backdrop-blur-md rounded-full shadow-xs">${item.badge}</span>
+              <span class="absolute top-1.5 left-1.5 text-[8px] uppercase tracking-wider font-bold px-1.5 py-0.5 bg-white/90 backdrop-blur-md rounded-full shadow-xs">${item.badge}</span>
             </div>
             <span class="text-[9px] uppercase tracking-wider text-graphite-muted font-bold block">${item.categoryLabel}</span>
-            <h4 class="font-serif text-lg font-bold text-graphite leading-tight mb-1">${item.title}</h4>
-            <p class="text-xs font-bold text-graphite mb-3">${item.price.toLocaleString('ru-RU')} ₽</p>
+            <h4 class="font-serif text-base sm:text-lg font-bold text-graphite leading-tight mb-0.5">${item.title}</h4>
+            <p class="text-xs font-bold text-graphite mb-2">${item.price.toLocaleString('ru-RU')} ₽</p>
           </div>
-          <div class="flex gap-1.5">
-            <button onclick="openQuickView('${item.id}')" class="flex-1 py-2 rounded-xl bg-white text-[10px] font-semibold border border-black/5 hover:bg-black/5 transition-colors">Детали</button>
-            <button onclick="addCatalogItemToCart('${item.id}')" class="px-3 py-2 rounded-xl bg-graphite text-buttercup text-[10px] font-bold hover:bg-graphite/90 transition-colors">Купить</button>
+          <div class="flex gap-2">
+            <button onclick="openQuickView('${item.id}')" class="flex-1 py-2 rounded-lg sm:rounded-xl bg-white text-[10px] font-semibold border border-black/5 hover:bg-black/5 transition-colors">Детали</button>
+            <button onclick="addCatalogItemToCart('${item.id}')" class="px-3 py-2 rounded-lg sm:rounded-xl bg-graphite text-buttercup text-[10px] font-bold hover:bg-graphite/90 transition-colors">Купить</button>
           </div>
         `;
         container.appendChild(card);
@@ -1589,7 +1531,6 @@
       renderFullCatalog(category);
     }
 
-    // Модальное окно Quick View с фото
     function openQuickView(itemId) {
       const item = CATALOG_ITEMS.find(i => i.id === itemId);
       if (!item) return;
@@ -1597,7 +1538,7 @@
       const imgBox = document.getElementById('qv-image-box');
       imgBox.innerHTML = `
         <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover absolute inset-0">
-        <span class="absolute top-4 left-4 z-10 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 bg-white/90 backdrop-blur-md rounded-full shadow-xs">${item.badge}</span>
+        <span class="absolute top-3 left-3 z-10 text-[9px] sm:text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 bg-white/90 backdrop-blur-md rounded-full shadow-xs">${item.badge}</span>
       `;
 
       document.getElementById('qv-category').textContent = item.categoryLabel;
@@ -1675,11 +1616,11 @@
 
       if (cart.length === 0) {
         container.innerHTML = `
-          <div class="h-full flex flex-col items-center justify-center text-center py-16">
-            <span class="text-5xl mb-3 opacity-60">🦪</span>
-            <p class="font-serif text-2xl font-bold text-graphite mb-1">Шкатулка пуста</p>
-            <p class="text-xs text-graphite-muted max-w-xs mb-6">Соберите свой первый талисман в конструкторе или выберите готовый концепт.</p>
-            <a href="#studio" onclick="toggleCartDrawer(false)" class="px-6 py-2.5 rounded-full bg-graphite text-white text-xs font-semibold uppercase tracking-wider">Перейти в студию</a>
+          <div class="h-full flex flex-col items-center justify-center text-center py-10 sm:py-16">
+            <span class="text-4xl sm:text-5xl mb-2 sm:mb-3 opacity-60">🦪</span>
+            <p class="font-serif text-xl sm:text-2xl font-bold text-graphite mb-1">Шкатулка пуста</p>
+            <p class="text-xs text-graphite-muted max-w-xs mb-4 sm:mb-6">Соберите свой первый талисман в конструкторе или выберите готовый концепт</p>
+            <a href="#studio" onclick="toggleCartDrawer(false)" class="px-5 py-2 sm:px-6 sm:py-2.5 rounded-full bg-graphite text-white text-xs font-semibold uppercase tracking-wider">В студию</a>
           </div>
         `;
         totalContainer.textContent = '0';
@@ -1701,14 +1642,14 @@
         subtotal += itemTotal;
 
         const el = document.createElement('div');
-        el.className = 'p-4 rounded-2xl bg-white border border-black/5 shadow-xs flex gap-3 relative';
+        el.className = 'p-4 rounded-xl sm:rounded-2xl bg-white border border-black/5 shadow-xs flex gap-3 relative';
         
         let customSpecHTML = '';
         if (item.isCustom) {
           customSpecHTML = `
-            <div class="mt-1.5 p-2 rounded-xl bg-lavender/30 text-[10px] text-graphite space-y-0.5">
+            <div class="mt-1 p-2 rounded-lg bg-lavender/30 text-[9px] sm:text-[10px] text-graphite space-y-0.5">
               <div><strong>Фурнитура:</strong> ${item.specs.mount}</div>
-              <div><strong>Стиль:</strong> ${item.specs.style} | ${item.specs.palette}</div>
+              <div><strong>Основа:</strong> ${item.specs.palette}</div>
               <div><strong>Текст:</strong> «${item.specs.word}»</div>
               <div><strong>Шармы:</strong> ${item.specs.lampwork}, ${item.specs.charms}</div>
             </div>
@@ -1720,27 +1661,27 @@
           : item.emoji;
 
         el.innerHTML = `
-          <div class="w-14 h-14 shrink-0 rounded-xl bg-cream border border-black/5 flex items-center justify-center text-2xl overflow-hidden shadow-inner">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 shrink-0 rounded-lg sm:rounded-xl bg-cream border border-black/5 flex items-center justify-center text-xl sm:text-2xl overflow-hidden shadow-inner">
             ${thumbHTML}
           </div>
           <div class="flex-1 min-w-0">
             <div class="flex justify-between items-start">
               <h4 class="font-semibold text-xs text-graphite truncate">${item.title}</h4>
               <button onclick="removeCartItem('${item.cartId}')" class="text-graphite-muted hover:text-rose-500 p-0.5 ml-1">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
               </button>
             </div>
             
-            <div class="text-xs font-bold text-graphite mt-1">${item.price.toLocaleString('ru-RU')} ₽</div>
+            <div class="text-[11px] sm:text-xs font-bold text-graphite mt-0.5">${item.price.toLocaleString('ru-RU')} ₽</div>
             ${customSpecHTML}
 
-            <div class="flex items-center justify-between mt-3 pt-2 border-t border-black/5">
+            <div class="flex items-center justify-between mt-2 pt-1.5 border-t border-black/5">
               <div class="flex items-center border border-black/10 rounded-lg overflow-hidden bg-cream">
                 <button onclick="changeQuantity('${item.cartId}', -1)" class="px-2 py-0.5 text-xs text-graphite hover:bg-black/5">-</button>
-                <span class="px-2 py-0.5 text-xs font-semibold text-graphite">${item.quantity}</span>
+                <span class="px-2 py-0.5 text-[11px] sm:text-xs font-semibold text-graphite">${item.quantity}</span>
                 <button onclick="changeQuantity('${item.cartId}', 1)" class="px-2 py-0.5 text-xs text-graphite hover:bg-black/5">+</button>
               </div>
-              <span class="text-xs font-bold text-graphite">${itemTotal.toLocaleString('ru-RU')} ₽</span>
+              <span class="text-[11px] sm:text-xs font-bold text-graphite">${itemTotal.toLocaleString('ru-RU')} ₽</span>
             </div>
           </div>
         `;
@@ -1773,7 +1714,7 @@
       const city = document.getElementById('order-city').value.trim();
 
       if (!name || !contact) {
-        showToast('Пожалуйста, укажите имя и контакты для связи');
+        showToast('Укажите имя и Telegram для связи');
         return;
       }
 
